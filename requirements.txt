@@ -1,0 +1,12 @@
+openai
+python-dotenv
+pandas
+duckdb
+tiktoken
+pypdf
+pdfplumber
+reportlab
+pytesseract
+Pillow
+pdf2image
+openpyxl
