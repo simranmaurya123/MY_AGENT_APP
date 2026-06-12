@@ -10,6 +10,10 @@ license: Proprietary. LICENSE.txt has complete terms
 
 This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced features, JavaScript libraries, and detailed examples, see REFERENCE.md. If you need to fill out a PDF form, read FORMS.md and follow its instructions.
 
+> **CRITICAL INSTRUCTION FOR THE AGENT:**
+> Whenever you need to read, analyze, process, or extract information from files, you MUST use files located in the `/input/data` directory unless the user explicitly specifies a different path. Assume all user-provided files are available in `/input/data`, and save all generated or modified files to `/output`.
+
+
 ## Quick Start
 
 ```python
@@ -34,18 +38,18 @@ for page in reader.pages:
 from pypdf import PdfWriter, PdfReader
 
 writer = PdfWriter()
-for pdf_file in ["doc1.pdf", "doc2.pdf", "doc3.pdf"]:
+for pdf_file in ["/input/data/doc1.pdf", "/input/data/doc2.pdf", "/input/data/doc3.pdf"]:
     reader = PdfReader(pdf_file)
     for page in reader.pages:
         writer.add_page(page)
 
-with open("merged.pdf", "wb") as output:
+with open("/output/merged.pdf", "wb") as output:
     writer.write(output)
 ```
 
 #### Split PDF
 ```python
-reader = PdfReader("input.pdf")
+reader = PdfReader("/input/data/input.pdf")
 for i, page in enumerate(reader.pages):
     writer = PdfWriter()
     writer.add_page(page)

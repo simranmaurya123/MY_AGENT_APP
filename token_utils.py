@@ -68,15 +68,27 @@ def threshold_compress(
         print(f"[Token Info] Only {len(conversation)} messages total; keeping all")
         return messages
     
-    old = conversation[:-keep_recent]
-    recent = conversation[-keep_recent:] 
+    # Find a safe split point: never split in the middle of a tool-call group.
+    # Walk backward from the ideal split until we land on a user/assistant message
+    # that is NOT a tool response (i.e., not orphaned from its tool_calls parent).
+    split = len(conversation) - keep_recent
+    while split > 0 and conversation[split]["role"] == "tool":
+        split -= 1
+    # Also step back past the assistant message that owns those tool calls
+    while split > 0 and conversation[split].get("tool_calls"):
+        split -= 1
+
+    old = conversation[:split]
+    recent = conversation[split:]
     
+    if not old:
+        print("[Token Info] Cannot safely compress without orphaning tool calls; keeping all")
+        return messages
     
     summary = _summarize_messages(old, client)
     compressed = system + [{
-        
         "role": "system",
-        "content":f"Conversation summary\n {summary}"
+        "content": f"Conversation summary\n {summary}"
     }] + recent
     
     return compressed
