@@ -22,7 +22,9 @@ from guardrails import GuardrailsManager
 
 
 
-
+os.makedirs("workspace", exist_ok=True)
+os.makedirs("workspace/data", exist_ok=True)
+os.makedirs("workspace/output", exist_ok=True)
 
 model = "gpt-4o-mini" 
 client = OpenAI()
@@ -47,7 +49,7 @@ BLOCKED_PATTERNS = [
 sandbox = DockerSandbox(
     image="agent-sandbox:latest",
     workspace=os.getcwd() + "/workspace",  # Use current project directory
-    timeout=50,
+    timeout=10,
     memory_limit="256m",
     network=False  # No internet access
 )
@@ -130,7 +132,6 @@ Always provide clear and concise answers to the user's questions.
 
 SECURITY NOTE: You operate in a sandboxed environment for safety. 
 You can only access whitelisted directories and cannot access sensitive files like .env.
-
 """
 
 TOOLS = [
@@ -225,7 +226,7 @@ TOOLS = [
   "type": "function",
   "function": {
     "name": "run_python",
-    "description": "Execute Python code in a Docker sandbox.\n\nIMPORTANT:\n- Files in /input/data are available inside Docker at /input/data\n- The script is available at /input/temp_script.py\n- Output files MUST be written to /output\n- Always print the final output file path after creating it\n\nExample:\nprint('CREATED: /output/result.pdf')",
+    "description": "Execute Python code in a Docker sandbox.\n\nIMPORTANT:\n- Files in workspace/data are available inside Docker at /input/data\n- The script is available at /input/temp_script.py\n- Output files MUST be written to /input/output\n- Always print the final output file path after creating it\n\nExample:\nprint('CREATED: /input/output/result.pdf')",
     "parameters": {
       "type": "object",
       "properties": {
@@ -297,6 +298,7 @@ def execute_tool(tool_name: str, tool_input: dict) -> str:
             if resolved_path.lower().endswith('.pdf'):
                 print(f"[DEBUG] Reading PDF directly with pdfplumber...")
                 try:
+                    # pyrefly: ignore [missing-import]
                     import pdfplumber
                     text = []
                     with pdfplumber.open(resolved_path) as pdf:
@@ -391,7 +393,12 @@ def execute_tool(tool_name: str, tool_input: dict) -> str:
             print("Writing script to:", script_path)
 
             try:
-                
+                print("[DEBUG] Executing Python code in sandbox...")
+
+                # Show generated code
+                print("\n===== GENERATED CODE =====")
+                print(code)
+                print("==========================\n")
 
                 # Write script to disk
                 with open(script_path, "w", encoding="utf-8") as f:
@@ -403,7 +410,18 @@ def execute_tool(tool_name: str, tool_input: dict) -> str:
                     output_dir=output_dir,
                 )
 
-                
+                # Debug output
+                print("=" * 50)
+                print("SANDBOX STDOUT:")
+                print(sandbox_result["stdout"])
+
+                print("\nSANDBOX STDERR:")
+                print(sandbox_result["stderr"])
+
+                print("\nSANDBOX EXIT CODE:")
+                print(sandbox_result["exit_code"])
+                print("=" * 50)
+
                 output = f"Exit code: {sandbox_result['exit_code']}\n"
 
                 if sandbox_result["stdout"]:
