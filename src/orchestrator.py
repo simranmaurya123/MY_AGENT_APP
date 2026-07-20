@@ -211,8 +211,8 @@ class RAGOrchestrator:
 
         # Load skills dynamically from SkillRegistry
         try:
-            from skill_registry import SkillRegistry
-            skill_registry = SkillRegistry(skills_dir=str(Path(__file__).parent / "skills"))
+            from .skill_registry import SkillRegistry
+            skill_registry = SkillRegistry(skills_dir=str(Path(__file__).parent.parent / "skills"))
             messages.append({"role": "system", "content": skill_registry.get_menu()})
         except Exception as e:
             print(f"[ORCHESTRATOR-WARN] Skill Registry load failed: {e}")
