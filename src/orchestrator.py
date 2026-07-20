@@ -5,10 +5,10 @@ from typing import Dict, Any, List, Optional
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from classifier import DistilBertClassifier, SUPPORTED_DOMAINS
-from retriever import FAISSRetriever
-from memory import MemoryManager
-from query import QueryContext
+from .classifier import DistilBertClassifier, SUPPORTED_DOMAINS
+from .retriever import FAISSRetriever
+from .memory import MemoryManager
+from .query import QueryContext
 
 load_dotenv()
 

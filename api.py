@@ -3,15 +3,15 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, status, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
-from schemas import (
+from src.schemas import (
     ClassificationRequest,
     ClassificationResponse,
     QueryRequest,
     QueryResponse,
     UploadResponse
 )
-from orchestrator import RAGOrchestrator
-from classifier import SUPPORTED_DOMAINS
+from src.orchestrator import RAGOrchestrator
+from src.classifier import SUPPORTED_DOMAINS
 
 # Global orchestrator instance loaded at startup
 orchestrator = None

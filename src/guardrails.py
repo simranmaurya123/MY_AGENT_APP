@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Tuple
 import json
 import re
-from guardrails_config import (
+from .guardrails_config import (
     INPUT_CONFIG,
     OUTPUT_CONFIG,
     RESOURCE_CONFIG,

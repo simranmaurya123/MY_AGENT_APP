@@ -2,7 +2,11 @@ import os
 import sys
 import time
 from pathlib import Path
-from retriever import FAISSRetriever
+
+# Add root directory to sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from src.retriever import FAISSRetriever
 
 def main():
     print("==================================================")

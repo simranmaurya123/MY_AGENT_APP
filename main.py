@@ -2,14 +2,14 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import json
-from token_utils import threshold_compress, count_all_tokens, get_token_usage_report
-from memory import MemoryManager
-from query import QueryContext
+from src.token_utils import threshold_compress, count_all_tokens, get_token_usage_report
+from src.memory import MemoryManager
+from src.query import QueryContext
 import subprocess
 from pathlib import Path
-from skill_registry import SkillRegistry
-from classifier import DistilBertClassifier, SUPPORTED_DOMAINS
-from retriever import FAISSRetriever
+from src.skill_registry import SkillRegistry
+from src.classifier import DistilBertClassifier, SUPPORTED_DOMAINS
+from src.retriever import FAISSRetriever
 
 # Load environment variables
 load_dotenv()

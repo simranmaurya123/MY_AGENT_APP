@@ -1,6 +1,12 @@
 import os
+import sys
+from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
+
+# Add root directory to sys.path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 from api import app
 
 # Pytest fixture that ensures FastAPI lifespan events run
