@@ -1,0 +1,1510 @@
+query,Category,Topic
+What is A* Search? Explain the stages of A* Search with an example.,AI,A* Search
+What are real-world applications of modern AI systems?,AI,AI Applications
+Compare symbolic AI and statistical AI.,AI,AI Approaches
+Discuss ethical issues in Artificial Intelligence.,AI,AI Ethics
+Explain transparency in AI systems.,AI,AI Ethics
+What is accountability in AI systems?,AI,AI Ethics
+What is ethical AI design?,AI,AI Ethics
+Differentiate between Strong AI and Weak AI.,AI,AI Fundamentals
+What are the different branches of Artificial Intelligence?,AI,AI Fundamentals
+What is Artificial Intelligence? Explain its goals and characteristics.,AI,AI Fundamentals
+What are the limitations of Artificial Intelligence?,AI,AI Limitations
+What is AI safety problem?,AI,AI Safety
+Explain problem reduction using AND-OR graphs.,AI,AND OR Graphs
+Compare A* and AO* algorithms.,AI,AO Star Algorithm
+What are AO* algorithms? Explain with an example.,AI,AO Star Algorithm
+What are adversarial attacks in AI?,AI,Adversarial ML
+Explain Adversarial Search Problem with an example.,AI,Adversarial Search
+Explain adversarial search tree construction.,AI,Adversarial Search
+Program an algorithm to find the best approximate solution to the,AI,Algorithm Programming
+Explain move ordering in Alpha-Beta pruning.,AI,Alpha Beta Pruning
+Explain Alpha-Beta Pruning with an algorithm and example.,AI,Alpha-Beta Pruning
+Explain outlier detection methods.,AI,Anomaly Detection
+What is anomaly detection in AI?,AI,Anomaly Detection
+Write a function to calculate all possible assignment vectors of 2n,AI,Assignment Vectors
+What is attention mechanism in AI models?,AI,Attention Mechanism
+What is self-attention?,AI,Attention Mechanism
+Explain Backward Chaining with an example.,AI,Backward Chaining
+Explain the Backward Chaining algorithm with an example.,AI,Backward Chaining
+Write short notes on Decision Trees and Backward Chaining.,AI,Backward Chaining
+What are Bayesian Networks?,AI,Bayesian Networks
+Explain Bayes' theorem and its applications in AI.,AI,Bayesian Reasoning
+What is Bayesian reasoning? Explain with an example.,AI,Bayesian Reasoning
+Explain belief revision in Artificial Intelligence.,AI,Belief Revision
+Explain Bellman equation in reinforcement learning.,AI,Bellman Equation
+Explain Bidirectional Search with an example.,AI,Bidirectional Search
+Explain gradient boosting machines.,AI,Boosting
+Explain Breadth First Search (BFS) with an example.,AI,Breadth First Search
+Compare rule-based systems and case-based reasoning.,AI,Case Based Reasoning
+What is case-based reasoning? Explain with an example.,AI,Case Based Reasoning
+Explain certainty factors in expert systems.,AI,Certainty Factors
+Explain clustering in AI.,AI,Clustering
+Explain DBSCAN clustering algorithm.,AI,Clustering Methods
+What is hierarchical clustering?,AI,Clustering Methods
+Explain cognitive architectures in Artificial Intelligence.,AI,Cognitive Architecture
+What is commonsense knowledge?,AI,Commonsense Knowledge
+Discuss computer vision as a branch of AI.,AI,Computer Vision
+Explain Connectionist Expert Systems and Inductive Learning.,AI,Connectionist Expert Systems
+Explain Constraint Graph with an example.,AI,Constraint Graph
+Define Constraint Satisfaction Problem (CSP). How is CSP formulated as a search problem? Explain with an example.,AI,Constraint Satisfaction Problem
+Explain constraint-based scheduling.,AI,Constraint Scheduling
+What is coordination in multi-agent systems?,AI,Coordination
+Explain Cryptarithmetic Problem with an example.,AI,Cryptarithmetic Problem
+Explain the Cumulative Learning Process with an example.,AI,Cumulative Learning
+How are Data Science and Machine Learning related to,AI,Data Science vs Machine Learning
+Can you name a few data structures that are commonly,AI,Data Structures
+What is deep reinforcement learning?,AI,Deep RL
+Explain Depth First Search (DFS) with an example.,AI,Depth First Search
+Explain Depth Limited Search (DLS) with an example.,AI,Depth Limited Search
+Explain dimensionality reduction techniques.,AI,Dimensionality Reduction
+What are embeddings in AI?,AI,Embeddings
+What is ensemble learning in AI?,AI,Ensemble Learning
+Explain bagging and boosting.,AI,Ensemble Methods
+Discuss Evaluation Functions.,AI,Evaluation Functions
+"Explain precision, recall, and F1-score.",AI,Evaluation Metrics
+What are evaluation metrics in AI systems?,AI,Evaluation Metrics
+What is ROC curve and AUC?,AI,Evaluation Metrics
+What is confusion matrix?,AI,Evaluation Metrics
+Explain selecting the appropriate problem for an Expert System.,AI,Expert System Development
+Explain the stages in the development of an Expert System.,AI,Expert System Development
+Discuss the detailed Life Cycle Model of an Expert System.,AI,Expert System Life Cycle
+Explain the Expert System Life Cycle.,AI,Expert System Life Cycle
+Explain Expert System Shells and Tools.,AI,Expert System Shells
+Define Expert Systems. Explain the architecture of an Expert System with a neat diagram and example.,AI,Expert Systems
+What is working memory in expert systems?,AI,Expert Systems
+"Why do many people say they will not trust a ""robo-doc"" medical diagnosis expert system?",AI,Expert Systems
+Write short notes on Expert Systems.,AI,Expert Systems
+Describe at least three advantages that expert systems offer organizations that would otherwise have to employ human experts.,AI,Expert Systems Advantages
+Explain the advantages of Expert Systems.,AI,Expert Systems Advantages
+Explain the applications and domains of Expert Systems.,AI,Expert Systems Applications
+What are the main areas of application of Expert Systems according to Waterman (1986)?,AI,Expert Systems Applications
+Design an Expert System for travel recommendation and discuss its roles.,AI,Expert Systems Design
+Discuss Expert System design examples.,AI,Expert Systems Design
+Explain the design of Expert Systems.,AI,Expert Systems Design
+Discuss explainable AI (XAI).,AI,Explainable AI
+What is Explanation-Based Learning? Explain with an example.,AI,Explanation-Based Learning
+What is reinforcement learning exploration strategies like epsilon-greedy?,AI,Exploration Strategies
+What is feature engineering in AI?,AI,Feature Engineering
+What is fine-tuning in machine learning?,AI,Fine Tuning
+Explain existential and universal quantifiers.,AI,First Order Logic
+What is first-order inference using unification?,AI,First Order Logic
+Define the syntactic elements of First-Order Logic.,AI,First-Order Logic
+Illustrate the use of First-Order Logic to represent knowledge.,AI,First-Order Logic
+Explain Forward Chaining with an example.,AI,Forward Chaining
+Explain the Forward Chaining algorithm with an example.,AI,Forward Chaining
+What are default values in frame-based systems?,AI,Frames
+What are frames in Artificial Intelligence?,AI,Frames
+Compare frames and scripts.,AI,Frames vs Scripts
+Explain function approximation in RL.,AI,Function Approximation
+Discuss the future trends in Artificial Intelligence.,AI,Future of AI
+Explain fuzzy inference systems.,AI,Fuzzy Inference Systems
+Compare fuzzy logic and probability.,AI,Fuzzy Logic
+What is fuzzy logic? Explain its components.,AI,Fuzzy Logic
+Discuss applications of fuzzy logic.,AI,Fuzzy Logic Applications
+Explain Game in Artificial Intelligence with an example.,AI,Game Playing
+What are transposition tables in game playing?,AI,Game Playing
+What is game tree evaluation?,AI,Game Playing
+Differentiate between zero-sum and non-zero-sum games.,AI,Game Theory
+Explain Nash equilibrium with an example.,AI,Game Theory
+Explain perfect information and imperfect information games.,AI,Game Theory
+What are game-theoretic strategies in AI?,AI,Game Theory
+What is evolutionary game theory?,AI,Game Theory
+Explain Genetic Algorithms with an example.,AI,Genetic Algorithms
+Compare Greedy Best-First Search and A* Search.,AI,Greedy Best First Search
+Explain pattern database heuristics.,AI,Heuristic Design
+How can heuristics be designed for search problems?,AI,Heuristic Design
+Explain Heuristic Functions with examples.,AI,Heuristic Functions
+Write short notes on Heuristic Functions.,AI,Heuristic Functions
+Compare admissible and consistent heuristics.,AI,Heuristic Search
+What are admissible heuristics? Explain with examples.,AI,Heuristic Search
+What are consistent heuristics? Explain with examples.,AI,Heuristic Search
+Explain Hill Climbing with an example.,AI,Hill Climbing
+Discuss the major milestones in the development of Artificial Intelligence.,AI,History of AI
+Explain the history and evolution of Artificial Intelligence.,AI,History of AI
+What are hybrid AI systems?,AI,Hybrid AI
+Explain Inductive Logic Programming with an example.,AI,Inductive Logic Programming
+Explain inference engine in AI systems.,AI,Inference Engine
+Explain informed search strategies with an example.,AI,Informed Search
+Differentiate between autonomous and rational agents.,AI,Intelligent Agents
+Explain the architecture of an intelligent agent.,AI,Intelligent Agents
+What are the characteristics of an intelligent agent?,AI,Intelligent Agents
+What are the four basic types of agent programs in an intelligent system? How can they be converted into learning agents?,AI,Intelligent Agents
+Compare Iterative Deepening Search with Depth Limited Search.,AI,Iterative Deepening Search
+What is Iterative Deepening Search (IDS)? Explain with an example.,AI,Iterative Deepening Search
+What is K-means clustering algorithm?,AI,K Means
+"Why is knowledge acquisition often referred to as the Expert System ""bottleneck""?",AI,Knowledge Acquisition
+What is knowledge-based agent?,AI,Knowledge Agents
+Explain knowledge compilation in AI.,AI,Knowledge Compilation
+Describe the phases of designing an expert system. What term is used to describe the whole process?,AI,Knowledge Engineering
+Explain the steps involved in the Knowledge Engineering process with an example.,AI,Knowledge Engineering
+Compare declarative and procedural knowledge.,AI,Knowledge Representation
+Discuss the frame problem in Artificial Intelligence.,AI,Knowledge Representation
+Explain knowledge representation and its importance.,AI,Knowledge Representation
+How are categories useful in Knowledge Representation?,AI,Knowledge Representation
+What are the characteristics of good knowledge representation?,AI,Knowledge Representation
+What types of knowledge are used by neural networks and by rule-based systems? What kinds of systems are they with respect to the type of knowledge they use?,AI,Knowledge Representation
+Discuss learning agents and their architecture.,AI,Learning Agents
+"Explain supervised, unsupervised, and reinforcement learning in the context of AI.",AI,Learning Paradigms
+Explain Local Beam Search with an example.,AI,Local Beam Search
+Explain Local Beam Search.,AI,Local Beam Search
+What is predicate logic vs propositional logic?,AI,Logic Comparison
+What is Skolemization in logic?,AI,Logic Normalization
+Explain Logical Agents in detail with an example.,AI,Logical Agents
+Convert expressions into CNF form.,AI,Logical Form
+Explain CNF (Conjunctive Normal Form).,AI,Logical Form
+Explain entailment in logic.,AI,Logical Inference
+What is inference in propositional logic?,AI,Logical Inference
+Explain Markov Decision Process (MDP).,AI,MDP
+"What are states, actions, and rewards in MDP?",AI,MDP Components
+Explain policy iteration method.,AI,MDP Solving
+What is value iteration algorithm?,AI,MDP Solving
+Explain how Machine Learning is different from Deep,AI,Machine Learning vs Deep Learning
+You have 100 mathletes and 100 math problems. Each mathlete,AI,Mathletes Problem
+What is means-ends analysis? Explain with an example.,AI,Means Ends Analysis
+Explain the Minimax Algorithm with an algorithm and example.,AI,Minimax Algorithm
+What are cutoff tests in Minimax?,AI,Minimax Algorithm
+Explain model-based reasoning.,AI,Model Based Reasoning
+What is bias-variance tradeoff?,AI,Model Evaluation
+Explain underfitting vs overfitting.,AI,Model Generalization
+What is overfitting in machine learning models used in AI?,AI,Model Generalization
+Explain robustness in machine learning models.,AI,Model Robustness
+Explain cross-validation in AI model evaluation.,AI,Model Validation
+Explain cooperative vs competitive agents.,AI,Multi-Agent Systems
+What is multi-agent system in AI?,AI,Multi-Agent Systems
+Explain multitask learning.,AI,Multitask Learning
+What is natural language understanding in Artificial Intelligence?,AI,Natural Language Understanding
+Explain negotiation in multi-agent systems.,AI,Negotiation
+Differentiate between offline and online search.,AI,Online Search
+Explain online search algorithms.,AI,Online Search
+What is ontology in Artificial Intelligence?,AI,Ontology
+What is PCA (Principal Component Analysis)?,AI,PCA
+Explain the PEAS framework with an example.,AI,PEAS Framework
+When can parallelism make your algorithms run faster?,AI,Parallelism
+Explain partial-order planning with an example.,AI,Partial Order Planning
+Explain machine perception in Artificial Intelligence.,AI,Perception
+Explain the language of planning problems.,AI,Planning
+What is goal stack planning?,AI,Planning
+Explain planning agents with examples.,AI,Planning Agents
+What is plan execution monitoring?,AI,Planning Agents
+What are planning graphs (GraphPlan)?,AI,Planning Graphs
+Differentiate between planning and scheduling.,AI,Planning vs Scheduling
+What are policies in reinforcement learning?,AI,Policies
+What are pre-trained models in AI?,AI,Pretrained Models
+Explain probabilistic reasoning in Artificial Intelligence.,AI,Probabilistic Reasoning
+Explain goal test and path cost with examples.,AI,Problem Solving
+"For any given problem, how do you decide if you have to",AI,Problem Solving
+What is problem formulation in Artificial Intelligence?,AI,Problem Solving
+What is problem space in Artificial Intelligence?,AI,Problem Space
+Discuss Production Systems.,AI,Production Systems
+Explain conflict resolution strategies in rule-based systems.,AI,Production Systems
+What are forward and backward conflict resolution methods?,AI,Production Systems
+Write short notes on Procedural and Non-Procedural Paradigms.,AI,Programming Paradigms
+Convert natural language statements into propositional logic.,AI,Propositional Logic
+Explain propositional logic in AI.,AI,Propositional Logic
+What are logical connectives in propositional logic?,AI,Propositional Logic
+What is Q-learning in reinforcement learning?,AI,Q Learning
+What is qualitative reasoning?,AI,Qualitative Reasoning
+What is random forest algorithm?,AI,Random Forest
+Explain the concept of rationality in Artificial Intelligence.,AI,Rational Agents
+What factors affect the rationality of an intelligent agent?,AI,Rational Agents
+What are real-time search algorithms?,AI,Real Time Search
+Compare monotonic and non-monotonic reasoning.,AI,Reasoning
+Explain non-monotonic reasoning with an example.,AI,Reasoning
+What is commonsense reasoning?,AI,Reasoning
+What is truth value maintenance in inference systems?,AI,Reasoning Systems
+Explain Recursive Best First Search (RBFS) with an example.,AI,Recursive Best First Search
+Explain exploration vs exploitation dilemma.,AI,Reinforcement Learning
+Explain reward shaping in RL.,AI,Reinforcement Learning
+Explain Relevance-Based Learning (RBL) with an example.,AI,Relevance-Based Learning
+Explain Resolution and Resolution Inference Rule with an example.,AI,Resolution
+What is resolution refutation method?,AI,Resolution
+Explain bias and fairness in AI systems.,AI,Responsible AI
+Explain reward function design challenges.,AI,Reward Design
+Explain path planning in robotics.,AI,Robot Navigation
+What are perception systems in autonomous robots?,AI,Robot Perception
+Discuss the components of an intelligent robot.,AI,Robotics
+What is robotics in Artificial Intelligence?,AI,Robotics
+What is reinforcement learning in robotics?,AI,Robotics Learning
+What is rule chaining in reasoning systems?,AI,Rule Based Reasoning
+What are the main components of a rule-based system?,AI,Rule-Based Systems
+Why was a production system model used to implement the first rule-based expert systems?,AI,Rule-Based Systems
+What is satisfiability problem (SAT) in AI?,AI,SAT Problem
+What is SLAM (Simultaneous Localization and Mapping)?,AI,SLAM
+Explain STRIPS representation in AI planning.,AI,STRIPS Planning
+What is scheduling in Artificial Intelligence?,AI,Scheduling
+Explain scripts in knowledge representation.,AI,Scripts
+Compare tree search and graph search.,AI,Search Algorithms
+Compare uninformed and informed search strategies.,AI,Search Algorithms
+"Compare BFS, DFS, UCS, and A* Search.",AI,Search Algorithms Comparison
+Explain branching factor and search depth.,AI,Search Complexity
+What is combinatorial explosion?,AI,Search Complexity
+"What are completeness, optimality, time complexity, and space complexity in search algorithms?",AI,Search Evaluation
+Differentiate between semantic networks and frames.,AI,Semantic Networks
+Explain inheritance in semantic networks.,AI,Semantic Networks
+Explain semantic networks with an example.,AI,Semantic Networks
+Explain sensor fusion in robotics.,AI,Sensor Fusion
+Explain Simulated Annealing with an example.,AI,Simulated Annealing
+Explain the process of Simulated Annealing with an example.,AI,Simulated Annealing
+Explain spatial reasoning with examples.,AI,Spatial Reasoning
+Explain speech recognition in Artificial Intelligence.,AI,Speech Recognition
+Write an algorithm that can calculate the square root of a number.,AI,Square Root Algorithm
+Differentiate between search tree and state space graph.,AI,State Space Representation
+Explain state space representation with an example.,AI,State Space Representation
+What are operators in state space search?,AI,State Space Representation
+Discuss planning with state-space search.,AI,State Space Search
+Explain state transition system with an example.,AI,State Transition System
+What is temporal difference learning?,AI,TD Learning
+Differentiate between deterministic and stochastic environments.,AI,Task Environment
+Differentiate between discrete and continuous environments.,AI,Task Environment
+Differentiate between episodic and sequential environments.,AI,Task Environment
+Differentiate between fully observable and partially observable environments.,AI,Task Environment
+Differentiate between single-agent and multi-agent environments.,AI,Task Environment
+Differentiate between static and dynamic environments.,AI,Task Environment
+What are environment properties in Artificial Intelligence?,AI,Task Environment
+Discuss temporal reasoning with examples.,AI,Temporal Reasoning
+Explain domain adaptation.,AI,Transfer Learning
+What is transfer learning in AI?,AI,Transfer Learning
+Explain transformers in Artificial Intelligence.,AI,Transformers
+Discuss truth maintenance systems.,AI,Truth Maintenance Systems
+Discuss uncertainty in Artificial Intelligence.,AI,Uncertainty Handling
+What is Dempster-Shafer theory?,AI,Uncertainty Handling
+Explain uncertainty propagation.,AI,Uncertainty Reasoning
+Explain substitution and unification with example.,AI,Unification
+Explain Uniform Cost Search (UCS) with an example.,AI,Uniform Cost Search
+Explain word embeddings like Word2Vec conceptually.,AI,Word Embeddings
+Compare monocular and stereo depth estimation.,CV,3D Vision
+Explain the role of LiDAR in 3D vision systems.,CV,3D Vision
+How does Structure from Motion reconstruct 3D scenes?,CV,3D Vision
+What is depth estimation in computer vision?,CV,3D Vision
+What is point cloud data?,CV,3D Vision
+What is action recognition in computer vision?,CV,Action Recognition
+What are adversarial attacks in computer vision?,CV,Adversarial Attacks
+How can computer vision models be made robust against adversarial examples?,CV,Adversarial Robustness
+Why was AlexNet considered a breakthrough?,CV,AlexNet
+What is the purpose of anchor boxes in object detection?,CV,Anchor Boxes
+Why are anchor boxes used in Faster R-CNN and YOLO?,CV,Anchor Boxes
+What annotation formats are commonly used in computer vision?,CV,Annotation Formats
+How does the attention mechanism help in computer vision?,CV,Attention Mechanism
+How can AutoML help computer vision?,CV,AutoML
+What is NAS (Neural Architecture Search)?,CV,AutoML
+How do CNNs process color images?,CV,CNN
+What is AlexNet?,CV,CNN Architectures
+What is DenseNet?,CV,CNN Architectures
+What is EfficientNet?,CV,CNN Architectures
+What is GoogLeNet?,CV,CNN Architectures
+What is Inception Network?,CV,CNN Architectures
+What is MobileNet?,CV,CNN Architectures
+What is ResNet?,CV,CNN Architectures
+What is ShuffleNet?,CV,CNN Architectures
+What is SqueezeNet?,CV,CNN Architectures
+What is VGGNet?,CV,CNN Architectures
+What are the main stages of a computer vision pipeline?,CV,CV Pipeline
+"What is LAB color space, and where is it useful?",CV,Color Spaces
+What is YCbCr color space?,CV,Color Spaces
+What is the difference between RGB and HSV color spaces?,CV,Color Spaces
+When would you use HSV instead of RGB?,CV,Color Spaces
+Why is computer vision considered a challenging AI problem?,CV,Computer Vision Basics
+"What is image classification, localization, detection, and segmentation? Compare them.",CV,Computer Vision Tasks
+What is MoCo in self-supervised learning?,CV,Contrastive Learning
+What is SimCLR?,CV,Contrastive Learning
+What is contrastive learning in computer vision?,CV,Contrastive Learning
+"What is DETR, and how does it differ from traditional detectors?",CV,DETR
+What causes data leakage in computer vision datasets?,CV,Data Leakage
+What is channel-first versus channel-last image format?,CV,Data Representation
+What are image annotations?,CV,Dataset Annotation
+What types of annotations are required for object detection?,CV,Dataset Annotation
+How do you split datasets for computer vision tasks?,CV,Dataset Preparation
+Why is dataset diversity important?,CV,Dataset Quality
+What dataset would you choose for road scene understanding?,CV,Datasets
+What is CIFAR-100?,CV,Datasets
+What is CIFAR-10?,CV,Datasets
+What is COCO dataset?,CV,Datasets
+What is Fashion-MNIST?,CV,Datasets
+What is ImageNet dataset?,CV,Datasets
+What is MNIST?,CV,Datasets
+What is Open Images Dataset?,CV,Datasets
+What is Pascal VOC dataset?,CV,Datasets
+What are the advantages of DenseNet?,CV,DenseNet
+How do FPS and latency differ?,CV,Deployment Metrics
+How can CNN models be deployed on edge devices?,CV,Edge AI
+What challenges arise when deploying computer vision models on mobile devices?,CV,Edge Deployment
+How does EfficientNet scale CNNs?,CV,EfficientNet
+How do ROC curves apply to image classification?,CV,Evaluation Metrics
+How do precision and recall differ?,CV,Evaluation Metrics
+What is AUC-ROC?,CV,Evaluation Metrics
+What is Average Precision (AP)?,CV,Evaluation Metrics
+What is Precision-Recall Curve in object detection?,CV,Evaluation Metrics
+What is Top-1 accuracy?,CV,Evaluation Metrics
+What is Top-5 accuracy?,CV,Evaluation Metrics
+What is confusion matrix in image classification?,CV,Evaluation Metrics
+When is accuracy a misleading metric?,CV,Evaluation Metrics
+Why is F1-score useful for imbalanced datasets?,CV,Evaluation Metrics
+"What is Grad-CAM, and how does it explain CNN predictions?",CV,Explainable AI
+What is facial landmark detection?,CV,Face Analysis
+Which is the best algorithm for face detection?,CV,Face Detection
+How does face recognition differ from face detection?,CV,Face Recognition
+Why is Faster R-CNN called a two-stage detector?,CV,Faster R-CNN
+What are feature maps in CNNs?,CV,Feature Maps
+How does feature pyramid differ from image pyramid?,CV,Feature Pyramid
+"What is focal loss, and why was it introduced?",CV,Focal Loss
+Why is learning rate one of the most important hyperparameters?,CV,Hyperparameter Tuning
+How does image captioning differ from image classification?,CV,Image Captioning
+What is image captioning?,CV,Image Captioning
+What is the effect of image compression on deep learning models?,CV,Image Compression
+Why is color normalization important?,CV,Image Preprocessing
+"How are RGB, BGR, and grayscale images represented?",CV,Image Representation
+Why do we convert images to tensors before training?,CV,Image Representation
+How does image resolution affect CNN performance?,CV,Image Resolution
+What is image retrieval?,CV,Image Retrieval
+"What is the difference between semantic, instance, and panoptic segmentation?",CV,Image Segmentation
+Why is ImageNet important in deep learning?,CV,ImageNet
+How do you handle class imbalance in image datasets?,CV,Imbalanced Data
+Why does Inception use multiple filter sizes?,CV,Inception
+What is batch inference?,CV,Inference
+What is offline inference?,CV,Inference
+What is online inference?,CV,Inference
+How is IoU calculated?,CV,IoU
+What is Intersection over Union (IoU)?,CV,IoU
+What is knowledge distillation in computer vision?,CV,Knowledge Distillation
+What is model distillation?,CV,Knowledge Distillation
+What is cosine learning rate scheduling?,CV,Learning Rate Scheduling
+What is warm-up learning rate?,CV,Learning Rate Scheduling
+How do lightweight CNNs differ from traditional CNNs?,CV,Lightweight Models
+How does focal loss address class imbalance?,CV,Loss Functions
+What is Binary Cross-Entropy loss?,CV,Loss Functions
+What is Categorical Cross-Entropy loss?,CV,Loss Functions
+What is Lovász loss?,CV,Loss Functions
+What is Tversky loss?,CV,Loss Functions
+What is weighted loss in computer vision?,CV,Loss Functions
+When should Dice loss be used?,CV,Loss Functions
+Why is Cross-Entropy commonly used for image classification?,CV,Loss Functions
+Compare CT scans and MRI scans from a vision perspective.,CV,Medical Imaging
+Explain computer-aided diagnosis systems.,CV,Medical Imaging
+How are CNNs applied in disease diagnosis?,CV,Medical Imaging
+How are Vision Transformers used in medical image analysis?,CV,Medical Imaging
+How does transfer learning benefit medical imaging tasks?,CV,Medical Imaging
+What are the privacy concerns associated with medical imaging data?,CV,Medical Imaging
+What challenges arise from class imbalance in medical datasets?,CV,Medical Imaging
+What is image segmentation in medical imaging?,CV,Medical Imaging
+What metrics are commonly used in medical image analysis?,CV,Medical Imaging
+Why is annotation difficult in medical imaging datasets?,CV,Medical Imaging
+What is metric learning in computer vision?,CV,Metric Learning
+Why is MobileNet suitable for mobile devices?,CV,MobileNet
+What is structured pruning?,CV,Model Compression
+What is unstructured pruning?,CV,Model Compression
+How would you debug a computer vision model that performs well on training data but poorly on unseen images?,CV,Model Debugging
+What is inference time?,CV,Model Deployment
+What is latency in computer vision applications?,CV,Model Deployment
+What is throughput in deep learning inference?,CV,Model Deployment
+How do you detect overfitting in a CNN?,CV,Model Evaluation
+How do you detect underfitting?,CV,Model Evaluation
+How can you interpret what a CNN has learned?,CV,Model Interpretability
+How does TensorRT optimize computer vision models?,CV,Model Optimization
+How does quantization affect accuracy?,CV,Model Optimization
+What is FP16 inference?,CV,Model Optimization
+What is INT8 quantization?,CV,Model Optimization
+What is mixed precision training?,CV,Model Optimization
+What is post-training quantization?,CV,Model Optimization
+What is quantization-aware training?,CV,Model Optimization
+"What is model pruning, and why is it useful?",CV,Model Pruning
+How is model quantization used in computer vision?,CV,Model Quantization
+Why are multi-scale features important?,CV,Multi-scale Learning
+What is Non-Maximum Suppression (NMS)?,CV,Non-Maximum Suppression
+Why is Non-Maximum Suppression required in object detection?,CV,Non-Maximum Suppression
+Explain multilingual OCR challenges.,CV,OCR
+Explain text detection and text recognition.,CV,OCR
+How do deep learning models improve OCR performance?,CV,OCR
+How does OCR differ from document understanding?,CV,OCR
+What challenges arise when recognizing handwritten text?,CV,OCR
+"What is OCR, and where is it used?",CV,OCR
+What is Optical Character Recognition (OCR)?,CV,OCR
+What is scene text recognition?,CV,OCR
+What metrics are used to evaluate OCR systems?,CV,OCR
+What preprocessing steps improve OCR accuracy?,CV,OCR
+Why is skew correction important in OCR systems?,CV,OCR
+How does ONNX simplify deployment across frameworks?,CV,ONNX
+Compare YOLO and Faster R-CNN.,CV,Object Detection
+Compare one-stage and two-stage object detectors.,CV,Object Detection
+Explain anchor boxes and their purpose.,CV,Object Detection
+How do feature pyramids improve detection accuracy?,CV,Object Detection
+How does Non-Maximum Suppression work?,CV,Object Detection
+How does YOLO achieve real-time object detection?,CV,Object Detection
+What are one-stage and two-stage object detectors?,CV,Object Detection
+What challenges arise when detecting small objects?,CV,Object Detection
+What is Feature Pyramid Network (FPN)?,CV,Object Detection
+What is mean Average Precision (mAP)?,CV,Object Detection
+What is the difference between object localization and object detection?,CV,Object Detection
+Why is FPN useful for detecting small objects?,CV,Object Detection
+Why is Intersection over Union important in object detection?,CV,Object Detection
+What are false positives and false negatives in object detection?,CV,Object Detection Metrics
+Why is mAP a preferred evaluation metric for object detection?,CV,Object Detection Metrics
+Compare single-object and multi-object tracking.,CV,Object Tracking
+Explain tracking-by-detection approaches.,CV,Object Tracking
+How does DeepSORT improve tracking performance?,CV,Object Tracking
+How does the Kalman Filter assist tracking systems?,CV,Object Tracking
+How is tracking accuracy evaluated?,CV,Object Tracking
+What are common applications of object tracking?,CV,Object Tracking
+What causes identity switching in object tracking?,CV,Object Tracking
+What is object tracking in computer vision?,CV,Object Tracking
+What is the MOT challenge in computer vision?,CV,Object Tracking
+What role does appearance matching play in tracking?,CV,Object Tracking
+What is optical flow?,CV,Optical Flow
+How does momentum improve gradient descent?,CV,Optimization
+What is the difference between SGD and Adam for CNN training?,CV,Optimization
+What optimizer is commonly used for CNNs?,CV,Optimization
+Compare 2D and 3D pose estimation.,CV,Pose Estimation
+Explain bottom-up and top-down pose estimation approaches.,CV,Pose Estimation
+Explain keypoint detection in pose estimation.,CV,Pose Estimation
+How do heatmaps represent body joints?,CV,Pose Estimation
+How is pose estimation used in sports analytics?,CV,Pose Estimation
+What are the limitations of real-time pose estimation systems?,CV,Pose Estimation
+What challenges arise from occluded body parts?,CV,Pose Estimation
+What evaluation metrics are used for pose estimation?,CV,Pose Estimation
+What is human pose estimation?,CV,Pose Estimation
+What is human pose estimation?,CV,Pose Estimation
+Why is pose estimation important in healthcare applications?,CV,Pose Estimation
+What is positional encoding in Vision Transformers?,CV,Positional Encoding
+Why is real-time inference important?,CV,Real-Time Vision
+How do you reduce overfitting in computer vision models?,CV,Regularization
+What is early stopping?,CV,Regularization
+Why do residual blocks improve training?,CV,ResNet
+How does RetinaNet solve class imbalance?,CV,RetinaNet
+What is SSD (Single Shot Detector)?,CV,SSD
+Compare semantic segmentation and instance segmentation.,CV,Segmentation
+Explain the Dice coefficient used in segmentation tasks.,CV,Segmentation
+How does Mask R-CNN perform instance segmentation?,CV,Segmentation
+What challenges arise when segmenting overlapping objects?,CV,Segmentation
+Why is U-Net widely used in medical image segmentation?,CV,Segmentation
+What is self-attention in Vision Transformers?,CV,Self-Attention
+Compare supervised learning and self-supervised learning in vision tasks.,CV,Self-Supervised Learning
+How does SimCLR learn image representations?,CV,Self-Supervised Learning
+What are positive and negative pairs in contrastive learning?,CV,Self-Supervised Learning
+What is DINO in computer vision?,CV,Self-Supervised Learning
+What is contrastive learning in computer vision?,CV,Self-Supervised Learning
+What is masked image modeling?,CV,Self-Supervised Learning
+What is self-supervised learning in computer vision?,CV,Self-Supervised Learning
+Why does self-supervised learning reduce labeling costs?,CV,Self-Supervised Learning
+What is a Siamese Network?,CV,Siamese Networks
+What is triplet loss?,CV,Triplet Loss
+Why does VGG use only 3×3 convolutions?,CV,VGGNet
+What are the advantages of Vision Transformers over CNNs?,CV,ViT vs CNN
+How is optical flow used in video analysis?,CV,Video Analysis
+What does the future of video analysis look like with the,CV,Video Analysis
+How does Vision Transformer divide an image into patches?,CV,Vision Transformer
+What are the limitations of Vision Transformers?,CV,Vision Transformer
+What is a Vision Transformer (ViT)?,CV,Vision Transformer
+Compare CNNs and Vision Transformers.,CV,Vision Transformers
+How are images converted into patches in Vision Transformers?,CV,Vision Transformers
+What is patch embedding in a Vision Transformer?,CV,Vision Transformers
+Why are positional embeddings required in Vision Transformers?,CV,Vision Transformers
+Why do Vision Transformers require large datasets?,CV,Vision Transformers
+What is Visual Question Answering (VQA)?,CV,Vision-Language Models
+How does YOLO detect objects at different scales?,CV,YOLO
+Why is YOLO considered a one-stage detector?,CV,YOLO
+How does YOLO differ from Faster R-CNN?,CV,YOLO vs Faster R-CNN
+What is mean Average Precision (mAP)?,CV,mAP
+Explain activation functions in neural networks.,DL,Activation Functions
+What is the purpose of the Softmax function?,DL,Activation Functions
+Explain the Adam Optimizer in one minute.,DL,Adam Optimizer
+Compare additive attention and multiplicative attention.,DL,Attention Mechanism
+How does attention improve long-range dependency modeling?,DL,Attention Mechanism
+What are the limitations of attention mechanisms?,DL,Attention Mechanism
+What problem does additive attention solve compared to fixed context vectors?,DL,Attention Mechanism
+Why can attention weights improve model interpretability?,DL,Attention Mechanism
+How does AutoML automate model design?,AI,AutoML
+What is AutoML in Deep Learning?,DL,AutoML
+Compare GANs and VAEs for image generation.,DL,Autoencoders
+Compare autoencoders and PCA.,DL,Autoencoders
+Explain Variational Autoencoders (VAEs).,DL,Autoencoders
+How are autoencoders used for anomaly detection?,DL,Autoencoders
+How do autoencoders learn compressed representations?,DL,Autoencoders
+How does the reparameterization trick work in VAEs?,DL,Autoencoders
+What is a denoising autoencoder?,DL,Autoencoders
+What is latent space interpolation?,DL,Autoencoders
+What is the bottleneck layer in an autoencoder?,DL,Autoencoders
+Why are sparse autoencoders useful?,DL,Autoencoders
+What is backpropagation?,DL,Backpropagation
+What are the benefits of using batch normalization when,DL,Batch Normalization
+"What do you understand by the terms Batch, Iterations,",DL,Batch vs Iterations
+Can you name the breakthrough project that garnered the,AI,Breakthrough Project
+What do you understand by a computational graph?,DL,Computational Graph
+What is Catastrophic Forgetting?,AI,Continual Learning
+What is Continual Learning?,AI,Continual Learning
+What is Incremental Learning?,AI,Continual Learning
+Why do neural networks forget previously learned tasks?,AI,Continual Learning
+How does Contrastive Learning work?,DL,Contrastive Learning
+What are positive and negative samples in Contrastive Learning?,DL,Contrastive Learning
+What is Contrastive Learning?,DL,Contrastive Learning
+What is SimCLR?,DL,Contrastive Learning
+Why is cross-entropy preferred as the cost function for,DL,Cross-entropy Cost Function
+Explain the cross-entropy loss function.,DL,Cross-entropy Loss
+To what kind of problems can the cross-entropy loss,DL,Cross-entropy Loss
+How important is it to shuffle the training data when,DL,Data Shuffling
+How can you generate a dataset on multiple cores in,DL,Dataset Generation
+What is the benefit of shuffling a training dataset when,DL,Dataset Shuffling
+How will you explain the success and recent rise in demand,AI,Deep Learning Demand
+What has fostered the implementation and,AI,Deep Learning Implementation
+How do Diffusion Models generate images?,DL,Diffusion Models
+What are Diffusion Models?,DL,Diffusion Models
+What is the forward process in Diffusion Models?,DL,Diffusion Models
+What is the reverse process in Diffusion Models?,DL,Diffusion Models
+Why are Diffusion Models preferred over GANs in some tasks?,DL,Diffusion Models
+What are Parameter Servers in Distributed Training?,DL,Distributed Training
+What is Data Parallelism?,DL,Distributed Training
+What is Distributed Deep Learning?,DL,Distributed Training
+What is Horovod?,DL,Distributed Training
+What is Model Parallelism?,DL,Distributed Training
+Why dropout is effective in deep networks?,DL,Dropout
+What is Early Stopping and why is it useful?,DL,Early Stopping
+Why are embeddings preferred over one-hot encoding?,DL,Embeddings
+What do you understand by end-to-end learning?,DL,End-to-end Learning
+How do Deep Learning Ensembles work?,DL,Ensemble Learning
+What is Ensemble Learning in Deep Learning?,DL,Ensemble Learning
+What is Snapshot Ensembling?,DL,Ensemble Learning
+What is Stacking in Deep Learning?,DL,Ensemble Learning
+Is there any difference between feature learning and,DL,Feature Learning
+How does Few-Shot Learning work?,DL,Few-Shot Learning
+What is Few-Shot Learning?,DL,Few-Shot Learning
+What is One-Shot Learning?,DL,Few-Shot Learning
+What is fine-tuning and how is it different from transfer,DL,Fine-tuning vs Transfer Learning
+Explain the working of forwarding propagation and,DL,Forward Propagation
+Compare full fine-tuning and LoRA fine-tuning.,NLP,Foundation Models
+Explain few-shot learning in foundation models.,NLP,Foundation Models
+Explain zero-shot learning in foundation models.,NLP,Foundation Models
+How does parameter-efficient fine-tuning reduce training cost?,NLP,Foundation Models
+What are emergent abilities in large language models?,NLP,Foundation Models
+What is a foundation model?,NLP,Foundation Models
+What is instruction tuning?,NLP,Foundation Models
+What is supervised fine-tuning (SFT)?,NLP,Foundation Models
+Why are large-scale pretraining datasets important?,NLP,Foundation Models
+Why does model scaling improve performance?,DL,Foundation Models
+What is a GAN and what are the different types of GAN,DL,GAN
+What are the components of a General Adversarial,DL,GAN Components
+Compare Vanilla GAN and Wasserstein GAN.,DL,GANs
+Explain Conditional GANs with an example.,DL,GANs
+Explain the minimax objective function of GANs.,DL,GANs
+How can mode collapse be mitigated in GAN training?,DL,GANs
+How does CycleGAN perform image-to-image translation?,CV,GANs
+What evaluation metrics are commonly used for GANs?,DL,GANs
+What is the Earth Mover's Distance used in WGANs?,DL,GANs
+What is the role of the discriminator in a GAN?,DL,GANs
+Why are GANs difficult to train?,DL,GANs
+Why do GANs suffer from mode collapse?,DL,GANs
+Compare Graph Convolutional Networks and Graph Attention Networks.,DL,Graph Neural Networks
+Explain message passing in Graph Neural Networks.,DL,Graph Neural Networks
+What is node classification in GNNs?,DL,Graph Neural Networks
+What types of data are best represented as graphs?,AI,Graph Neural Networks
+Why do GNNs suffer from over-smoothing?,DL,Graph Neural Networks
+There is a neuron in the hidden layer that always results,DL,Hidden Layer Neuron
+What is Bayesian Optimization?,ML,Hyperparameter Optimization
+What is Grid Search in Deep Learning?,ML,Hyperparameter Optimization
+What is Hyperparameter Optimization?,ML,Hyperparameter Optimization
+What is Random Search for Hyperparameter Tuning?,ML,Hyperparameter Optimization
+What is the impact on a model with an improperly set,ML,Improperly Set Model
+How does Contrastive Loss work?,DL,Metric Learning
+What is Metric Learning?,DL,Metric Learning
+What is Triplet Loss?,DL,Metric Learning
+Compare pruning and quantization.,DL,Model Compression
+How does Knowledge Distillation work?,DL,Model Compression
+How does Quantization improve inference speed?,DL,Model Compression
+How does Weight Pruning reduce model size?,DL,Model Compression
+How does knowledge distillation reduce model size?,DL,Model Compression
+How does post-training quantization work?,DL,Model Compression
+What is Dynamic Quantization?,DL,Model Compression
+What is Knowledge Distillation?,DL,Model Compression
+What is Model Compression?,DL,Model Compression
+What is Neural Network Pruning?,DL,Model Compression
+What is Quantization in Deep Learning?,DL,Model Compression
+What is Static Quantization?,DL,Model Compression
+What is Structured Pruning?,DL,Model Compression
+What is Unstructured Pruning?,DL,Model Compression
+What is a Student Model in Knowledge Distillation?,DL,Model Compression
+What is a Teacher Model in Knowledge Distillation?,DL,Model Compression
+What is structured pruning and why is it hardware-friendly?,DL,Model Compression
+What trade-offs occur when compressing deep learning models?,DL,Model Compression
+What is Checkpointing during training?,DL,Model Training
+What is a Training Pipeline in Deep Learning?,DL,Model Training
+Why do we save checkpoints while training neural networks?,DL,Model Training
+How does Multi-Task Learning improve performance?,DL,Multi-Task Learning
+What is Multi-Task Learning?,DL,Multi-Task Learning
+Which loss function is preferred for multi-category,DL,Multi-category Loss Function
+When is multi-task learning usually preferred?,DL,Multi-task Learning
+How do Multimodal Models combine different data types?,DL,Multimodal Learning
+What is a Multimodal Model?,DL,Multimodal Learning
+What is Neural Architecture Search?,DL,Neural Architecture Search
+Why is Neural Architecture Search important?,DL,Neural Architecture Search
+Why is it important to introduce non-linearities in a,DL,Non-linearities
+What is Online Learning in Neural Networks?,DL,Online Learning
+"Compare SGD, Momentum, and Nesterov Momentum.",DL,Optimization
+Explain cosine annealing learning rate scheduling.,DL,Optimization
+How does RMSProp adapt learning rates?,DL,Optimization
+How does gradient clipping prevent exploding gradients?,DL,Optimization
+What causes oscillation during gradient descent?,ML,Optimization
+What is the purpose of the learning rate?,ML,Optimization
+What is warm-up in deep learning training?,DL,Optimization
+What is weight decay and how does it help generalization?,ML,Optimization
+Why can large learning rates prevent convergence?,ML,Optimization
+Why is Adam often preferred for deep networks?,DL,Optimization
+Why is optimization harder in very deep networks?,DL,Optimization
+Can you explain the parameter sharing concept in deep learning?,DL,Parameter Sharing
+Explain the working of a perceptron.,ML,Perceptron
+What are the limitations of using a perceptron?,ML,Perceptron
+How often do you use pre-trained models for your neural,DL,Pre-trained Models
+How does Label Smoothing improve generalization?,DL,Regularization
+How does Weight Decay differ from L2 Regularization?,ML,Regularization
+What is Label Smoothing?,DL,Regularization
+What is Weight Decay?,ML,Regularization
+How do neural networks learn useful representations?,DL,Representation Learning
+What is Feature Learning in Deep Learning?,DL,Representation Learning
+What is Representation Learning?,DL,Representation Learning
+What is the importance of having residual neural,DL,Residual Neural Networks
+How does Self-Supervised Learning differ from Supervised Learning?,DL,Self-Supervised Learning
+What is BYOL?,DL,Self-Supervised Learning
+What is Self-Supervised Learning?,DL,Self-Supervised Learning
+Explain Siamese Networks.,DL,Siamese Networks
+How do Siamese Networks learn similarity?,DL,Siamese Networks
+Why Sigmoid or Tanh is not preferred to be used as the,DL,Sigmoid vs Tanh
+What is the advantage of using small kernels like 3x3,CV,Small Kernels
+What is FP16 training?,DL,Training Optimization
+What is Gradient Accumulation?,DL,Training Optimization
+What is Mixed Precision Training?,DL,Training Optimization
+When should Gradient Accumulation be used?,DL,Training Optimization
+Why is Mixed Precision Training useful?,DL,Training Optimization
+How does Curriculum Learning improve convergence?,DL,Training Strategies
+What is Curriculum Learning?,DL,Training Strategies
+What are the benefits of Transfer Learning?,DL,Transfer Learning
+What do you understand by transfer learning?,DL,Transfer Learning
+What is Domain Adaptation?,DL,Transfer Learning
+What is Fine-Tuning in Transfer Learning?,DL,Transfer Learning
+What is Transfer Learning in Deep Learning?,DL,Transfer Learning
+When should feature extraction be preferred over fine-tuning?,DL,Transfer Learning
+Compare absolute positional encoding and relative positional encoding.,DL,Transformers
+Explain the role of residual connections in Transformers.,DL,Transformers
+How do encoder-only and decoder-only Transformers differ?,DL,Transformers
+How does masking work in Transformer decoders?,DL,Transformers
+How does positional encoding help a Transformer understand word order?,DL,Transformers
+What challenges arise when training very deep Transformer models?,DL,Transformers
+What is the purpose of layer normalization in Transformers?,DL,Transformers
+Why are Transformers easier to parallelize than RNNs?,DL,Transformers
+Why does self-attention scale quadratically with sequence length?,DL,Transformers
+Why is attention considered a content-based retrieval mechanism?,DL,Transformers
+Which one do you think is more powerful – a two-layer NN,DL,Two-layer NN
+Compare CNNs and Vision Transformers.,CV,Vision Transformers
+How does a Vision Transformer process images?,CV,Vision Transformers
+What is a Vision Transformer?,CV,Vision Transformers
+Why are Vision Transformers becoming popular?,CV,Vision Transformers
+How does CLIP learn image-text relationships?,CV,Vision-Language Models
+What is CLIP in Deep Learning?,CV,Vision-Language Models
+What is Zero-Shot Learning?,DL,Zero-Shot Learning
+How would you conduct an A/B Test on an opt-in feature?,ML,A/B Testing
+What is A/B testing?,ML,A/B Testing
+Difference between AI and ML.,AI,AI vs ML
+Difference between Accuracy and F1 Score.,ML,Accuracy vs F1 Score
+What would be good metrics of success for an advertising-driven,ML,Advertising Metrics
+Given a database of all previous alumni donations to your,ML,Alumni Donations
+What is anomaly detection,ML,Anomaly Detection
+What happens when some of the assumptions required,ML,Assumptions
+Explain bagging in Data Science.,ML,Bagging
+Bagging vs Boosting: explain the main differences.,ML,Bagging vs Boosting
+Differentiate between bias and variance with respect to,ML,Bias vs Variance
+What is a bias-variance trade-off in Data Science?,ML,Bias-Variance Trade-off
+How to calculate the accuracy of a binary classification,ML,Binary Classification Accuracy
+Write code to calculate the accuracy of a binary,ML,Binary Classification Accuracy
+What are various ways to predict a binary response variable? Can,ML,Binary Response Variable
+If you could take advantage of multiple CPU cores would you prefer a boosted-tree algorithm over a random forest,ML,Boosted Trees vs Random Forest
+Explain boosting in Data Science.,ML,Boosting
+Explain the Borel Measurable function.,ML,Borel Measurable Function
+"Given accelerometer, altitude, and fuel usage data from a car, how",ML,Car Data Analysis
+Give Python code for Clustering.,ML,Clustering
+Solve a numerical problem based on Clustering.,ML,Clustering
+What is Clustering in simple words?,ML,Clustering
+Explain collaborative filtering in recommender systems.,ML,Collaborative Filtering
+"Out of collaborative filtering and content-based filtering,",ML,Collaborative vs Content-Based Filtering
+Build a confusion matrix for the model where the,ML,Confusion Matrix
+What is a confusion matrix?,ML,Confusion Matrix
+Write a function that when called with a confusion,ML,Confusion Matrix
+Given data on congressional bills and which congressional,ML,Congressional Bills Data
+What would be good metrics of success for a consumer product that,ML,Consumer Product Metrics
+Explain content-based filtering in recommender systems.,ML,Content-Based Filtering
+Difference between convex and non-convex cost function,ML,Cost Function
+[Stripe - Medium] Say you model the lifetime for a set of customers using an,ML,Customer Lifetime Value
+Explain DBSCAN algorithm,ML,DBSCAN Clustering
+How do you generate arbitrary or random shape clusters,ML,DBSCAN Clustering
+How can you make sure that you don’t analyze something that ends,ML,Data Analysis
+What are advantages of plotting your data before per- forming,ML,Data Plotting
+Is more data always better?.,ML,Data Quantity
+"You have a stream of data coming in of size n, but you don’t know",ML,Data Stream
+(Given a Dataset) Analyze this dataset and give me a model that can,ML,Dataset Analysis
+(Given a Dataset) Analyze this dataset and tell me what you can,ML,Dataset Analysis
+"From the below given ‘diamonds’ dataset, extract only",ML,Dataset Extraction
+What are the commonly used techniques to deal with the,ML,Dealing with Data
+Build a decision tree model on ‘Iris’ dataset where the,ML,Decision Tree
+Give short viva answers for Decision Tree.,ML,Decision Tree
+What do you understand by a decision tree?,ML,Decision Tree
+Write a 10-mark answer on Decision Tree for exam.,ML,Decision Tree
+Both decision trees and deep neural networks are non-linear classifier ie they separates the space by complicated decision boundary Why then it is so much easier for us to intuitively follow a decision tree model vs a deep neural network,ML,Decision Tree vs Deep Neural Network
+which one is more powerful a layer decision tree or a -layer neural network without any activation function --> Hint non-linearity,ML,Decision Tree vs Neural Network
+Explain Decision Tree with a basic example.,ML,Decision Trees
+Give a project idea based on Decision Tree.,ML,Decision Trees
+Is pruning always a good method to construct a tree,ML,Decision Trees
+What are Decision Trees?,ML,Decision Trees
+What is pruning in Decision Tree,ML,Decision Trees
+What is the benefit of dimensionality reduction?,ML,Dimensionality Reduction
+What is Euclidean and Manhatten distance,ML,Distance Metrics
+Name any one distance based algorithm,ML,Distance-Based Algorithms
+What would be good metrics of success for an e-commerce product?,ML,E-commerce Product Metrics
+Difference between bagging boosting and the relation to bayes theorem,ML,Ensemble Learning
+Is it a good idea to combine multiple trees,ML,Ensemble Learning
+What is ensemble learning?,ML,Ensemble Learning
+What is the difference between bagging and boosting,ML,Ensemble Learning
+What is the main idea behind ensemble learning? If I had many,ML,Ensemble Learning
+What is entropy in a decision tree algorithm?,ML,Entropy
+What error metric would you use to evaluate how good a binary,ML,Error Metric
+What is the difference between an error and a residual,ML,Error vs Residual
+"Calculate the errors, i.e., the differences between the actual and the predicted values",ML,Errors
+Write a function to calculate the Euclidean distance,ML,Euclidean Distance
+What evaluation approaches do you use to gauge the,ML,Evaluation Approaches
+What is the F1 Score and how is it calculated?,ML,F1 Score
+Say you are working on Facebook News Feed. What would be some,ML,Facebook News Feed
+How would you design the people you may know feature on,ML,Feature Design
+What about Ordinal Features?,ML,Feature Engineering
+What are categorical variables and what do we do with categorical variables,ML,Feature Engineering
+What are dummy variables,ML,Feature Engineering
+Are there differences between continuous and discrete variables when it comes to Feature Importance in Gradient Boosting models?,ML,Feature Importance
+How can we know which features are more important for a Decision Tree model?,ML,Feature Importance
+How can you determine which features are the most important in,ML,Feature Importance
+What are the possible options for Feature Importance in Gradient Boosting Trees?,ML,Feature Importance
+How to compute Feature Scaling in an ML numerical?,ML,Feature Scaling
+You want to run a regression to predict the probability of a flight,ML,Flight Probability Prediction
+How would you suggest to a franchise where to open a new store?,ML,Franchise Location
+When would you use GD over SDG and vice-versa,ML,GD vs SGD
+How could you use GPS data from a car to determine the quality of,ML,GPS Data Analysis
+"Given location data of golf balls in games, how would construct a",ML,Golf Balls Data Analysis
+How do you select the number of trees in a Gradient Boosting model?,ML,Gradient Boosting
+Is it possible to parallelize training of a Gradient Boosting model?,ML,Gradient Boosting
+What are the main parameters in the Gradient Boosting model?,ML,Gradient Boosting
+What is Gradient Boosting Trees?,ML,Gradient Boosting
+How does GBDTs decide to split a node What does it minimize,ML,Gradient Boosting Decision Trees
+Do gradient descent methods always converge at the same point,ML,Gradient Descent
+What is gradient descent How does it work,ML,Gradient Descent
+"What is the difference between stochastic gradient descent SGD and gradient descent GD, Batch gradient descent, Stochastic gradient descent, Mini-batch gradient descent , what are the pros and cons for each of them",ML,Gradient Descent Variants
+You have data on all purchases of customers at a grocery store.,ML,Grocery Store Purchases
+You’re a restaurant and are approached by Groupon to run a deal.,ML,Groupon Deal
+Suppose you are Uber and you want to design a heatmap to,ML,Heatmap Design
+What are the commonly used approaches to set the,ML,Hyperparameter Tuning
+Can you name a few hyperparameters used for training a,ML,Hyperparameters
+How do you bring balance to the force when handling,ML,Imbalanced Data
+How would you handle an imbalanced dataset,ML,Imbalanced Learning
+Undersampling vs Oversampling,ML,Imbalanced Learning
+What is the class imbalance problem,ML,Imbalanced Learning
+What information is gained in a decision tree algorithm?,ML,Information Gain
+What are the different types of joins? What are the differences,ML,Joins
+What is k-fold cross-validation?,ML,K-Fold Cross-Validation
+Give a project idea based on K-Means.,ML,K-Means
+How can we select an appropriate value of k in k-means?,ML,K-Means
+Does Kmeans and Kmeans++ is same,ML,K-Means Clustering
+Give short viva answers for K-Means.,ML,K-Means Clustering
+Summarize K-Means for quick revision.,ML,K-Means Clustering
+What are some disadvantages of K-means,ML,K-Means Clustering
+What is K-means How can you select K for K-means,ML,K-Means Clustering
+Write a 10-mark answer on K-Means for exam.,ML,K-Means Clustering
+Do we call Knn a lazy algorithm,ML,K-Nearest Neighbors
+What is the objective function for Knn,ML,K-Nearest Neighbors
+Find the answer for this KNN numerical problem.,ML,KNN
+Give concise revision notes on KNN.,ML,KNN
+Give quick interview-style questions on KNN.,ML,KNN
+How can I build a basic KNN model?,ML,KNN
+What is a kernel function in SVM?,ML,Kernel Function
+Mention the different kernel functions that can be used,ML,Kernel Functions
+Why is lightGBM prone to overfitting,ML,LightGBM
+What are the disadvantages of linear regression,ML,Linear Regression
+What do you understand about linear regression?,ML,Linear Regression
+What is linear regression Why is it called linear,ML,Linear Regression
+Your linear regression didn’t run and communicates that there are,ML,Linear Regression
+[Two Sigma - Easy] Say you are running a Multiple Linear Regression and believe...,ML,Linear Regression
+What are the assumptions required for linear,ML,Linear Regression Assumptions
+Ask me viva questions on Logistic Regression.,ML,Logistic Regression
+Build a logistic regression model on the ‘customer_churn’,ML,Logistic Regression
+Give Python code for Logistic Regression.,ML,Logistic Regression
+Implement logistic regression on this ‘heart’ dataset in R,ML,Logistic Regression
+What do you understand by logistic regression?,ML,Logistic Regression
+What is Logistic Regression in simple words?,ML,Logistic Regression
+Difference between MSE and Cross Entropy Loss.,ML,MSE vs Cross Entropy Loss
+Calculate the result for a Machine Learning question step by step.,ML,Machine Learning
+Explain Machine Learning with a basic example.,ML,Machine Learning
+Give a project idea based on Machine Learning.,ML,Machine Learning
+Give short viva answers for Machine Learning.,ML,Machine Learning
+How to implement Machine Learning using Python?,ML,Machine Learning
+Summarize Machine Learning for quick revision.,ML,Machine Learning
+How would you build a model to predict a March Madness bracket?,ML,March Madness Prediction
+How to compute an inverse matrix faster by playing around with some computational tricks,ML,Matrix Inverse
+What is maximum likelihood estimation? Could there be any case,ML,Maximum Likelihood Estimation
+Calculate the mean of these squared errors,ML,Mean Squared Error
+A certain metric is violating your expectations by going down or up,ML,Metric Violation
+Give a simple mathematical argument why a mini-batch version of such ML algorithm might be computationally more efficient than a training with full data set,ML,Mini Batch Gradient Descent
+"When using mini batch gradient descent, why is it important to shuffle the data",ML,Mini Batch Gradient Descent
+How can we handle missing data?,ML,Missing Data
+How do you deal with some of your predictors being missing?,ML,Missing Predictors
+Introduce 25 percent missing values in this ‘iris’ dataset,ML,Missing Values
+What are some differences you would expect in a model that,ML,Model Differences
+What is more important to you the performance of your,ML,Model Performance
+"Given the dataset, how will you decide which deep",ML,Model Selection
+How will you differentiate between a multi-class and,ML,Multi-class Classification
+What is multi-task learning When should it be used,ML,Multi-task Learning
+What happens to our Linear Regression model if z = x + y?,ML,Multicollinearity
+What happens when we have correlated features in our data?,ML,Multicollinearity
+"Given position data of NBA players in a season’s games, how would",ML,NBA Players Data Analysis
+Explain Naive Bayes step by step for beginners.,ML,Naive Bayes
+How should I make a mini project on Naive Bayes?,ML,Naive Bayes
+List key terms related to Naive Bayes.,ML,Naive Bayes
+What does the word ‘Naive’ mean in Naive Bayes?,ML,Naive Bayes
+What should I say if examiner asks about Naive Bayes?,ML,Naive Bayes
+Write important theory points about Naive Bayes.,ML,Naive Bayes
+Say that you are Netflix. How would you determine what original,ML,Netflix Original
+How do one-hot encoding and label encoding affect the,ML,One-hot vs Label Encoding
+What is the difference between online and batch learning,ML,Online vs Batch Learning
+"Given a list of numbers, can you return the outliers?",ML,Outliers
+How can we deal with outliers?,ML,Outliers
+What are some ways I can make my model more robust to outliers?,ML,Outliers
+How does PCA work in machine learning?,ML,PCA
+You have several variables that are positively correlated with your,ML,Positively Correlated Variables
+"In the following confusion matrix, calculate precision",ML,Precision
+What is precision?,ML,Precision
+Precision vs Recall: explain the main differences.,ML,Precision vs Recall
+Let’s say you’re given an unfeasible number of predictors in a,ML,Predictors
+"Now you have a feasible number of predictors, but you are sure",ML,Predictors
+Why might it be preferable to include fewer predictors over many?,ML,Predictors
+Describe the difference between primary keys and foreign keys in a,ML,Primary vs Foreign Keys
+What would be good metrics of success for a product that o ered in-,ML,Product Metrics
+What would be good metrics of success for a productivity tool?,ML,Productivity Tool Metrics
+What is pruning in a decision tree algorithm?,ML,Pruning
+What is R2? What are some other metrics that could be better than,ML,R2
+Calculate the RMSE values for the model building.,ML,RMSE
+What is RMSE?,ML,RMSE
+Build an ROC curve for the model built,ML,ROC Curve
+What is the ROC curve?,ML,ROC Curve
+"Build a random forest model on top of this ‘CTG’ dataset,",ML,Random Forest
+Explain Random Forest in exam-oriented language.,ML,Random Forest
+Give a solved example of Random Forest.,ML,Random Forest
+How do we know how many trees we need in Random Forest?,ML,Random Forest
+How do we select the depth of trees in Random Forest?,ML,Random Forest
+Is it easy to parallelize training of a Random Forest model?,ML,Random Forest
+Prepare methodology for a project on Random Forest.,ML,Random Forest
+What are common oral exam questions from Random Forest?,ML,Random Forest
+What are the main parameters of the Random Forest model?,ML,Random Forest
+What are the potential problems with many large trees?,ML,Random Forest
+What do you understand by a random forest model?,ML,Random Forest
+"What if instead of finding the best split, we randomly select a few splits and choose the best among them?",ML,Random Forest
+What is Random Forest?,ML,Random Forest
+Why do we need randomization in Random Forest?,ML,Random Forest
+Write a simple program for Random Forest.,ML,Random Forest
+What's the difference between Random Forest and Gradient Boosting?,ML,Random Forest vs Gradient Boosting
+What is a recall?,ML,Recall
+How is matrix factorization useful in recommendation systems,ML,Recommendation Systems
+What are Recommender Systems,ML,Recommendation Systems
+What is a recommendation engine How does it work,ML,Recommendation Systems
+Let's say you're building the recommended music engine at Spotify,ML,Recommended Music Engine
+Explain the formula-based calculation of Regression.,ML,Regression
+How should I make a mini project on Regression?,ML,Regression
+List key terms related to Regression.,ML,Regression
+Loss functions in regression,ML,Regression
+Provide beginner-friendly code for Regression.,ML,Regression
+What is the difference between an error and a residual error,ML,Regression
+What should I say if examiner asks about Regression?,ML,Regression
+Write important theory points about Regression.,ML,Regression
+What are MSE and RMSE,ML,Regression Evaluation Metrics
+What does it mean to have low MAE and high MSE,ML,Regression Evaluation Metrics
+What is the R-Suared value,ML,Regression Evaluation Metrics
+What is the difference between R-suare and Adjusted R-suare,ML,Regression Evaluation Metrics
+"You run your regression on different subsets of your data, and find",ML,Regression Subsets
+Difference between Regression and Classification.,ML,Regression vs Classification
+How does Regularization work in machine learning?,ML,Regularization
+What is regularization and where might it be helpful? What is an,ML,Regularization
+What does root cause analysis mean?,ML,Root Cause Analysis
+Return the square root of the mean,ML,Root Mean Square
+Write code to calculate the root mean square error,ML,Root Mean Square Error
+For online learning which one would you prefer SGD or Adagrad and why,ML,SGD vs Adagrad
+What are the advantages and disadvantages of SGD over gradient descent,ML,SGD vs Gradient Descent
+Can you explain the main idea behind SVM?,ML,SVM
+Give a long answer on SVM with introduction and conclusion.,ML,SVM
+How to compute SVM in an ML numerical problem?,ML,SVM
+Prepare me for viva on SVM.,ML,SVM
+Difference between SVM and KNN.,ML,SVM vs KNN
+Make a scatter plot between ‘price’ and ‘carat’ using,ML,Scatter Plot
+Implement simple linear regression in Python on this,ML,Simple Linear Regression
+Implement simple linear regression in R on this ‘mtcars’,ML,Simple Linear Regression
+How would you predict who someone may want to send a Snapchat,ML,Snapchat Prediction
+How could you collect and analyze data to use social media to,ML,Social Media Analysis
+How would you measure the impact that sponsored stories on,ML,Sponsored Stories Impact
+Square each of these errors,ML,Squared Errors
+Explain stacking in Data Science.,ML,Stacking
+How to compute standard error of median in a simple way,ML,Statistics
+What is the standard error of the mean,ML,Statistics
+You are tasked with improving the e ciency of a subway system.,ML,Subway System Efficiency
+Why do we use the summary function?,ML,Summary Function
+How to compute Supervised Learning in an ML numerical?,ML,Supervised Learning
+Does Radial basis kernel function is there in SVM,ML,Support Vector Machines
+How do support vector machine algorithms work,ML,Support Vector Machines
+What is the role of gamma in RBF kernels,ML,Support Vector Machines
+Which algorithm uses margin to classify the classes,ML,Support Vector Machines
+Why does training an SVM takes a long time How can I speed up,ML,Support Vector Machines
+Which algorithm takes the data to the next dimension and then classify,ML,Support Vector Machines (Kernel Trick)
+You have 5000 people that rank 10 kinds of sushi in terms of,ML,Sushi Ranking
+What could be some issues if the distribution of the test data is,ML,Test Data Distribution
+How to detect if the time series data is stationary?,ML,Time Series Stationarity
+What is the role of trial and error in data analysis? What is the role of,ML,Trial and Error
+How would you quantify the influence of a Twitter user?,ML,Twitter User Influence
+"You are on the data science team at Uber, and you are asked to",ML,Uber Data Science
+"Explain univariate, bivariate, and multivariate analyses.",ML,"Univariate, Bivariate, Multivariate Analyses"
+How does an XGB control overfitting,ML,XGBoost
+How do you approach tuning parameters in XGBoost or LightGBM?,ML,XGBoost and LightGBM
+Why do we use p-value?,ML,p-value
+What improvements does ALBERT introduce?,NLP,ALBERT
+What is ALBERT?,NLP,ALBERT
+Explain Automatic Speech Recognition (ASR).,NLP,ASR
+Explain adversarial attacks in NLP.,NLP,Adversarial NLP
+What do you mean by ambiguity in natural language? Explain with suitable examples. Discuss various ways to resolve ambiguity in NLP.,NLP,Ambiguity in NLP
+What is aspect-based sentiment analysis?,NLP,Aspect-Based Sentiment Analysis
+Explain Bahdanau Attention.,NLP,Attention
+Explain Luong Attention.,NLP,Attention
+Explain scaled dot-product attention.,NLP,Attention
+How does attention improve seq2seq models?,NLP,Attention Mechanism
+What is speech recognition?,NLP,Automatic Speech Recognition
+On a simplified and fundamental scale what makes the newly developed BERT model better than traditional NLP models,NLP,BERT
+BERT vs DistilBERT: explain the main differences.,NLP,BERT vs DistilBERT
+Explain BERTopic.,NLP,BERTopic
+What are the advantages and disadvantages of bag of words?,NLP,Bag of Words
+What is bag of words? How can we use it for text classification?,NLP,Bag of Words
+What is bag of words? How can we use it for text vectorization?,NLP,Bag of Words
+What is the purpose of the Bag-of-Words model in NLP?,NLP,Bag of Words
+Write a short note on Bag of Words.,NLP,Bag of Words
+What is beam search in NLP?,NLP,Beam Search
+Explain the CoNLL benchmark.,NLP,Benchmarks
+What problem does Bi-LSTM solve instead of only LSTM?,NLP,Bi-LSTM
+What are biases in language models?,NLP,Bias in NLP
+"For infrequent/rare words, which among CBOW and Skip-Gram should be used?",NLP,CBOW vs Skip-Gram
+How can we use CNN for text classification?,NLP,CNN for NLP
+How can we use CNNs for text classification?,NLP,CNN for NLP
+What are Conditional Random Fields (CRFs)?,NLP,CRF
+Why are CRFs preferred over HMMs?,NLP,CRF vs HMM
+What are some advantages of using character embeddings instead of word embeddings?,NLP,Character Embeddings
+Task-oriented chatbot vs open-domain chatbot.,NLP,Chatbots
+Difference between chunking and parsing.,NLP,Chunking
+What is chunking in NLP?,NLP,Chunking
+Challenges in code-mixed text processing.,NLP,Code-Mixed NLP
+Explain code-mixed NLP.,NLP,Code-Mixed NLP
+[Facebook - Easy] Facebook has a content team that labels pieces of content on,NLP,Content Labeling
+Explain hate speech detection.,NLP,Content Moderation
+Explain toxicity detection.,NLP,Content Moderation
+How would you construct a feed to show relevant content for a site,NLP,Content Recommendation Systems
+Let's say that you are scheduling content for a content provider...,NLP,Content Recommendation Systems
+Explain context-free grammar (CFG).,NLP,Context-Free Grammar
+Explain conversational AI architecture.,NLP,Conversational AI
+Differentiate between anaphora and coreference resolution.,NLP,Coreference Resolution
+Explain coreference resolution with examples.,NLP,Coreference Resolution
+What is anaphora resolution?,NLP,Coreference Resolution
+What is the purpose of a corpus in NLP?,NLP,Corpus
+What is cross-lingual learning?,NLP,Cross-Lingual NLP
+Explain Direct Preference Optimization (DPO).,NLP,DPO
+Explain DeBERTa.,NLP,DeBERTa
+Greedy Search vs Beam Search.,NLP,Decoding
+Greedy decoding vs top-k vs top-p sampling.,NLP,Decoding
+How can you use neural networks for text classification?,NLP,Deep Learning for NLP
+Explain dense retrieval.,NLP,Dense Retrieval
+What is dependency parsing?,NLP,Dependency Parsing
+Explain dialogue systems.,NLP,Dialogue Systems
+Intent detection vs slot filling.,NLP,Dialogue Systems
+What is discourse analysis in NLP?,NLP,Discourse Analysis
+What is discourse coherence?,NLP,Discourse Analysis
+What is Document AI?,NLP,Document AI
+Explain document classification.,NLP,Document Classification
+What is document clustering?,NLP,Document Clustering
+Explain OCR and its role in NLP.,NLP,Document NLP
+Which method is used to calculate the similarity between two documents based on their content?,NLP,Document Similarity
+Explain document understanding.,NLP,Document Understanding
+What is ELECTRA?,NLP,ELECTRA
+What is embedding similarity?,NLP,Embeddings
+Explain emotion detection in NLP.,NLP,Emotion Recognition
+Sentiment analysis vs emotion detection.,NLP,Emotion Recognition
+Explain the encoder-decoder architecture.,NLP,Encoder-Decoder
+Cross-entropy loss vs perplexity.,NLP,Evaluation Metrics
+Explain BERTScore.,NLP,Evaluation Metrics
+Explain BLEU score.,NLP,Evaluation Metrics
+Explain METEOR score.,NLP,Evaluation Metrics
+Explain ROUGE score.,NLP,Evaluation Metrics
+Macro F1 vs Micro F1.,NLP,Evaluation Metrics
+"Precision, Recall, and F1-score in NLP tasks.",NLP,Evaluation Metrics
+Explain FLAN-T5.,NLP,FLAN-T5
+How can fairness be improved in NLP systems?,NLP,Fairness in NLP
+How can NLP detect fake news?,NLP,Fake News Detection
+What is fine-tuning?,NLP,Fine-Tuning
+What is supervised fine-tuning (SFT)?,NLP,Fine-Tuning
+What is GLUE benchmark?,NLP,GLUE
+How does GPT generate text?,NLP,GPT
+What is GPT?,NLP,GPT
+What are your thoughts about using GPT3 for our,NLP,GPT-3
+Explain Hidden Markov Models (HMM).,NLP,HMM
+Difference between HMM and CRF.,NLP,HMM vs CRF
+How can hallucinations be reduced?,NLP,Hallucinations
+What are hallucinations in LLMs?,NLP,Hallucinations
+Explain the origin and evolution of NLP.,NLP,History of NLP
+BM25 vs TF-IDF.,NLP,Information Retrieval
+How can we use machine learning for search?,NLP,Information Retrieval
+What are good unsupervised baselines for text information retrieval?,NLP,Information Retrieval
+What is Information Retrieval? List any five examples.,NLP,Information Retrieval
+What is instruction tuning?,NLP,Instruction Tuning
+What is intent classification?,NLP,Intent Detection
+Explain keyword extraction.,NLP,Keyword Extraction
+RAKE vs TextRank.,NLP,Keyword Extraction
+How do you evaluate an LLM?,NLP,LLM Evaluation
+Explain jailbreak attacks on LLMs.,NLP,LLM Security
+Explain LSTM step by step for beginners.,NLP,LSTM
+Explain gates used in LSTM with their functions.,NLP,LSTM
+Explain the formula-based calculation of LSTM.,NLP,LSTM
+How does an LSTM Network Work?,NLP,LSTM
+How should I make a mini project on LSTM?,NLP,LSTM
+List key terms related to LSTM.,NLP,LSTM
+Provide beginner-friendly code for LSTM.,NLP,LSTM
+What should I say if examiner asks about LSTM?,NLP,LSTM
+Write important theory points about LSTM.,NLP,LSTM
+LSTM vs GRU: explain the main differences.,NLP,LSTM vs GRU
+What is language identification?,NLP,Language Identification
+What is perplexity?,NLP,Language Model Evaluation
+Autoregressive vs masked language models.,NLP,Language Models
+Explain autoregressive language models.,NLP,Language Models
+Explain masked language models.,NLP,Language Models
+How are LLMs trained?,NLP,Large Language Models
+What are large language models (LLMs)?,NLP,Large Language Models
+Explain lexical analysis with examples.,NLP,Lexical Analysis
+"Differentiate between syntax, semantics, and pragmatics.",NLP,Linguistics
+Explain LoRA.,NLP,LoRA
+What are production challenges in deploying NLP models?,NLP,MLOps for NLP
+Write a short note on Machine Translation.,NLP,Machine Translation
+Explain the masked language model.,NLP,Masked Language Models
+Explain pruning in NLP models.,NLP,Model Compression
+How can NLP models be compressed for deployment?,NLP,Model Compression
+What is knowledge distillation in NLP?,NLP,Model Compression
+What is morphology in NLP?,NLP,Morphology
+Explain multi-head attention.,NLP,Multi-Head Attention
+Challenges in multilingual NLP.,NLP,Multilingual NLP
+Explain multilingual NLP.,NLP,Multilingual NLP
+How large should N be when using N-grams in a bag-of-words model?,NLP,N-Grams
+How large should be N for our bag of words when using N-grams?,NLP,N-Grams
+What are N-grams? How can we use them?,NLP,N-Grams
+Write a short note on N-grams.,NLP,N-grams
+Choose the following areas where NLP can be useful.,NLP,NLP Applications
+List various applications of NLP and discuss any two applications in detail.,NLP,NLP Applications
+What are the major components of an NLP system?,NLP,NLP Basics
+What is Natural Language Processing (NLP)?,NLP,NLP Basics
+What datasets are commonly used for NLP benchmarking?,NLP,NLP Benchmarks
+List and explain the challenges of NLP.,NLP,NLP Challenges
+What is the main challenge(s) of NLP?,NLP,NLP Challenges
+What are ethical concerns in NLP?,NLP,NLP Ethics
+How do you extract features in NLP?,NLP,NLP Feature Extraction
+Which library in Python is commonly used for NLP tasks?,NLP,NLP Libraries
+Explain the NLP pipeline from raw text to prediction.,NLP,NLP Pipeline
+Which of the following includes major tasks of NLP?,NLP,NLP Tasks
+What is the difference between NLP and NLU?,NLP,NLP vs NLU
+What is the purpose of Named Entity Recognition?,NLP,Named Entity Recognition
+What is Named-Entity Recognition?,NLP,Named Entity Recognition (NER)
+Which of the following is an example of Natural Language Generation?,NLP,Natural Language Generation
+What is Natural Language Understanding? Discuss various levels of analysis under it with examples.,NLP,Natural Language Understanding
+Write a short note on One-Hot Encoding.,NLP,One-Hot Encoding
+Explain opinion mining.,NLP,Opinion Mining
+What is parameter-efficient fine-tuning (PEFT)?,NLP,PEFT
+What is POS tagging? Discuss various approaches to perform POS tagging.,NLP,POS Tagging
+What is PoS Tagging?,NLP,POS Tagging
+What is the purpose of Part-of-Speech tagging?,NLP,POS Tagging
+Difference between constituency parsing and dependency parsing.,NLP,Parsing
+What are parse trees?,NLP,Parsing
+Explain Earley Parsing.,NLP,Parsing Algorithms
+What is shift-reduce parsing?,NLP,Parsing Algorithms
+What is the CYK Parsing algorithm?,NLP,Parsing Algorithms
+How would you come up with an algorithm to detect plagiarism in,NLP,Plagiarism Detection
+Explain sinusoidal positional encoding.,NLP,Positional Encoding
+Learned positional encoding vs sinusoidal encoding.,NLP,Positional Encoding
+Why do Transformers use positional encoding?,NLP,Positional Encoding
+Which of the following is a popular pre-trained language model developed by OpenAI?,NLP,Pretrained Language Models
+What is pretraining?,NLP,Pretraining
+Explain chain-of-thought prompting.,NLP,Prompt Engineering
+What are prompt templates?,NLP,Prompt Engineering
+What is few-shot prompting?,NLP,Prompt Engineering
+What is one-shot prompting?,NLP,Prompt Engineering
+What is prompt engineering?,NLP,Prompt Engineering
+What is self-consistency prompting?,NLP,Prompt Engineering
+What is zero-shot prompting?,NLP,Prompt Engineering
+What is prompt injection?,NLP,Prompt Security
+What is QLoRA?,NLP,QLoRA
+Why is quantization useful in LLMs?,NLP,Quantization
+How is SQuAD evaluated?,NLP,Question Answering
+What does automated question answering in NLP involve?,NLP,Question Answering
+What is a Question Answering (QA) system? Explain its types.,NLP,Question Answering
+What is Exact Match (EM) score?,NLP,Question Answering Metrics
+Explain the architecture of a RAG system.,NLP,RAG
+What is Retrieval-Augmented Generation (RAG)?,NLP,RAG
+When should RAG be preferred over fine-tuning?,NLP,RAG
+What is RLHF?,NLP,RLHF
+Find the answer for this RNN numerical problem.,NLP,RNN
+Give architecture for an ML/DL project using RNN.,NLP,RNN
+Give concise revision notes on RNN.,NLP,RNN
+Give quick interview-style questions on RNN.,NLP,RNN
+How can I build a basic RNN model?,NLP,RNN
+Prepare an exam answer for RNN.,NLP,RNN
+What is RNN and how does an RNN work?,NLP,RNN
+Why is RNN important in ML and DL?,NLP,RNN
+Give examples in which a many-to-one RNN architecture is appropriate.,NLP,RNN Architectures
+Compare RNN and LSTM in ML/DL.,NLP,RNN vs LSTM
+What is RoBERTa?,NLP,RoBERTa
+How is RoBERTa different from BERT?,NLP,RoBERTa vs BERT
+"In a search engine, given partial data on what the user has typed,",NLP,Search Engine
+What is self-attention?,NLP,Self-Attention
+Why is self-attention better than recurrence?,NLP,Self-Attention
+What is semantic search?,NLP,Semantic Search
+How is semantic analysis different from pragmatic analysis?,NLP,Semantic vs Pragmatic Analysis
+"How do you get sentence meanings from word embeddings, considering word positions?",NLP,Sentence Embeddings
+"If you have a sentence with multiple words, how would you combine multiple word embeddings into one?",NLP,Sentence Embeddings
+Compare different algorithms used in sentiment analysis.,NLP,Sentiment Analysis
+Which algorithm is commonly used for sentiment analysis?,NLP,Sentiment Analysis
+Write a short note on Sentiment Analysis.,NLP,Sentiment Analysis
+What is exposure bias in sequence generation?,NLP,Sequence Generation
+Explain sequence labeling with examples.,NLP,Sequence Labeling
+Which of the following is not a sequence labeling task?,NLP,Sequence Labeling
+Why do sequence models suffer from error accumulation?,NLP,Sequence Models
+What is the seq2seq model?,NLP,Sequence-to-Sequence Models
+Which neural network architecture is commonly used for sequence-to-sequence tasks like machine translation?,NLP,Sequence-to-Sequence Models
+Cosine similarity vs Euclidean distance for embeddings.,NLP,Similarity Metrics
+What is slot filling?,NLP,Slot Filling
+Growth for total number of tweets sent has been slow this month.,NLP,Social Media Analytics
+"Given a list of tweets, determine the top 10 most used hashtags.",NLP,Social Media Text Analytics
+"Given training data on tweets and their retweets, how would you",NLP,Social Media Text Analytics
+Explain span prediction.,NLP,Span Prediction
+Explain sparse retrieval.,NLP,Sparse Retrieval
+Speech recognition vs speech synthesis.,NLP,Speech Processing
+What is phoneme recognition?,NLP,Speech Processing
+What is the purpose of stemming in NLP?,NLP,Stemming
+What is the difference between stemming and lemmatization?,NLP,Stemming & Lemmatization
+Why do we remove stop words? When do we not remove them?,NLP,Stop Words
+What is SuperGLUE?,NLP,SuperGLUE
+What is constituency parsing?,NLP,Syntactic Parsing
+What are Syntactic and Semantic Analysis?,NLP,Syntactic vs Semantic Analysis
+What is T5 (Text-to-Text Transfer Transformer)?,NLP,T5
+Calculate TF-IDF for the given corpus and identify the word(s) with the highest value.,NLP,TF-IDF
+Define TF-IDF and explain how to use it for converting text to vectors.,NLP,TF-IDF
+Explain TF-IDF with its applications.,NLP,TF-IDF
+What is TF-IDF? How is it useful for text classification?,NLP,TF-IDF
+Explain TF/IDF vectorization.,NLP,TF/IDF Vectorization
+Explain teacher forcing in sequence models.,NLP,Teacher Forcing
+What is scheduled sampling?,NLP,Teacher Forcing
+How can we use machine learning for text classification?,NLP,Text Classification
+Would you prefer gradient boosting trees model or logistic regression when doing text classification with bag of words,NLP,Text Classification
+Which model would you use for text classification with bag-of-words features?,NLP,Text Classification Models
+Would you prefer gradient boosting or logistic regression for text classification with bag-of-words features?,NLP,Text Classification Models
+Would you prefer gradient boosting or logistic regression for text classification with embeddings?,NLP,Text Classification Models
+Would you prefer gradient boosting trees or logistic regression when doing text classification with bag of words?,NLP,Text Classification Models
+Conditional vs unconditional text generation.,NLP,Text Generation
+Explain nucleus (top-p) sampling.,NLP,Text Generation
+Explain top-k sampling.,NLP,Text Generation
+What is text generation?,NLP,Text Generation
+Does the vocabulary of a corpus remain the same before and after text normalization? Why?,NLP,Text Normalization
+What is the need for text normalization in NLP? Explain the various steps involved.,NLP,Text Normalization
+How do you preprocess text in NLP?,NLP,Text Preprocessing
+Which of the following is an example of a preprocessing step in NLP?,NLP,Text Preprocessing
+Discuss text summarization in detail with its types.,NLP,Text Summarization
+What algorithm can be used to summarize Twitter feed?,NLP,Text Summarization
+Explain Text-to-Speech (TTS).,NLP,Text-to-Speech
+Explain TextRank algorithm.,NLP,TextRank
+What is token classification?,NLP,Token Classification
+What is tokenization?,NLP,Tokenization
+LDA vs BERTopic.,NLP,Topic Modeling
+What is topic coherence?,NLP,Topic Modeling
+What is topic modeling?,NLP,Topic Modeling
+"Compare BERT, GPT, and T5.",NLP,Transformer Models
+Explain the Transformer architecture.,NLP,Transformers
+What are decoder-only Transformer models?,NLP,Transformers
+What are encoder-decoder Transformer models?,NLP,Transformers
+What are encoder-only Transformer models?,NLP,Transformers
+What are vector databases?,NLP,Vector Databases
+What is vector search?,NLP,Vector Databases
+Explain the Viterbi algorithm.,NLP,Viterbi Algorithm
+Do you know any other ways to obtain word embeddings?,NLP,Word Embeddings
+What are word embeddings? Why are they useful?,NLP,Word Embeddings
+What are word embeddings? Why are they useful? Do you know Word2Vec?,NLP,Word Embeddings
+What is the purpose of word embeddings in NLP?,NLP,Word Embeddings
+Which of the following is an example of a word embedding technique?,NLP,Word Embeddings
+What do you mean by Word Sense Disambiguation (WSD)? Discuss its various approaches.,NLP,Word Sense Disambiguation
+Which NLP task determines the correct meaning of a word based on context?,NLP,Word Sense Disambiguation
+Why is Word Sense Disambiguation a challenging problem in NLP?,NLP,Word Sense Disambiguation
+Explain the Lesk Algorithm for WSD with a suitable example.,NLP,Word Sense Disambiguation (Lesk Algorithm)
+What is Word2Vec?,NLP,Word2Vec
+Explain Skip-gram and CBOW with diagrams.,NLP,Word2Vec (CBOW & Skip-gram)
+How is Word2Vec different from GloVe?,NLP,Word2Vec vs GloVe
+What is WordNet?,NLP,WordNet
+What is XLM-R?,NLP,XLM-R
+What is XLNet?,NLP,XLNet
+Why was XLNet proposed?,NLP,XLNet
+How is fastText different from Word2Vec?,NLP,fastText vs Word2Vec
+Explain multilingual BERT.,NLP,mBERT
+What is A3C?,RL,A3C
+What is specification gaming?,RL,AI Safety
+What is an action space?,RL,Action Space
+What is the difference between discrete and continuous action spaces?,RL,Action Space
+How does A3C differ from A2C?,RL,Actor-Critic
+What is Advantage Actor-Critic (A2C)?,RL,Actor-Critic
+What is Asynchronous Advantage Actor-Critic (A3C)?,RL,Actor-Critic
+Why are asynchronous methods useful?,RL,Actor-Critic
+What is Actor-Critic method?,RL,Actor-Critic Methods
+What is distributional reinforcement learning?,RL,Advanced RL
+Why is the advantage function useful?,RL,Advantage Estimation
+What is the advantage function?,RL,Advantage Function
+What is an agent in reinforcement learning?,RL,Agent and Environment
+What is the environment in reinforcement learning?,RL,Agent and Environment
+How is MCTS used in AlphaGo?,RL,AlphaGo
+How does AlphaZero differ from AlphaGo?,RL,AlphaZero
+What is behavior cloning?,RL,Behavior Cloning
+How does the Bellman Equation differ from the Bellman Optimality Equation?,RL,Bellman Equation
+What is the Bellman Optimality Equation?,RL,Bellman Equation
+What is the Bellman equation?,RL,Bellman Equation
+Why is the Bellman Equation recursive?,RL,Bellman Equation
+What is bootstrapping in reinforcement learning?,RL,Bootstrapping
+What is the difference between bootstrapping and sampling?,RL,Bootstrapping
+How does a contextual bandit differ from a standard bandit?,RL,Contextual Bandits
+What is a contextual bandit?,RL,Contextual Bandits
+What is continual reinforcement learning?,RL,Continual Learning
+What is lifelong reinforcement learning?,RL,Continual Reinforcement Learning
+How do continuous action spaces affect RL algorithms?,RL,Continuous RL
+How do continuous state spaces affect RL algorithms?,RL,Continuous RL
+What is the credit assignment problem?,RL,Credit Assignment
+What is curiosity-driven exploration?,RL,Curiosity-Driven Exploration
+What is curriculum learning?,RL,Curriculum Learning
+What is Deep Deterministic Policy Gradient (DDPG)?,RL,DDPG
+Why is DDPG suitable for continuous action spaces?,RL,DDPG
+What is a target network?,RL,DQN Components
+Why is target network freezing used in DQN?,RL,DQN Training
+What is DDPG?,RL,Deep Deterministic Policy Gradient (DDPG)
+What is DQN?,RL,Deep Q Networks (DQN)
+What is AlphaZero?,RL,Deep RL Applications
+What causes catastrophic forgetting in RL?,RL,Deep RL Challenges
+Why can deep reinforcement learning become unstable?,RL,Deep RL Challenges
+How do neural networks approximate value functions?,RL,Deep Reinforcement Learning
+What is Rainbow DQN?,RL,Deep Reinforcement Learning
+Diffusion-based RL?,RL,Diffusion Models in RL
+What is the discount factor (γ) and why is it important?,RL,Discount Factor
+How does distributional RL differ from traditional RL?,RL,Distributional RL
+What is Quantile Regression DQN (QR-DQN)?,RL,Distributional RL
+What is the C51 algorithm?,RL,Distributional RL
+How does Double DQN reduce overestimation bias?,RL,Double DQN
+What is Double DQN?,RL,Double DQN
+What is Dueling DQN?,RL,Dueling DQN
+What is dueling network architecture?,RL,Dueling DQN
+Why are dueling networks beneficial?,RL,Dueling DQN
+How does Dyna-Q combine learning and planning?,RL,Dyna-Q
+What is the Dyna-Q algorithm?,RL,Dyna-Q
+What is dynamic programming in reinforcement learning?,RL,Dynamic Programming
+What is the principle of optimality?,RL,Dynamic Programming
+Why does dynamic programming require a model of the environment?,RL,Dynamic Programming
+What is policy iteration?,RL,Dynamic Programming Algorithms
+What is value iteration?,RL,Dynamic Programming Algorithms
+How can eligibility traces improve learning?,RL,Eligibility Traces
+What are eligibility traces?,RL,Eligibility Traces
+What is TD(λ)?,RL,Eligibility Traces
+How is entropy measured in reinforcement learning?,RL,Entropy
+Why is entropy added to policy optimization objectives?,RL,Entropy Regularization
+What is the difference between deterministic and stochastic environments?,RL,Environment Types
+Ethical issues in RL?,RL,Ethics in Reinforcement Learning
+How is reinforcement learning evaluated?,RL,Evaluation Metrics
+What metrics are used to compare RL algorithms?,RL,Evaluation Metrics
+How does Expected SARSA differ from SARSA?,RL,Expected SARSA
+What is Expected SARSA?,RL,Expected SARSA
+What information does an experience replay buffer store?,RL,Experience Replay
+What is an experience tuple?,RL,Experience Replay
+What is experience replay sampling?,RL,Experience Replay
+What is experience replay?,RL,Experience Replay
+What is prioritized experience replay?,RL,Experience Replay
+What is replay buffer warm-up?,RL,Experience Replay
+Why are experiences shuffled before training?,RL,Experience Replay
+Why is replay memory important?,RL,Experience Replay
+How do random seeds affect RL experiments?,RL,Experiment Design
+Explainable RL?,RL,Explainable Reinforcement Learning
+How do Noisy Networks encourage exploration?,RL,Exploration
+What is NoisyNet exploration?,RL,Exploration
+What is count-based exploration?,RL,Exploration
+What is directed exploration?,RL,Exploration
+What is exploration by random action?,RL,Exploration
+What is optimistic initialization in reinforcement learning?,RL,Exploration
+What is parameter noise?,RL,Exploration
+Why is optimistic initialization useful?,RL,Exploration
+What is Thompson Sampling?,RL,Exploration Strategies
+What is Upper Confidence Bound (UCB) exploration?,RL,Exploration Strategies
+What is epsilon-greedy action selection?,RL,Exploration Strategies
+What is softmax action selection?,RL,Exploration Strategies
+What is the exploration-exploitation tradeoff?,RL,Exploration vs Exploitation
+What are extrinsic rewards?,RL,Extrinsic Motivation
+What are linear function approximators in RL?,RL,Function Approximation
+What are the approximation methods in Reinforcement Learning?,RL,Function Approximation
+What is function approximation in reinforcement learning?,RL,Function Approximation
+Why is function approximation needed in large state spaces?,RL,Function Approximation
+Future of RL?,RL,Future of Reinforcement Learning
+What is Generalized Advantage Estimation (GAE)?,RL,Generalized Advantage Estimation (GAE)
+How does generalized policy iteration converge?,RL,Generalized Policy Iteration
+What is generalized policy iteration (GPI)?,RL,Generalized Policy Iteration
+What is hierarchical RL?,RL,Hierarchical Reinforcement Learning
+What is preference-based reinforcement learning?,RL,Human Feedback
+What hyperparameters are most important in RL?,RL,Hyperparameter Tuning
+How does inverse reinforcement learning differ from imitation learning?,RL,Imitation Learning
+What are the limitations of behavioral cloning?,RL,Imitation Learning
+What is apprenticeship learning?,RL,Imitation Learning
+What is behavioral cloning?,RL,Imitation Learning
+What is dataset aggregation (DAgger)?,RL,Imitation Learning
+What is imitation learning?,RL,Imitation Learning
+What is importance sampling in reinforcement learning?,RL,Importance Sampling
+Why is importance sampling used in off-policy learning?,RL,Importance Sampling
+What are intrinsic rewards?,RL,Intrinsic Motivation
+What is curiosity-driven learning?,RL,Intrinsic Motivation
+What is inverse reinforcement learning?,RL,Inverse Reinforcement Learning
+LLM + RL integration?,RL,LLMs and Reinforcement Learning
+What is online reinforcement learning?,RL,Learning Paradigms
+What is the reward function in an MDP?,RL,MDP Components
+What is the transition probability function?,RL,MDP Components
+What are Markov Decision Processes (MDPs)?,RL,Markov Decision Process (MDP)
+What is the Markov property?,RL,Markov Property
+Why is the Markov assumption important in RL?,RL,Markov Property
+What is meta-reinforcement learning?,RL,Meta Reinforcement Learning
+What are the advantages of model-based RL?,RL,Model-Based RL
+What are the disadvantages of model-based RL?,RL,Model-Based RL
+What is model-based reinforcement learning?,RL,Model-Based RL
+What is a model of the environment?,RL,Model-Based Reinforcement Learning
+How does model-based RL differ from model-free RL?,RL,Model-Based vs Model-Free
+What is the difference between model-free and model-based reinforcement learning?,RL,Model-Free vs Model-Based RL
+What are every-visit Monte Carlo methods?,RL,Monte Carlo Methods
+What are first-visit Monte Carlo methods?,RL,Monte Carlo Methods
+What is Monte Carlo reinforcement learning?,RL,Monte Carlo Methods
+How does Monte Carlo learning differ from TD learning?,RL,Monte Carlo vs TD
+What challenges arise in multi-agent reinforcement learning?,RL,Multi-Agent RL
+What is competitive multi-agent reinforcement learning?,RL,Multi-Agent RL
+What is cooperative multi-agent reinforcement learning?,RL,Multi-Agent RL
+What is multi-agent reinforcement learning?,RL,Multi-Agent RL
+What is multi-agent RL?,RL,Multi-Agent Reinforcement Learning
+How is regret minimized in reinforcement learning?,RL,Multi-Armed Bandits
+What are non-stationary bandit problems?,RL,Multi-Armed Bandits
+What is cumulative regret?,RL,Multi-Armed Bandits
+What is regret in reinforcement learning?,RL,Multi-Armed Bandits
+What are n-step returns?,RL,N-Step Methods
+What is n-step TD learning?,RL,N-Step Methods
+What is off-policy learning?,RL,Off-Policy Learning
+Why is off-policy learning useful?,RL,Off-Policy Learning
+How does offline RL differ from online RL?,RL,Offline RL
+What are the challenges of offline reinforcement learning?,RL,Offline RL
+What is batch reinforcement learning?,RL,Offline RL
+What is offline reinforcement learning?,RL,Offline Reinforcement Learning
+What is on-policy learning?,RL,On-Policy Learning
+What is trust region optimization?,RL,Optimization
+Why can policy updates become unstable?,RL,Optimization Challenges
+How does PPO approximate TRPO?,RL,PPO
+What is KL divergence in PPO?,RL,PPO
+What is clipping in PPO?,RL,PPO
+Why is GAE widely used in PPO?,RL,PPO
+Why is KL divergence monitored during policy optimization?,RL,PPO
+Why is PPO more stable than vanilla policy gradients?,RL,PPO
+What is partial observability in reinforcement learning?,RL,Partially Observable Environments
+What are POMDPs?,RL,Partially Observable Markov Decision Processes
+Explain Passive Reinforcement Learning.,RL,Passive Reinforcement Learning
+How does planning differ from learning?,RL,Planning
+What is Monte Carlo Tree Search (MCTS)?,RL,Planning
+What is planning in reinforcement learning?,RL,Planning
+What is a policy in reinforcement learning?,RL,Policy
+How can variance be reduced in policy gradient methods?,RL,Policy Gradient
+How does REINFORCE update policy parameters?,RL,Policy Gradient
+What is REINFORCE?,RL,Policy Gradient
+What is baseline subtraction in policy gradients?,RL,Policy Gradient
+What is deterministic policy gradient (DPG)?,RL,Policy Gradient
+What is the policy gradient theorem?,RL,Policy Gradient
+Why do policy gradient methods have high variance?,RL,Policy Gradient
+What is policy gradient?,RL,Policy Gradient Methods
+What is policy evaluation?,RL,Policy Iteration
+What is policy improvement?,RL,Policy Iteration
+What are actor-only methods?,RL,Policy Optimization
+What is an optimal policy?,RL,Policy Optimization
+What is entropy regularization in RL?,RL,Policy Optimization
+What is policy entropy?,RL,Policy Optimization
+What is a deterministic policy?,RL,Policy Types
+What is a stochastic policy?,RL,Policy Types
+What is PPO?,RL,Proximal Policy Optimization (PPO)
+What is Q-learning?,RL,Q-Learning
+What is overestimation bias in Q-learning?,RL,Q-Learning Challenges
+Q-learning vs SARSA?,RL,Q-Learning vs SARSA
+How is reinforcement learning used in autonomous driving?,RL,RL Applications
+How is reinforcement learning used in finance?,RL,RL Applications
+How is reinforcement learning used in healthcare?,RL,RL Applications
+How is reinforcement learning used in recommendation systems?,RL,RL Applications
+How is reinforcement learning used in resource allocation problems?,RL,RL Applications
+How is reinforcement learning used in robotics?,RL,RL Applications
+RL in game AI?,RL,RL Applications
+RL in recommendation systems?,RL,RL Applications
+RL in robotics applications?,RL,RL Applications
+What are MuJoCo environments?,RL,RL Benchmarks
+What benchmarks are commonly used for evaluating RL algorithms?,RL,RL Benchmarks
+What are common failure modes of RL agents?,RL,RL Challenges
+Why is reproducibility difficult in RL research?,RL,RL Challenges
+What are the main elements of a reinforcement learning system?,RL,RL Components
+What is DeepMind Control Suite?,RL,RL Frameworks
+What is Gymnasium and how does it differ from OpenAI Gym?,RL,RL Frameworks
+What is the OpenAI Gym environment?,RL,RL Frameworks
+How does an RL agent learn through trial and error?,RL,RL Learning Process
+What is the objective of reinforcement learning?,RL,RL Objectives
+What are current research challenges in reinforcement learning?,RL,RL Research
+What is a rollout in reinforcement learning?,RL,RL Terminology
+What is a timestep in reinforcement learning?,RL,RL Terminology
+What is a trajectory in reinforcement learning?,RL,RL Terminology
+What is an episode in reinforcement learning?,RL,RL Terminology
+How is RLHF used to train large language models?,RL,RLHF
+What is reinforcement learning from human feedback (RLHF)?,RL,RLHF
+Which techniques are combined in Rainbow DQN?,RL,Rainbow DQN
+What is Reinforcement Learning?,RL,Reinforcement Learning
+What is the Tic-Tac-Toe example used to demonstrate in reinforcement learning?,RL,Reinforcement Learning Examples
+What is the difference between supervised learning and reinforcement learning?,RL,Reinforcement Learning vs Supervised Learning
+What is the return in reinforcement learning?,RL,Return
+What challenges arise from sparse rewards?,RL,Reward Design
+What is dense reward reinforcement learning?,RL,Reward Design
+What is sparse reward reinforcement learning?,RL,Reward Design
+What are the benefits of reward shaping?,RL,Reward Engineering
+What are the risks of poor reward shaping?,RL,Reward Engineering
+What is reward hacking?,RL,Reward Hacking
+What is reward shaping?,RL,Reward Shaping
+What is a reward signal?,RL,Reward Signal
+What is delayed reward in reinforcement learning?,RL,Rewards
+What is the difference between immediate reward and cumulative reward?,RL,Rewards
+How does SAC encourage exploration?,RL,SAC
+Why is SAC considered sample efficient?,RL,SAC
+What is SARSA?,RL,SARSA
+What are constrained Markov Decision Processes (CMDPs)?,RL,Safe RL
+What is risk-sensitive reinforcement learning?,RL,Safe RL
+What is safe reinforcement learning?,RL,Safe RL
+Why is safety important in reinforcement learning?,RL,Safe RL
+Safe reinforcement learning?,RL,Safe Reinforcement Learning
+What is environment interaction cost?,RL,Sample Efficiency
+Why is sample efficiency important in RL?,RL,Sample Efficiency
+What is self-play in reinforcement learning?,RL,Self-Play
+Why is self-play effective for competitive games?,RL,Self-Play
+Sim-to-real problem?,RL,Sim-to-Real Transfer
+What is domain randomization in reinforcement learning?,RL,Sim-to-Real Transfer
+What is Soft Actor-Critic (SAC)?,RL,Soft Actor-Critic (SAC)
+What is state aliasing?,RL,State Representation
+What is the state space explosion problem?,RL,State Representation
+What is a state in reinforcement learning?,RL,State Space
+What are absorbing states?,RL,State Types
+What are terminal states?,RL,State Types
+How does TD3 improve upon DDPG?,RL,TD3
+What is Twin Delayed DDPG (TD3)?,RL,TD3
+What is trust region policy optimization (TRPO)?,RL,TRPO
+What is the difference between episodic and continuing tasks?,RL,Task Types
+What is Temporal Difference (TD) learning?,RL,Temporal Difference Learning
+What is replay ratio?,RL,Training Strategies
+How do reward scaling and normalization affect learning?,RL,Training Techniques
+What is observation normalization?,RL,Training Techniques
+Transformers in RL?,RL,Transformers in Reinforcement Learning
+What is TRPO?,RL,Trust Region Policy Optimization (TRPO)
+What is TD3?,RL,Twin Delayed DDPG (TD3)
+What is a value function?,RL,Value Function
+Compare value iteration and policy iteration.,RL,Value Iteration vs Policy Iteration
+What are critic-only methods?,RL,Value-Based Methods

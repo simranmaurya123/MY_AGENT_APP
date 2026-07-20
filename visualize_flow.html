@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Execution Flow Visualizer</title>
+    <!-- Modern Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #020617;
+            --bg-secondary: #0b1329;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(96, 165, 250, 0.3);
+            --accent-blue: #3b82f6;
+            --accent-teal: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-code: #e2e8f0;
+            --font-outfit: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+        }
+
+        body {
+            font-family: var(--font-outfit);
+            background: radial-gradient(circle at 10% 20%, rgba(26, 21, 62, 0.9) 0%, rgba(10, 15, 30, 0.98) 90%), var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.5;
+            padding-bottom: 3rem;
+        }
+
+        /* Premium Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        header {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-title h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .header-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .toggle-flow-btn {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            padding: 0.75rem 1.5rem;
+            color: white;
+            border-radius: 12px;
+            font-family: var(--font-outfit);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-flow-btn:hover {
+            transform: translateY(-2px);
+            border-color: #60a5fa;
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1100px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Flow Path Selector Sidebar */
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .flow-stepper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .flow-stepper::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            bottom: 15px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1;
+        }
+
+        .step-node {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .step-node:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .step-node.active {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.2);
+            box-shadow: inset 0 0 12px rgba(59, 130, 246, 0.05);
+        }
+
+        .step-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 2px solid #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-node.completed .step-indicator {
+            background: var(--accent-teal);
+            border-color: var(--accent-teal);
+            color: #020617;
+        }
+
+        .step-node.active .step-indicator {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .step-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.25s ease;
+        }
+
+        .step-node.active .step-title {
+            color: white;
+        }
+
+        .step-desc-short {
+            font-size: 0.8rem;
+            color: rgba(148, 163, 184, 0.6);
+            margin-top: 0.15rem;
+        }
+
+        /* Main Showcase Area */
+        .workspace-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .interactive-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(16px);
+        }
+
+        .btn-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-outfit);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-control:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-control:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-control.primary {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .btn-control.primary:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            background: #2563eb;
+        }
+
+        .status-badge {
+            margin-left: auto;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 8px #60a5fa; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        /* Detail Cards Layout */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 950px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .detail-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 520px;
+            transition: border-color 0.3s ease;
+        }
+
+        .detail-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .card-header {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        /* Steps Explanations Styling */
+        .explanation-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+
+        .explanation-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .lang-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--text-muted);
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+
+        .alert-box {
+            background: rgba(59, 130, 246, 0.06);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 1.5rem;
+        }
+
+        .alert-box.teal {
+            background: rgba(16, 185, 129, 0.06);
+            border-left-color: var(--accent-teal);
+        }
+
+        .alert-box.purple {
+            background: rgba(139, 92, 246, 0.06);
+            border-left-color: var(--accent-purple);
+        }
+
+        .alert-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.35rem;
+        }
+
+        .alert-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Code Viewer styling */
+        pre {
+            margin: 0;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+
+        .code-snippet {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .code-snippet.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .keyword { color: #f472b6; font-weight: bold; }
+        .function { color: #60a5fa; }
+        .string { color: #34d399; }
+        .comment { color: #64748b; font-style: italic; }
+        .number { color: #fbbf24; }
+        .variable { color: #e2e8f0; }
+
+        /* Terminal simulation styling */
+        .terminal-logs {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            white-space: pre-wrap;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .term-line {
+            line-height: 1.5;
+        }
+
+        .term-prompt {
+            color: #38bdf8;
+        }
+
+        .term-input {
+            color: white;
+            font-weight: bold;
+        }
+
+        .term-debug {
+            color: #e2e8f0;
+            opacity: 0.75;
+        }
+
+        .term-log-header {
+            color: #a78bfa;
+        }
+
+        .term-agent {
+            color: #fbbf24;
+            font-weight: 500;
+        }
+
+        /* Inspector state visualization */
+        .state-viewer {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .state-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .state-sec-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .state-sec-val {
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            color: #f1f5f9;
+            word-break: break-all;
+        }
+
+        .state-badge-item {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .state-badge-item.warning {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #fcd34d;
+        }
+
+        .state-badge-item.success {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .msg-bubble {
+            padding: 0.65rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .msg-bubble.system {
+            background: rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            color: #cbd5e1;
+        }
+
+        .msg-bubble.user {
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #bfdbfe;
+        }
+
+        .msg-bubble.assistant {
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            color: #e9d5ff;
+        }
+
+        .msg-bubble.tool {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            color: #a7f3d0;
+        }
+
+        .msg-role-lbl {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+            opacity: 0.7;
+        }
+
+        /* SVG Line drawing */
+        .flowchart-svg-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .flowchart-svg {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+        }
+
+        .svg-node {
+            fill: #1e293b;
+            stroke: #475569;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .svg-node.active {
+            fill: rgba(59, 130, 246, 0.3);
+            stroke: #60a5fa;
+            filter: drop-shadow(0 0 5px rgba(96, 165, 250, 0.6));
+        }
+
+        .svg-node.completed {
+            fill: rgba(16, 185, 129, 0.15);
+            stroke: var(--accent-teal);
+        }
+
+        .svg-text {
+            font-family: var(--font-outfit);
+            font-size: 11px;
+            font-weight: 600;
+            fill: var(--text-muted);
+            pointer-events: none;
+            text-anchor: middle;
+        }
+
+        .svg-node.active + .svg-text {
+            fill: white;
+            font-weight: 700;
+        }
+
+        .svg-node.completed + .svg-text {
+            fill: #a7f3d0;
+        }
+
+        .svg-edge {
+            stroke: #334155;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrow);
+            transition: stroke 0.3s ease;
+        }
+
+        .svg-edge.active {
+            stroke: #60a5fa;
+            stroke-width: 2.5;
+        }
+
+        .svg-edge.completed {
+            stroke: var(--accent-teal);
+        }
+
+        /* Language Toggle styling */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.03);
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            width: max-content;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.35rem 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>Agent execution flow visualizer</h1>
+            <p>How GPT-4o-mini & python main.py process user requests</p>
+        </div>
+        <button class="toggle-flow-btn" id="toggleFlowType">Switch to: Titanic CSV Query (Tool Flow)</button>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR STEP LIST -->
+        <aside class="sidebar-card">
+            <div class="sidebar-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-commit"><circle cx="12" cy="12" r="4"/><line x1="1.05" x2="7" y1="12" y2="12"/><line x1="17" x2="22.95" y1="12" y2="12"/></svg>
+                <span>Execution Steps</span>
+            </div>
+            
+            <div class="flow-stepper" id="stepper">
+                <!-- Will be dynamically populated via JS -->
+            </div>
+        </aside>
+
+        <!-- MAIN INTERACTIVE SPACE -->
+        <main class="workspace-panel">
+            
+            <!-- Controls bar -->
+            <div class="interactive-controls">
+                <button class="btn-control" id="btnPrev">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                    Back
+                </button>
+                <button class="btn-control primary" id="btnNext">
+                    Next
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+                <button class="btn-control" id="btnReset">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+                    Reset
+                </button>
+                <div class="status-badge" id="statusBadge">
+                    <div class="pulse-dot"></div>
+                    <span id="statusText">Active Step 1</span>
+                </div>
+            </div>
+
+            <!-- SVG FLOWCHART CHART -->
+            <div class="flowchart-svg-container">
+                <svg viewBox="0 0 600 80" class="flowchart-svg" id="flowchartSvg">
+                    <!-- Marker for arrowheads -->
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569"/>
+                        </marker>
+                        <marker id="arrow-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60a5fa"/>
+                        </marker>
+                        <marker id="arrow-completed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- SVG Nodes & Edges will be rendered here dynamically -->
+                </svg>
+            </div>
+
+            <!-- DETAILS & STATE VIEWER ROW -->
+            <div class="details-grid">
+                
+                <!-- Left: Description Card -->
+                <div class="detail-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                            Explanation / विवरण
+                        </h2>
+                        <div class="lang-toggle">
+                            <button class="lang-btn active" id="btnLangEng" onclick="toggleLang('en')">English</button>
+                            <button class="lang-btn" id="btnLangHin" onclick="toggleLang('hi')">Hinglish</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="explanation-text" id="explanationBody">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right tabs: Code Snippet / Active State / Console output -->
+                <div class="detail-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-code"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                            Agent State & Code
+                        </h2>
+                    </div>
+                    <div class="card-body" style="background: #070b15;">
+                        <div class="state-viewer" id="stateViewer">
+                            <!-- Populated dynamically based on steps -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom terminal view -->
+            <div class="detail-card" style="height: auto; min-height: 250px;">
+                <div class="card-header">
+                    <h2>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-terminal"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+                        Simulated Console Output (Python CLI)
+                    </h2>
+                </div>
+                <div class="card-body" style="background: #020617; border-top: 1px solid rgba(255, 255, 255, 0.02);">
+                    <div class="terminal-logs" id="terminalLogs">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- DATA & APP LOGIC -->
+    <script>
+        // Active Language
+        let currentLang = 'en';
+        const TOOLS_COUNT = 3;
+
+        // Available Flows
+        const flows = {
+            concept: {
+                name: "Concept Query Flow (No Tools)",
+                query: "Write short notes on Heuristic Functions.",
+                steps: [
+                    {
+                        title: "1. User Input Received",
+                        descShort: "User types query in CLI prompt.",
+                        en: {
+                            heading: "User Submits Query",
+                            body: "The user starts the terminal agent by running <code>python main.py</code> and inputs the question: <i>'Write short notes on Heuristic Functions.'</i>. This input is captured in the interactive CLI loop in <code>main.py</code>.",
+                            alertTitle: "What happens in code?",
+                            alertBody: "The input string is stripped and added as a new message dictionary with the <code>'user'</code> role: <code>messages.append({'role': 'user', 'content': user_input})</code>."
+                        },
+                        hi: {
+                            heading: "यूज़र ने सवाल दर्ज किया",
+                            body: "यूज़र CLI में <code>python main.py</code> चलाता है और सवाल लिखता है: <i>'Write short notes on Heuristic Functions.'</i>. यह इनपुट <code>main.py</code> के इंटरैक्टिव लूप द्वारा कैप्चर कर लिया जाता है।",
+                            alertTitle: "कोड में क्या होता है?",
+                            alertBody: "इनपुट टेक्स्ट को साफ़ (strip) करके <code>'user'</code> रोल के साथ मैसेज लिस्ट में जोड़ दिया जाता है: <code>messages.append({'role': 'user', 'content': user_input})</code>।"
+                        },
+                        code: `<span class="variable">user_input</span> = <span class="function">input</span>(<span class="string">"You: "</span>).<span class="function">strip</span>()
+...
+<span class="variable">messages</span>.<span class="function">append</span>({<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="variable">user_input</span>})`,
+                        state: {
+                            tokens: 236,
+                            active_role: "user",
+                            finish_reason: "N/A",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Write short notes on Heuristic Functions." }
+                            ]
+                        },
+                        console: `<span class="term-prompt">You:</span> <span class="term-input">Write short notes on Heuristic Functions.</span>`
+                    },
+                    {
+                        title: "2. Compression Check",
+                        descShort: "Token count evaluated against threshold limit.",
+                        en: {
+                            heading: "Evaluating Token Limits",
+                            body: "Before sending the messages payload to OpenAI, the program calls <code>threshold_compress()</code>. The function computes the total token count using the tiktoken library (estimated 236 tokens) and compares it with the <b>Budget</b> (3000 tokens) and the <b>Threshold</b> (3000 * 0.7 = 2100 tokens).",
+                            alertTitle: "Decision Rule",
+                            alertBody: "Since 236 tokens is well below 2100, the assistant skips compression. It prints the debug message: <code>[Token Info] Used: 236 / Budget: 3000 ... Under threshold: no compression needed</code>."
+                        },
+                        hi: {
+                            heading: "टोकन सीमा का आकलन",
+                            body: "OpenAI को मैसेज भेजने से पहले, प्रोग्राम <code>threshold_compress()</code> फ़ंक्शन को चलाता है। यह टिकटोकन (tiktoken) लाइब्रेरी से कुल टोकन्स काउंट करता है (लगभग 236 टोकन्स) और तुलना करता है <b>Budget</b> (3000) तथा <b>Threshold</b> (3000 * 0.7 = 2100) से।",
+                            alertTitle: "निर्णय का नियम",
+                            alertBody: "चूंकि 236 टोकन्स 2100 से बहुत कम हैं, इसलिए कोई कम्प्रेशन नहीं होता। यह टर्मिनल पर प्रिंट करता है: <code>[Token Info] Used: 236 / Budget: 3000 ... Under threshold: no compression needed</code>।"
+                        },
+                        code: `<span class="comment"># Calculate total tokens & compress if needed</span>
+<span class="variable">messages</span>[:] = <span class="function">threshold_compress</span>(<span class="variable">messages</span>, <span class="variable">budget</span>=<span class="number">3000</span>, <span class="variable">client</span>=<span class="variable">client</span>)`,
+                        state: {
+                            tokens: 236,
+                            active_role: "system (token manager)",
+                            finish_reason: "N/A",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Write short notes on Heuristic Functions." }
+                            ]
+                        },
+                        console: `<span class="term-debug">[Token Info] Used: 236 / Budget: 3000 (Threshold: 2100)</span>
+<span class="term-debug">[Token Info] Under threshold: no compression needed</span>`
+                    },
+                    {
+                        title: "3. OpenAI Request",
+                        descShort: "Sending message payload and tools list.",
+                        en: {
+                            heading: "Calling Chat Completions API",
+                            body: "The agent makes a chat completion API request to OpenAI using <code>model='gpt-4o-mini'</code>. The request includes the entire array of messages (system prompt, skill instructions, memory records, user request) and the <code>TOOLS</code> list containing definition schemas for functions like <code>query_csv</code>, <code>save_to_long_term_memory</code>, and <code>threshold_compress</code>.",
+                            alertTitle: "Why are tools included?",
+                            alertBody: "Even though this query doesn't need tools, tools are ALWAYS sent in the API call so that the model can dynamically decide if it needs to call them depending on the user query."
+                        },
+                        hi: {
+                            heading: "OpenAI API को रिक्वेस्ट भेजना",
+                            body: "एजेंट OpenAI को <code>model='gpt-4o-mini'</code> के साथ चैट कम्प्लीशन API कॉल भेजता है। इस रिक्वेस्ट में मैसेज का पूरा ऐरे (System Prompt, Skills, Memory, User request) और <code>TOOLS</code> लिस्ट (जिसमें <code>query_csv</code>, <code>save_to_long_term_memory</code> आदि फ़ंक्शंस के स्कीमा होते हैं) शामिल होते हैं।",
+                            alertTitle: "टूल्स को क्यों भेजा जाता है?",
+                            alertBody: "भले ही इस प्रश्न को टूल्स की ज़रुरत न हो, फिर भी API कॉल में हमेशा टूल्स भेजे जाते हैं ताकि मॉडल खुद से फ़ैसला कर सके कि क्या उसे किसी टूल को कॉल करने की आवश्यकता है।"
+                        },
+                        code: `<span class="variable">response</span> = <span class="variable">client</span>.<span class="variable">chat</span>.<span class="variable">completions</span>.<span class="function">create</span>(
+    <span class="variable">model</span>=<span class="variable">model</span>,
+    <span class="variable">messages</span>=<span class="variable">messages</span>,
+    <span class="variable">temperature</span>=<span class="number">0.3</span>,
+    <span class="variable">tools</span>=<span class="variable">TOOLS</span>,
+)`,
+                        state: {
+                            tokens: 236,
+                            active_role: "API (sending request)",
+                            finish_reason: "N/A",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Write short notes on Heuristic Functions." }
+                            ]
+                        },
+                        console: `<span class="term-debug">[DEBUG] API Request sent to OpenAI with ${TOOLS_COUNT} tools configured...</span>`
+                    },
+                    {
+                        title: "4. LLM Analysis",
+                        descShort: "LLM parses prompt and determines response action.",
+                        en: {
+                            heading: "LLM Decision: Direct Response",
+                            body: "GPT-4o-mini parses the query: <i>'Write short notes on Heuristic Functions'</i>. It analyses the tools configured (like <code>query_csv</code> for Titanic data). Since Heuristic Functions is general academic AI knowledge, the LLM determines that <b>none of the tools are relevant</b>. It generates the text response directly.",
+                            alertTitle: "Finish Reason Check",
+                            alertBody: "The API returns <code>finish_reason: 'stop'</code>. In <code>main.py</code>, the <code>while response.choices[0].finish_reason == 'tool_calls':</code> loop is entirely skipped because no tool was requested."
+                        },
+                        hi: {
+                            heading: "LLM का विश्लेषण: डायरेक्ट उत्तर देना",
+                            body: "GPT-4o-mini सवाल को पढ़ता है। वह देखता है कि उपलब्ध टूल्स (जैसे Titanic डेटा के लिए <code>query_csv</code>) इस सामान्य AI ज्ञान वाले सवाल के लिए अप्रासंगिक हैं। इसलिए, मॉडल सीधे टेक्स्ट उत्तर लिखने का निर्णय लेता है।",
+                            alertTitle: "फ़िनिश रीज़न की जाँच",
+                            alertBody: "API से <code>finish_reason: 'stop'</code> मिलता है। <code>main.py</code> में, <code>while response.choices[0].finish_reason == 'tool_calls':</code> वाला लूप पूरी तरह छोड़ दिया जाता है क्योंकि किसी टूल कॉल की ज़रुरत नहीं थी।"
+                        },
+                        code: `<span class="comment"># Loop skipped because finish_reason != "tool_calls"</span>
+<span class="keyword">while</span> <span class="variable">response</span>.<span class="variable">choices</span>[<span class="number">0</span>].<span class="variable">finish_reason</span> == <span class="string">"tool_calls"</span>:
+    <span class="comment"># ... (Code for executing tools is skipped) ...</span>`,
+                        state: {
+                            tokens: 236,
+                            active_role: "assistant",
+                            finish_reason: "stop",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Write short notes on Heuristic Functions." }
+                            ]
+                        },
+                        console: `<span class="term-debug">[DEBUG] API Response finish_reason: "stop" (No tool calls triggered)</span>`
+                    },
+                    {
+                        title: "5. Logging & Print",
+                        descShort: "Saving to daily logs and printing response.",
+                        en: {
+                            heading: "Logging and final console print",
+                            body: "The reply text is added to the local messages history, and saved in the memory log. The manager prints <code>[DEBUG] Writing log to: D:\\MY_AGENT_APP\\memory\\daily logs\\2026-07-18.md</code>. Finally, the terminal prints the agent's detailed notes on Heuristic Functions.",
+                            alertTitle: "Where is the conversation saved?",
+                            alertBody: "The agent writes logs to the daily date file under the <code>memory/daily logs/</code> folder. This allows the system to recall context if configured to read recent logs later."
+                        },
+                        hi: {
+                            heading: "लॉग लिखना और परिणाम दिखाना",
+                            body: "जवाब को लोकल मैसेज इतिहास में जोड़ दिया जाता है और डेली लॉग फ़ाइल में लिख दिया जाता है। स्क्रीन पर <code>[DEBUG] Writing log to: D:\\MY_AGENT_APP\\memory\\daily logs\\2026-07-18.md</code> प्रिंट होता है, और फिर एजेंट का उत्तर यूज़र को टर्मिनल पर दिखता है।",
+                            alertTitle: "बातचीत कहाँ स्टोर होती है?",
+                            alertBody: "एजेंट <code>memory/daily logs/</code> फोल्डर के तहत दैनिक तारीख वाली फ़ाइल में कन्वर्सेशन को लिखता है। इससे एजेंट बाद में हाल ही के लॉग्स का उपयोग कर सकता है।"
+                        },
+                        code: `<span class="comment"># Log conversation to markdown files</span>
+<span class="variable">memory_manager</span>.<span class="function">write_daily_log</span>(
+    <span class="string">f"User: </span>{<span class="variable">user_input</span>}<span class="string">\\nAssistant: </span>{<span class="variable">reply</span>[:<span class="number">200</span>]}<span class="string">... Messages: </span>{<span class="function">str</span>(<span class="variable">messages</span>)}<span class="string">"</span>
+)
+<span class="keyword">return</span> <span class="variable">reply</span>`,
+                        state: {
+                            tokens: 580,
+                            active_role: "assistant",
+                            finish_reason: "stop",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Write short notes on Heuristic Functions." },
+                                { role: "assistant", content: "Heuristic functions are critical components..." }
+                            ]
+                        },
+                        console: `<span class="term-debug">[DEBUG] Writing log to: D:\\MY_AGENT_APP\\memory\\daily logs\\2026-07-18.md</span>
+
+<span class="term-agent">Agent:</span>
+
+Heuristic functions are critical components in various fields, particularly in artificial intelligence and optimization. Here are some key points about heuristic functions:
+
+1. **Definition**: A heuristic function estimates the cost of a solution to a problem...
+2. **Purpose**: The primary purpose is to guide search algorithms...
+3. **Applications**: Used in A* search, greedy algorithms...
+4. **Characteristics**: Informed, Admissible, Consistent.
+
+--------------------------------------------------
+You: `
+                    }
+                ]
+            },
+            tool: {
+                name: "Titanic CSV Query Flow (With Tools)",
+                query: "Find all female passengers who survived in first class.",
+                steps: [
+                    {
+                        title: "1. User Input Received",
+                        descShort: "User requests Titanic data details.",
+                        en: {
+                            heading: "User Submits Query with Data Request",
+                            body: "The user inputs: <i>'Find all female passengers who survived in first class.'</i>. This goes into the messages list under the <code>'user'</code> role.",
+                            alertTitle: "Code Execution",
+                            alertBody: "The process is the same as the concept query, appending the user content to the conversation history array."
+                        },
+                        hi: {
+                            heading: "यूज़र ने डेटा का सवाल पूछा",
+                            body: "यूज़र लिखता है: <i>'Find all female passengers who survived in first class.'</i>। इसे <code>'user'</code> रोल के साथ मैसेज लिस्ट में जोड़ा जाता है।",
+                            alertTitle: "कोड का निष्पादन",
+                            alertBody: "यह चरण पिछले फ्लो जैसा ही है, जो यूज़र के इनपुट को बातचीत की हिस्ट्री में जोड़ देता है।"
+                        },
+                        code: `<span class="variable">messages</span>.<span class="function">append</span>({<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="variable">user_input</span>})`,
+                        state: {
+                            tokens: 242,
+                            active_role: "user",
+                            finish_reason: "N/A",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Find all female passengers who survived in first class." }
+                            ]
+                        },
+                        console: `<span class="term-prompt">You:</span> <span class="term-input">Find all female passengers who survived in first class.</span>`
+                    },
+                    {
+                        title: "2. Compression Check",
+                        descShort: "Token check validates space status.",
+                        en: {
+                            heading: "Token verification",
+                            body: "Total tokens counted (estimated 242). This is below 2100 tokens, so no compression takes place. The agent proceeds to the OpenAI request phase.",
+                            alertTitle: "No compression",
+                            alertBody: "Since token count is minimal, no summary replaces historical messages."
+                        },
+                        hi: {
+                            heading: "टोकन वेरिफिकेशन",
+                            body: "टोकन की संख्या जांची गई (लगभग 242)। यह 2100 से कम है, इसलिए कोई कम्प्रेशन नहीं होता है। एजेंट आगे की प्रक्रिया शुरू करता है।",
+                            alertTitle: "कोई कम्प्रेशन नहीं",
+                            alertBody: "क्योंकि टोकन की कुल संख्या सीमा से कम है, पुराने मैसेजेस को समराइज़ नहीं किया जाता।"
+                        },
+                        code: `<span class="variable">messages</span>[:] = <span class="function">threshold_compress</span>(<span class="variable">messages</span>, <span class="variable">budget</span>=<span class="number">3000</span>, <span class="variable">client</span>=<span class="variable">client</span>)`,
+                        state: {
+                            tokens: 242,
+                            active_role: "system (token manager)",
+                            finish_reason: "N/A",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Find all female passengers who survived in first class." }
+                            ]
+                        },
+                        console: `<span class="term-debug">[Token Info] Used: 242 / Budget: 3000 (Threshold: 2100)</span>
+<span class="term-debug">[Token Info] Under threshold: no compression needed</span>`
+                    },
+                    {
+                        title: "3. OpenAI Request",
+                        descShort: "Payload sent with CSV query schemas.",
+                        en: {
+                            heading: "Calling API with Query and Tools",
+                            body: "The messages payload and function descriptions are sent to OpenAI. GPT-4o-mini realizes that to answer this specific query about Titanic survivors, it needs to access structural passenger records.",
+                            alertTitle: "Tool Selection",
+                            alertBody: "The model scans functions and identifies <code>query_csv</code> as the correct tool. The description matches the query context."
+                        },
+                        hi: {
+                            heading: "क्वेरी और टूल्स के साथ API को पुकारना",
+                            body: "मैसेज पेलोड और फ़ंक्शंस की स्कीमा OpenAI को भेजी जाती हैं। GPT-4o-mini समझ जाता है कि टाइटैनिक यात्रियों के उत्तर देने के लिए उसे उपलब्ध डेटा का उपयोग करना होगा।",
+                            alertTitle: "टूल का चयन",
+                            alertBody: "मॉडल फ़ंक्शंस को देखता है और पाता है कि <code>query_csv</code> सबसे उपयुक्त टूल है।"
+                        },
+                        code: `<span class="variable">response</span> = <span class="variable">client</span>.<span class="variable">chat</span>.<span class="variable">completions</span>.<span class="function">create</span>(
+    <span class="variable">model</span>=<span class="variable">model</span>,
+    <span class="variable">messages</span>=<span class="variable">messages</span>,
+    <span class="variable">tools</span>=<span class="variable">TOOLS</span>,
+)`,
+                        state: {
+                            tokens: 242,
+                            active_role: "API (sending request)",
+                            finish_reason: "N/A",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Find all female passengers who survived in first class." }
+                            ]
+                        },
+                        console: `<span class="term-debug">[DEBUG] API Request sent with tools enabled...</span>`
+                    },
+                    {
+                        title: "4. Tool Call Triggered",
+                        descShort: "LLM requests execution of query_csv tool.",
+                        en: {
+                            heading: "LLM Requests Tool Execution",
+                            body: "OpenAI returns <code>finish_reason: 'tool_calls'</code>. The model indicates it wants to invoke <code>query_csv</code> with the argument: <code>{'query': 'Find all female passengers who survived in first class'}</code>.",
+                            alertTitle: "Python Loop Catches Call",
+                            alertBody: "In <code>main.py</code>, the <code>while response.choices[0].finish_reason == 'tool_calls':</code> loop evaluates to <b>True</b>. The code enters the loop, reads the assistant message content, and prepares to run the function."
+                        },
+                        hi: {
+                            heading: "LLM ने टूल चलाने के लिए कहा",
+                            body: "OpenAI से जवाब में <code>finish_reason: 'tool_calls'</code> प्राप्त होता है। मॉडल बताता है कि उसे <code>query_csv</code> को निम्नलिखित तर्क (argument) के साथ चलाने की ज़रुरत है: <code>{'query': 'Find all female passengers who survived in first class'}</code>।",
+                            alertTitle: "पायथन लूप ने काम संभाला",
+                            alertBody: "<code>main.py</code> में <code>while response.choices[0].finish_reason == 'tool_calls':</code> की कंडीशन <b>सत्य (True)</b> हो जाती है, और कोड टूल को रन करने की तैयारी करता है।"
+                        },
+                        code: `<span class="keyword">while</span> <span class="variable">response</span>.<span class="variable">choices</span>[<span class="number">0</span>].<span class="variable">finish_reason</span> == <span class="string">"tool_calls"</span>:
+    <span class="variable">assistant_message</span> = <span class="variable">response</span>.<span class="variable">choices</span>[<span class="number">0</span>].<span class="variable">message</span>
+    <span class="variable">messages</span>.<span class="function">append</span>({
+        <span class="string">"role"</span>: <span class="string">"assistant"</span>, 
+        <span class="string">"content"</span>: <span class="variable">assistant_message</span>.<span class="variable">content</span> <span class="keyword">or</span> <span class="string">""</span>, 
+        <span class="string">"tool_calls"</span>: <span class="variable">assistant_message</span>.<span class="variable">tool_calls</span>
+    })`,
+                        state: {
+                            tokens: 285,
+                            active_role: "assistant",
+                            finish_reason: "tool_calls",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Find all female passengers who survived in first class." },
+                                { role: "assistant", content: null, tool_calls: [{ id: "call_abc123", type: "function", function: { name: "query_csv", arguments: '{"query": "Find all female passengers who survived in first class"}' } }] }
+                            ]
+                        },
+                        console: `<span class="term-debug">[DEBUG] OpenAI response: Tool call requested -> query_csv({"query": "Find all female passengers who survived in first class"})</span>`
+                    },
+                    {
+                        title: "5. Tool Execution",
+                        descShort: "Python runs execute_tool and queries CSV.",
+                        en: {
+                            heading: "Executing query_csv local handler",
+                            body: "The agent extracts the function name and arguments. It executes <code>execute_tool()</code>, routing it to <code>QueryContext().query_csv()</code>. This translates the natural language into an SQL query and executes it against the local Titanic dataset, returning the matching records.",
+                            alertTitle: "Appending Tool Response",
+                            alertBody: "The results are appended to messages with <code>role: 'tool'</code> and the matching <code>tool_call_id</code> so that the LLM knows which function call this output corresponds to."
+                        },
+                        hi: {
+                            heading: "लोकल कोड में टूल को चलाना",
+                            body: "एजेंट फ़ंक्शन का नाम और आर्गुमेंट्स निकालता है। यह <code>execute_tool()</code> चलाता है, जो रिक्वेस्ट को <code>QueryContext().query_csv()</code> पर भेजता है। यह प्राकृतिक भाषा को SQL क्वेरी में बदलकर टाइटैनिक डेटासेट से मेल खाने वाले रिकॉर्ड्स लाता है।",
+                            alertTitle: "टूल आउटपुट जोड़ना",
+                            alertBody: "नतीजों को <code>role: 'tool'</code> और सम्बंधित <code>tool_call_id</code> के साथ मैसेजेस में जोड़ा जाता है ताकि LLM को पता चले कि यह आउटपुट किस रिक्वेस्ट का है।"
+                        },
+                        code: `<span class="keyword">for</span> <span class="variable">tool_call</span> <span class="keyword">in</span> <span class="variable">assistant_message</span>.<span class="variable">tool_calls</span>:
+    <span class="variable">tool_name</span> = <span class="variable">tool_call</span>.<span class="variable">function</span>.<span class="variable">name</span>
+    <span class="variable">tool_input</span> = <span class="variable">json</span>.<span class="function">loads</span>(<span class="variable">tool_call</span>.<span class="variable">function</span>.<span class="variable">arguments</span>)
+    <span class="variable">tool_result</span> = <span class="function">execute_tool</span>(<span class="variable">tool_name</span>, <span class="variable">tool_input</span>)
+    
+    <span class="variable">messages</span>.<span class="function">append</span>({
+        <span class="string">"role"</span>: <span class="string">"tool"</span>,
+        <span class="string">"tool_call_id"</span>: <span class="variable">tool_call</span>.<span class="variable">id</span>,
+        <span class="string">"content"</span>: <span class="variable">tool_result</span>
+    })`,
+                        state: {
+                            tokens: 650,
+                            active_role: "tool",
+                            finish_reason: "N/A",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Find all female passengers who survived in first class." },
+                                { role: "assistant", content: null, tool_calls: [{ id: "call_abc123", type: "function", function: { name: "query_csv", arguments: '{"query": "Find all female passengers who survived in first class"}' } }] },
+                                { role: "tool", tool_call_id: "call_abc123", content: "[{'Name': 'Miss. Elizabeth Allen', 'Survived': 1, 'Pclass': 1, 'Sex': 'female'}, ...]" }
+                            ]
+                        },
+                        console: `<span class="term-debug">[DEBUG] Executing local tool: query_csv</span>
+<span class="term-debug">[DEBUG] Titanic database queried. Found 91 records. Returning data to OpenAI.</span>`
+                    },
+                    {
+                        title: "6. Final LLM Call",
+                        descShort: "Sending data back to get textual explanation.",
+                        en: {
+                            heading: "Second LLM call with data results",
+                            body: "Now, the agent makes a second <code>client.chat.completions.create</code> API call. It sends the updated <code>messages</code> history, including the tool's CSV response. The model sees the database records, formats them nicely in readable text, and returns a direct response with <code>finish_reason: 'stop'</code>.",
+                            alertTitle: "Exiting Loop",
+                            alertBody: "Since the finish_reason is 'stop', the tool calling while loop completes. The code moves forward to log the chat and print the response."
+                        },
+                        hi: {
+                            heading: "डेटा नतीजों के साथ दूसरी बार LLM कॉल",
+                            body: "अब एजेंट दूसरा API कॉल करता है जिसमें टूल से मिले CSV नतीजे शामिल होते हैं। मॉडल इन रिकॉर्ड्स को देखता है, उन्हें सुंदर रीडेबल टेक्स्ट फ़ॉर्मेट में व्यवस्थित करता है, और <code>finish_reason: 'stop'</code> के साथ प्रतिक्रिया लौटाता है।",
+                            alertTitle: "लूप से बाहर निकलना",
+                            alertBody: "चूंकि इस बार finish_reason 'stop' है, टूल लूप समाप्त हो जाता है। कोड आगे बढ़कर बातचीत लॉग करता है और एजेंट का जवाब दिखाता है।"
+                        },
+                        code: `<span class="comment"># Continue conversation with tool results</span>
+<span class="variable">response</span> = <span class="variable">client</span>.<span class="variable">chat</span>.<span class="variable">completions</span>.<span class="function">create</span>(
+    <span class="variable">model</span>=<span class="variable">model</span>,
+    <span class="variable">messages</span>=<span class="variable">messages</span>,
+    <span class="variable">tools</span>=<span class="variable">TOOLS</span>,
+)`,
+                        state: {
+                            tokens: 720,
+                            active_role: "assistant",
+                            finish_reason: "stop",
+                            messages: [
+                                { role: "system", content: "You are a helpful assistant..." },
+                                { role: "system", content: "[Skill Registry Menu]..." },
+                                { role: "user", content: "Find all female passengers who survived in first class." },
+                                { role: "assistant", content: null, tool_calls: [{ id: "call_abc123", type: "function", function: { name: "query_csv", arguments: '{"query": "Find all female passengers who survived in first class"}' } }] },
+                                { role: "tool", tool_call_id: "call_abc123", content: "[{'Name': 'Miss. Elizabeth Allen', 'Survived': 1, 'Pclass': 1, 'Sex': 'female'}, ...]" },
+                                { role: "assistant", content: "Based on the Titanic dataset, here are the female passengers who survived in first class..." }
+                            ]
+                        },
+                        console: `<span class="term-debug">[DEBUG] API Response finish_reason: "stop" (Text output ready)</span>
+<span class="term-debug">[DEBUG] Writing log to: D:\\MY_AGENT_APP\\memory\\daily logs\\2026-07-18.md</span>
+
+<span class="term-agent">Agent:</span>
+
+Here are the female passengers who survived in first class on the Titanic:
+- **Miss. Elizabeth Allen** (Survived)
+- **Miss. Helen Lorraine Allison** (Survived)
+- **Mrs. John Jacob Astor** (Survived)
+...
+Total 91 female passengers survived in First Class.
+
+--------------------------------------------------
+You: `
+                    }
+                ]
+            }
+        };
+
+        let currentFlowKey = 'concept';
+        let currentStepIndex = 0;
+
+        // Dom Elements
+        const toggleFlowTypeBtn = document.getElementById('toggleFlowType');
+        const stepperEl = document.getElementById('stepper');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const btnReset = document.getElementById('btnReset');
+        const statusText = document.getElementById('statusText');
+        const explanationBody = document.getElementById('explanationBody');
+        const stateViewer = document.getElementById('stateViewer');
+        const terminalLogs = document.getElementById('terminalLogs');
+        const flowchartSvg = document.getElementById('flowchartSvg');
+
+        // Functions
+        function initApp() {
+            renderStepper();
+            renderFlowchartSvg();
+            updateStepView();
+        }
+
+        function toggleFlow() {
+            if (currentFlowKey === 'concept') {
+                currentFlowKey = 'tool';
+                toggleFlowTypeBtn.innerText = "Switch to: Concept Query Flow (No Tools)";
+            } else {
+                currentFlowKey = 'concept';
+                toggleFlowTypeBtn.innerText = "Switch to: Titanic CSV Query (Tool Flow)";
+            }
+            currentStepIndex = 0;
+            initApp();
+        }
+
+        function toggleLang(lang) {
+            currentLang = lang;
+            document.getElementById('btnLangEng').classList.toggle('active', lang === 'en');
+            document.getElementById('btnLangHin').classList.toggle('active', lang === 'hi');
+            updateStepView();
+        }
+
+        function renderStepper() {
+            const steps = flows[currentFlowKey].steps;
+            stepperEl.innerHTML = '';
+            steps.forEach((step, idx) => {
+                const node = document.createElement('div');
+                node.className = `step-node ${idx === currentStepIndex ? 'active' : ''} ${idx < currentStepIndex ? 'completed' : ''}`;
+                node.onclick = () => selectStep(idx);
+                
+                node.innerHTML = `
+                    <div class="step-indicator">${idx + 1}</div>
+                    <div class="step-info">
+                        <div class="step-title">${step.title}</div>
+                        <div class="step-desc-short">${step.descShort}</div>
+                    </div>
+                `;
+                stepperEl.appendChild(node);
+            });
+        }
+
+        function renderFlowchartSvg() {
+            const steps = flows[currentFlowKey].steps;
+            const nodeWidth = 80;
+            const nodeHeight = 35;
+            const yPos = 25;
+            const startX = 20;
+            const gap = (600 - startX*2 - nodeWidth) / (steps.length - 1 || 1);
+            
+            let html = '';
+            
+            // Render Edges
+            for (let i = 0; i < steps.length - 1; i++) {
+                const x1 = startX + i * gap + nodeWidth;
+                const y1 = yPos + nodeHeight / 2;
+                const x2 = startX + (i + 1) * gap;
+                const y2 = yPos + nodeHeight / 2;
+                
+                let edgeClass = 'svg-edge';
+                let marker = 'url(#arrow)';
+                if (i < currentStepIndex) {
+                    edgeClass += ' completed';
+                    marker = 'url(#arrow-completed)';
+                } else if (i === currentStepIndex) {
+                    edgeClass += ' active';
+                    marker = 'url(#arrow-active)';
+                }
+                
+                html += `<line x1="${x1}" y1="${y1}" x2="${x2 - 5}" y2="${y2}" class="${edgeClass}" marker-end="${marker}" />`;
+            }
+
+            // Render Nodes
+            steps.forEach((step, idx) => {
+                const x = startX + idx * gap;
+                let nodeClass = 'svg-node';
+                if (idx < currentStepIndex) nodeClass += ' completed';
+                else if (idx === currentStepIndex) nodeClass += ' active';
+                
+                // SVG group
+                html += `
+                    <g onclick="selectStep(${idx})">
+                        <rect x="${x}" y="${yPos}" width="${nodeWidth}" height="${nodeHeight}" rx="6" class="${nodeClass}" />
+                        <text x="${x + nodeWidth/2}" y="${yPos + nodeHeight/2 + 4}" class="svg-text">Step ${idx + 1}</text>
+                    </g>
+                `;
+            });
+            
+            flowchartSvg.innerHTML = `
+                <defs>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569"/>
+                    </marker>
+                    <marker id="arrow-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#60a5fa"/>
+                    </marker>
+                    <marker id="arrow-completed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+                    </marker>
+                </defs>
+                ${html}
+            `;
+        }
+
+        function updateStepView() {
+            const steps = flows[currentFlowKey].steps;
+            const step = steps[currentStepIndex];
+            const content = step[currentLang];
+            
+            // 1. Update Explanation Card
+            explanationBody.innerHTML = `
+                <h3>${content.heading}</h3>
+                <p>${content.body}</p>
+                <div class="alert-box ${currentFlowKey === 'tool' ? 'teal' : 'purple'}">
+                    <h4>${content.alertTitle}</h4>
+                    <p>${content.alertBody}</p>
+                </div>
+            `;
+            
+            // 2. Update Code and State Panel
+            let messagesHtml = step.state.messages.map(m => `
+                <div class="msg-bubble ${m.role}">
+                    <div class="msg-role-lbl">${m.role}</div>
+                    <div>${m.content || (m.tool_calls ? `[Tool Call Request: ${m.tool_calls[0].function.name}]` : 'Empty Content')}</div>
+                </div>
+            `).join('');
+
+            stateViewer.innerHTML = `
+                <div class="state-section">
+                    <div class="state-sec-title">ACTIVE CODE LINE (Python)</div>
+                    <pre><code class="code-viewer-lang-py">${step.code}</code></pre>
+                </div>
+                
+                <div class="state-section">
+                    <div class="state-sec-title">STATE VARIABLES</div>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.85rem;">
+                        <span class="state-badge-item">Model: gpt-4o-mini</span>
+                        <span class="state-badge-item">Tokens: ${step.state.tokens}</span>
+                        <span class="state-badge-item ${step.state.finish_reason === 'tool_calls' ? 'warning' : step.state.finish_reason === 'stop' ? 'success' : ''}">Finish Reason: ${step.state.finish_reason}</span>
+                    </div>
+                    <div class="state-sec-title">MESSAGES HISTORY (${step.state.messages.length})</div>
+                    <div class="messages-list">
+                        ${messagesHtml}
+                    </div>
+                </div>
+            `;
+
+            // 3. Update Console Log
+            // Accumulate logs from step 0 up to current step
+            let terminalContent = '';
+            for (let i = 0; i <= currentStepIndex; i++) {
+                terminalContent += steps[i].console + "\n";
+            }
+            terminalLogs.innerHTML = `<div class="term-line">${terminalContent}</div>`;
+            
+            // Scroll logs to bottom
+            terminalLogs.scrollTop = terminalLogs.scrollHeight;
+
+            // 4. Update Navigation Button States
+            btnPrev.disabled = currentStepIndex === 0;
+            btnNext.disabled = currentStepIndex === steps.length - 1;
+            statusText.innerText = `Step ${currentStepIndex + 1} of ${steps.length}`;
+        }
+
+        function selectStep(idx) {
+            currentStepIndex = idx;
+            renderStepper();
+            renderFlowchartSvg();
+            updateStepView();
+        }
+
+        function goNext() {
+            const steps = flows[currentFlowKey].steps;
+            if (currentStepIndex < steps.length - 1) {
+                selectStep(currentStepIndex + 1);
+            }
+        }
+
+        function goPrev() {
+            if (currentStepIndex > 0) {
+                selectStep(currentStepIndex - 1);
+            }
+        }
+
+        function resetFlow() {
+            selectStep(0);
+        }
+
+        // Attach listeners
+        toggleFlowTypeBtn.addEventListener('click', toggleFlow);
+        btnNext.addEventListener('click', goNext);
+        btnPrev.addEventListener('click', goPrev);
+        btnReset.addEventListener('click', resetFlow);
+
+        // Initialize
+        initApp();
+    </script>
+</body>
+</html>

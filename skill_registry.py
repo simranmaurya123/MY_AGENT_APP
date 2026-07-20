@@ -28,7 +28,9 @@ class SkillRegistry:
             if not skill_dir.is_dir():
                 continue
             
-            skill_md = skill_dir / "skill.md"
+            skill_md = skill_dir / "SKILL.md"
+            if not skill_md.exists():
+                skill_md = skill_dir / "skill.md"
             schema_file = skill_dir / "schema.json"
             if not skill_md.exists():
                 continue

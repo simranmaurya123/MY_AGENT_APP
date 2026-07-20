@@ -10,3 +10,13 @@ pytesseract
 Pillow
 pdf2image
 openpyxl
+streamlit
+transformers
+torch
+safetensors
+faiss-cpu
+joblib
+scikit-learn
+fastapi
+datasets
+accelerate

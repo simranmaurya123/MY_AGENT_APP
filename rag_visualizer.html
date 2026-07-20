@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF RAG Pipeline Visualizer</title>
+    <!-- Modern Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #020617;
+            --bg-secondary: #0b1329;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(139, 92, 246, 0.3);
+            --accent-blue: #3b82f6;
+            --accent-teal: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.15);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-code: #e2e8f0;
+            --font-outfit: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-outfit);
+            background: radial-gradient(circle at 10% 20%, rgba(26, 18, 55, 0.95) 0%, rgba(8, 10, 24, 0.99) 90%), var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.5;
+            padding-bottom: 3rem;
+        }
+
+        /* Premium Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        header {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-title h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .header-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .toggle-pipeline-btn {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            padding: 0.75rem 1.5rem;
+            color: white;
+            border-radius: 12px;
+            font-family: var(--font-outfit);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-pipeline-btn:hover {
+            transform: translateY(-2px);
+            border-color: #a78bfa;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1100px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sidebar - Pipeline Phase Selection */
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pipeline-stepper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .pipeline-stepper::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            bottom: 15px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1;
+        }
+
+        .step-node {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .step-node:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .step-node.active {
+            background: rgba(139, 92, 246, 0.08);
+            border-color: rgba(139, 92, 246, 0.2);
+            box-shadow: inset 0 0 12px rgba(139, 92, 246, 0.05);
+        }
+
+        .step-node.completed .step-indicator {
+            background: var(--accent-teal);
+            border-color: var(--accent-teal);
+            color: #020617;
+        }
+
+        .step-node.active .step-indicator {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: white;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        .step-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 2px solid #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.25s ease;
+        }
+
+        .step-node.active .step-title {
+            color: white;
+        }
+
+        .step-desc-short {
+            font-size: 0.8rem;
+            color: rgba(148, 163, 184, 0.6);
+            margin-top: 0.15rem;
+        }
+
+        /* Workspace Panels */
+        .workspace-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .interactive-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(16px);
+        }
+
+        .btn-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-outfit);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-control:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-control:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-control.primary {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+        }
+
+        .btn-control.primary:hover {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+            background: #7c3aed;
+        }
+
+        .status-badge {
+            margin-left: auto;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #c084fc;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #c084fc;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 8px #c084fc; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        /* SVG Pipeline Flow Diagram */
+        .pipeline-svg-container {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .pipeline-svg {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+        }
+
+        .svg-node {
+            fill: #1e293b;
+            stroke: #475569;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .svg-node.active {
+            fill: rgba(139, 92, 246, 0.3);
+            stroke: #a78bfa;
+            filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.6));
+        }
+
+        .svg-node.completed {
+            fill: rgba(16, 185, 129, 0.15);
+            stroke: var(--accent-teal);
+        }
+
+        .svg-text {
+            font-family: var(--font-outfit);
+            font-size: 11px;
+            font-weight: 600;
+            fill: var(--text-muted);
+            pointer-events: none;
+            text-anchor: middle;
+        }
+
+        .svg-node.active + .svg-text {
+            fill: white;
+            font-weight: 700;
+        }
+
+        .svg-node.completed + .svg-text {
+            fill: #a7f3d0;
+        }
+
+        .svg-edge {
+            stroke: #334155;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrow);
+            transition: stroke 0.3s ease;
+        }
+
+        .svg-edge.active {
+            stroke: #a78bfa;
+            stroke-dasharray: 5 3;
+            animation: dash 1s linear infinite;
+        }
+
+        .svg-edge.completed {
+            stroke: var(--accent-teal);
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -8;
+            }
+        }
+
+        /* Description Cards Layout */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 950px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .detail-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 540px;
+            transition: border-color 0.3s ease;
+        }
+
+        .detail-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .card-header {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        /* Explanation Styling */
+        .explanation-text h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+
+        .explanation-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .alert-box {
+            background: rgba(139, 92, 246, 0.05);
+            border-left: 4px solid var(--accent-purple);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 1.5rem;
+        }
+
+        .alert-box.teal {
+            background: rgba(16, 185, 129, 0.05);
+            border-left-color: var(--accent-teal);
+        }
+
+        .alert-box h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.35rem;
+        }
+
+        .alert-box p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* Code Viewer and Inspector states */
+        pre {
+            margin: 0;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        .keyword { color: #f472b6; font-weight: bold; }
+        .function { color: #60a5fa; }
+        .string { color: #34d399; }
+        .comment { color: #64748b; font-style: italic; }
+        .number { color: #fbbf24; }
+        .variable { color: #e2e8f0; }
+
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.03);
+            padding: 0.4rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+        }
+
+        /* Ingest Simulation Elements */
+        .pdf-file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .pdf-file-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+        }
+
+        .pdf-file-item:hover, .pdf-file-item.selected {
+            background: rgba(139, 92, 246, 0.08);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .pdf-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .pdf-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .pdf-size {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .pdf-domain-tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            font-weight: 600;
+        }
+
+        /* Chunk visualizer block */
+        .chunk-visualizer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .chunk-block {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chunk-block.active {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+        }
+
+        /* State Viewer structure */
+        .state-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .state-sec-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .state-sec-body {
+            font-size: 0.88rem;
+            color: #f1f5f9;
+        }
+
+        .interactive-chat-sim {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sim-input-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .sim-input {
+            flex-grow: 1;
+            background: #020617;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            color: white;
+            font-family: var(--font-outfit);
+            font-size: 0.9rem;
+        }
+
+        .sim-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+        }
+
+        .sim-results {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-height: 230px;
+            overflow-y: auto;
+        }
+
+        .sim-result-item {
+            background: rgba(16, 185, 129, 0.03);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem;
+        }
+
+        .sim-result-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            padding-bottom: 0.25rem;
+        }
+
+        .sim-result-score {
+            font-weight: bold;
+            color: #34d399;
+        }
+
+        .sim-result-text {
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+            font-family: var(--font-mono);
+        }
+
+        .prompt-preview {
+            background: #020617;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.85rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            white-space: pre-wrap;
+            color: #e2e8f0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        /* File structure view */
+        .workspace-tree {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        .tree-node {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .tree-indent {
+            width: 1.5rem;
+            display: inline-block;
+        }
+
+        .icon-dir { color: #fbbf24; }
+        .icon-file { color: #60a5fa; }
+        .icon-pdf { color: #f87171; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>RAG Pipeline Visualizer</h1>
+            <p>Indexing & Retrieving PDF Knowledge Base Chunks with FAISS</p>
+        </div>
+        <div class="nav-buttons">
+            <button class="toggle-pipeline-btn" id="btnTogglePipeline">Switch to: Online Search & Retrieval</button>
+            <a href="visualize_flow.html" style="text-decoration: none;">
+                <button class="btn-control" style="height: 100%;">← General Flow</button>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar-card">
+            <div class="sidebar-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                <span id="sidebarSectionTitle">Ingestion Pipeline</span>
+            </div>
+            
+            <div class="pipeline-stepper" id="stepper">
+                <!-- Steps populated by JS -->
+            </div>
+        </aside>
+
+        <!-- MAIN INTERACTIVE BOARD -->
+        <main class="workspace-panel">
+            
+            <!-- Controls bar -->
+            <div class="interactive-controls">
+                <button class="btn-control" id="btnPrev">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                    Back
+                </button>
+                <button class="btn-control primary" id="btnNext">
+                    Next
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+                <button class="btn-control" id="btnReset">
+                    Reset
+                </button>
+                
+                <div class="status-badge" id="statusBadge">
+                    <div class="pulse-dot"></div>
+                    <span id="statusText">Step 1 of 5</span>
+                </div>
+            </div>
+
+            <!-- PIPELINE WORKFLOW SVG -->
+            <div class="pipeline-svg-container">
+                <svg viewBox="0 0 700 80" class="pipeline-svg" id="pipelineSvg">
+                    <!-- Dynamic rendering by JS -->
+                </svg>
+            </div>
+
+            <!-- WORKSPACE TREE SHOWING KNOWLEDGE BASE DIRECTORIES -->
+            <div class="workspace-tree" id="workspaceTree">
+                <div style="font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+                    <span>Target Directory Structure: workspace/data/knowledge_base/</span>
+                </div>
+                <div class="tree-node"><span class="icon-dir">📁</span> <span>workspace/data/knowledge_base/</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="icon-dir">📁</span> <span>AI/</span> <span style="color: var(--text-muted); font-size: 0.75rem;">(Universal/Intro AI Concepts)</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="icon-dir">📁</span> <span>ML/</span> <span style="color: var(--text-muted); font-size: 0.75rem;">(Machine Learning PDFs)</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="tree-indent"></span><span class="icon-pdf">📄</span> <span style="color: #fca5a5;">The Hundred Page Machine Learning BOOK.pdf</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="tree-indent"></span><span class="icon-pdf">📄</span> <span style="color: #fca5a5;">Pro Machine Learning Algorithms.pdf</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="icon-dir">📁</span> <span>DL/</span> <span style="color: var(--text-muted); font-size: 0.75rem;">(Deep Learning PDFs)</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="icon-dir">📁</span> <span>NLP/</span> <span style="color: var(--text-muted); font-size: 0.75rem;">(Natural Language Processing PDFs)</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="icon-dir">📁</span> <span>RL/</span> <span style="color: var(--text-muted); font-size: 0.75rem;">(Reinforcement Learning PDFs)</span></div>
+                <div class="tree-node"><span class="tree-indent"></span><span class="icon-dir">📁</span> <span>CV/</span> <span style="color: var(--text-muted); font-size: 0.75rem;">(Computer Vision PDFs)</span></div>
+            </div>
+
+            <!-- DETAILS GRID -->
+            <div class="details-grid">
+                
+                <!-- Left: Textual Explanation -->
+                <div class="detail-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                            Explanation / विवरण
+                        </h2>
+                        <div class="lang-toggle">
+                            <button class="lang-btn active" id="btnLangEng" onclick="toggleLang('en')">English</button>
+                            <button class="lang-btn" id="btnLangHin" onclick="toggleLang('hi')">Hinglish</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="explanation-text" id="explanationBody">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive State / Active Code -->
+                <div class="detail-card">
+                    <div class="card-header">
+                        <h2>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                            Simulator State & Code
+                        </h2>
+                    </div>
+                    <div class="card-body" style="background: #050814; border-top: 1px solid rgba(255,255,255,0.02);">
+                        <div id="stateViewer">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- CODE SNIPPET REFERENCE & BUSINESS LOGIC -->
+    <script>
+        let currentLang = 'en';
+        let currentPipeline = 'ingest'; // 'ingest' or 'retrieve'
+        let currentStepIndex = 0;
+
+        // Mock PDFs Data
+        const mockPdfs = [
+            { id: 1, name: "The Hundred Page Machine Learning BOOK.pdf", size: "7.3 MB", pages: 120, domain: "ML" },
+            { id: 2, name: "Pro Machine Learning Algorithms.pdf", size: "23.2 MB", pages: 380, domain: "ML" },
+            { id: 3, name: "Auto Ml.pdf", size: "25.2 MB", pages: 410, domain: "ML" }
+        ];
+        let selectedPdfId = 1;
+
+        // Mock search simulation
+        const mockRetrievals = {
+            "what is overfitting": [
+                { source: "The Hundred Page Machine Learning BOOK.pdf | Page 12 | Chunk 2", score: 0.842, text: "Overfitting occurs when a machine learning model fits the training data too well, capturing noise and outliers instead of the underlying pattern. This leads to high training accuracy but poor generalization to unseen test data." },
+                { source: "Pro Machine Learning Algorithms.pdf | Page 44 | Chunk 1", score: 0.765, text: "To combat overfitting, we introduce regularization parameters such as L1 (Lasso) and L2 (Ridge) which penalize large coefficient weights in the cost function." }
+            ],
+            "random forest": [
+                { source: "Pro Machine Learning Algorithms.pdf | Page 182 | Chunk 3", score: 0.812, text: "Random Forests is an ensemble learning method that builds multiple decision trees during training and outputs the class that is the mode of classes (classification) or mean prediction (regression) of the individual trees." }
+            ]
+        };
+
+        // Complete RAG Pipeline Steps
+        const pipelines = {
+            ingest: {
+                title: "Data Ingestion Pipeline (Offline Indexing)",
+                steps: [
+                    {
+                        title: "1. Scan Directory",
+                        descShort: "Finds PDFs inside the knowledge_base folder.",
+                        en: {
+                            heading: "Scanning Knowledge Base Subdirectories",
+                            body: "The <code>FAISSRetriever</code> looks in the <code>workspace/data/knowledge_base</code> directory. It scans each domain-specific folder (such as <code>ML/</code>, <code>DL/</code>, <code>RL/</code>, <code>NLP/</code>, <code>CV/</code>, <code>AI/</code>) to find files to parse.",
+                            alertTitle: "How it works in Python",
+                            alertBody: "The code runs <code>self.kb_dir.iterdir()</code> to list the directories, and then scans recursively: <code>for file_path in sorted(domain_dir.rglob('*')):</code>, filtering for files."
+                        },
+                        hi: {
+                            heading: "नॉलेज बेस डायरेक्टरी को खोजना",
+                            body: "प्रोग्राम का <code>FAISSRetriever</code> फोल्डर <code>workspace/data/knowledge_base</code> के अंदर जाता है। यह हर डोमेन फोल्डर (जैसे <code>ML/</code>, <code>DL/</code>) को स्कैन करता है ताकि फ़ाइलों (जैसे PDF, Text, CSV) को ढूंढा जा सके।",
+                            alertTitle: "पायथन में कार्यविधि",
+                            alertBody: "कोड <code>self.kb_dir.iterdir()</code> चलाता है और फिर रिकर्सिव स्कैनिंग करता है: <code>for file_path in sorted(domain_dir.rglob('*')):</code> ताकि सारी डॉक्युमेंट फाइलें मिल सकें।"
+                        },
+                        code: `<span class="keyword">for</span> <span class="variable">domain_dir</span> <span class="keyword">in</span> <span class="function">sorted</span>(<span class="variable">self</span>.<span class="variable">kb_dir</span>.<span class="function">iterdir</span>()):
+    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">domain_dir</span>.<span class="function">is_dir</span>():
+        <span class="keyword">continue</span>
+    <span class="variable">domain</span> = <span class="variable">domain_dir</span>.<span class="variable">name</span>.<span class="function">upper</span>()
+    <span class="keyword">for</span> <span class="variable">file_path</span> <span class="keyword">in</span> <span class="function">sorted</span>(<span class="variable">domain_dir</span>.<span class="function">rglob</span>(<span class="string">"*"</span>)):
+        <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">file_path</span>.<span class="function">is_file</span>():
+            <span class="keyword">continue</span>
+        <span class="variable">self</span>.<span class="function">_parse_and_chunk_file</span>(<span class="variable">file_path</span>, <span class="variable">domain</span>)`,
+                        renderState: () => `
+                            <div class="state-section">
+                                <div class="state-sec-title">SELECT MOCK PDF TO INGEST</div>
+                                <div class="pdf-file-list">
+                                    ${mockPdfs.map(pdf => `
+                                        <div class="pdf-file-item ${pdf.id === selectedPdfId ? 'selected' : ''}" onclick="selectPdf(${pdf.id})">
+                                            <div class="pdf-meta">
+                                                <span class="pdf-name">📄 ${pdf.name}</span>
+                                                <span class="pdf-size">Size: ${pdf.size} | Pages: ${pdf.pages}</span>
+                                            </div>
+                                            <span class="pdf-domain-tag">${pdf.domain}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "2. Load & Extract PDF",
+                        descShort: "Extracts raw text page-by-page using PyPDF.",
+                        en: {
+                            heading: "Extracting Raw Text from Pages",
+                            body: "When the visualizer identifies a PDF file (e.g. <code>The Hundred Page Machine Learning BOOK.pdf</code>), it routes the path to <code>self._parse_pdf()</code>. It uses PyPDF's <code>PdfReader</code> to parse the file structure and extract strings from each page.",
+                            alertTitle: "Robust Parsing",
+                            alertBody: "If a page doesn't contain readable text (e.g., it is a scanned image of text), <code>extract_text()</code> returns an empty string, which the handler safely defaults to <code>''</code>."
+                        },
+                        hi: {
+                            heading: "PDF से टेक्स्ट निकालना",
+                            body: "जब कोड को कोई PDF फ़ाइल मिलती है, तो वह <code>_parse_pdf()</code> फ़ंक्शन को चलाता है। यह PyPDF लाइब्रेरी के <code>PdfReader</code> का उपयोग करता है और हर पेज से टेक्स्ट स्ट्रिंग्स को एक्स्ट्रैक्ट करता है।",
+                            alertTitle: "मजबूत कोडिंग संरचना",
+                            alertBody: "यदि किसी पेज पर टेक्स्ट नहीं मिल पाता (जैसे कि केवल इमेज हो), तो <code>extract_text()</code> खाली स्ट्रिंग लौटाता है, जिससे एरर नहीं आता।"
+                        },
+                        code: `<span class="keyword">def</span> <span class="function">_parse_pdf</span>(<span class="variable">self</span>, <span class="variable">file_path</span>: <span class="variable">Path</span>, <span class="variable">domain</span>: <span class="variable">str</span>):
+    <span class="variable">reader</span> = <span class="function">PdfReader</span>(<span class="function">str</span>(<span class="variable">file_path</span>))
+    <span class="keyword">for</span> <span class="variable">page_idx</span>, <span class="variable">page</span> <span class="keyword">in</span> <span class="function">enumerate</span>(<span class="variable">reader</span>.<span class="variable">pages</span>, <span class="variable">start</span>=<span class="number">1</span>):
+        <span class="variable">text</span> = <span class="variable">page</span>.<span class="function">extract_text</span>() <span class="keyword">or</span> <span class="string">""</span>
+        <span class="comment"># Next step chunking runs here...</span>`,
+                        renderState: () => {
+                            const pdf = mockPdfs.find(p => p.id === selectedPdfId);
+                            return `
+                            <div class="state-section">
+                                <div class="state-sec-title">EXTRACTING DATA</div>
+                                <div class="state-sec-body">
+                                    <p><b>Target File:</b> ${pdf.name}</p>
+                                    <p><b>Pages Extracted:</b> ${pdf.pages} Pages successfully processed.</p>
+                                    <p style="margin-top:0.5rem; color: #a78bfa;"><b>Status:</b> PyPDF has successfully read the binary stream and converted it to Unicode python strings.</p>
+                                </div>
+                            </div>
+                        `}
+                    },
+                    {
+                        title: "3. Text Chunking",
+                        descShort: "Splits strings into chunks (800 char overlap).",
+                        en: {
+                            heading: "Splitting Text into Chunks",
+                            body: "To keep search results precise and fit context limits, the text is split into small chunks. The default chunk size is <b>800 characters</b> with an overlap of <b>150 characters</b>. Overlap ensures sentences cut at boundary marks don't lose context.",
+                            alertTitle: "Chunking Algorithm",
+                            alertBody: "The code cleans whitespaces first: <code>cleaned = re.sub(r'\\s+', ' ', text)</code>. Then a sliding window extracts chunks: <code>cleaned[start:start+chunk_size]</code>."
+                        },
+                        hi: {
+                            heading: "टेक्स्ट को छोटे टुकड़ों (Chunks) में तोड़ना",
+                            body: "सर्च को सटीक रखने और संदर्भ सीमा (context window) में फिट करने के लिए, बड़े टेक्स्ट को छोटे चंक्स में काटा जाता है। इसका साइज <b>800 कैरेक्टर</b> और ओवरलैप <b>150 कैरेक्टर</b> होता है। ओवरलैप से सीमा पर मौजूद वाक्य का अर्थ नहीं खोता।",
+                            alertTitle: "चंकिंग एल्गोरिथ्म",
+                            alertBody: "कोड पहले अतिरिक्त स्पेस को हटाता है: <code>cleaned = re.sub(r'\\s+', ' ', text)</code>. फिर स्लाइडिंग विंडो लूप द्वारा 800 कैरेक्टर की दूरी तक चंक बनाता है।"
+                        },
+                        code: `<span class="keyword">def</span> <span class="function">_chunk_text</span>(<span class="variable">self</span>, <span class="variable">text</span>: <span class="variable">str</span>, <span class="variable">chunk_size</span>=<span class="number">800</span>, <span class="variable">overlap</span>=<span class="number">150</span>):
+    <span class="variable">cleaned</span> = <span class="variable">re</span>.<span class="function">sub</span>(<span class="string">r"\\s+"</span>, <span class="string">" "</span>, <span class="variable">text</span>).<span class="function">strip</span>()
+    <span class="variable">start</span> = <span class="number">0</span>
+    <span class="keyword">while</span> <span class="variable">start</span> &lt; <span class="function">len</span>(<span class="variable">cleaned</span>):
+        <span class="variable">end</span> = <span class="function">min</span>(<span class="function">len</span>(<span class="variable">cleaned</span>), <span class="variable">start</span> + <span class="variable">chunk_size</span>)
+        <span class="keyword">yield</span> <span class="variable">cleaned</span>[<span class="variable">start</span>:<span class="variable">end</span>]
+        <span class="variable">start</span> = <span class="function">max</span>(<span class="number">0</span>, <span class="variable">end</span> - <span class="variable">overlap</span>)`,
+                        renderState: () => {
+                            const pdf = mockPdfs.find(p => p.id === selectedPdfId);
+                            const chunkCount = Math.ceil(pdf.pages * 1.8);
+                            return `
+                            <div class="state-section">
+                                <div class="state-sec-title">SLIDING WINDOW CHUNKER</div>
+                                <div class="state-sec-body">
+                                    <p><b>PDF Name:</b> ${pdf.name}</p>
+                                    <p><b>Estimated Chunks Generated:</b> ${chunkCount} Chunks</p>
+                                    <p><b>Parameters:</b> Size: 800 char | Overlap: 150 char</p>
+                                    
+                                    <div class="chunk-visualizer">
+                                        ${Array.from({length: Math.min(24, chunkCount)}).map((_, i) => `
+                                            <div class="chunk-block ${i < 8 ? 'active' : ''}">${i+1}</div>
+                                        `).join('')}
+                                    </div>
+                                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Clicking Next will compute TF-IDF vocabulary on these chunks.</p>
+                                </div>
+                            </div>
+                        `}
+                    },
+                    {
+                        title: "4. TF-IDF Embedding",
+                        descShort: "Fits vocabulary & generates vector representations.",
+                        en: {
+                            heading: "Vectorizing text chunks",
+                            body: "Computers can't match raw text strings semantically. The retriever compiles all the text chunks together, fits a <code>TfidfVectorizer</code> vocabulary on the corpus, and transforms each chunk into a normalized mathematical vector.",
+                            alertTitle: "Mathematical Optimization",
+                            alertBody: "To make Cosine Similarity calculations extremely fast in FAISS, the embedder normalizes the TF-IDF vectors using L2 norm: <code>dense_vecs / norms</code>. When L2-normalized vectors are searched via Inner Product (IP), it is mathematically identical to calculating Cosine Similarity!"
+                        },
+                        hi: {
+                            heading: "टेक्स्ट चंक्स को वेक्टर्स (Vectors) में बदलना",
+                            body: "कंप्यूटर सीधे टेक्स्ट को सर्च नहीं कर सकता। रिट्रीवर सभी टेक्स्ट चंक्स को एक साथ लाता है, <code>TfidfVectorizer</code> को फ़िट करता है, और प्रत्येक चंक को एक सामान्यीकृत (L2 Normalized) गणितीय वेक्टर में बदल देता है।",
+                            alertTitle: "गणितीय अनुकूलन (L2 Norm)",
+                            alertBody: "FAISS में कोसाइन सिमिलैरिटी को तेज़ी से खोजने के लिए, वेक्टर्स को L2 नॉर्म से विभाजित किया जाता है: <code>dense_vecs / norms</code>। L2 वेक्टर्स का इनर प्रोडक्ट (Inner Product) कोसाइन सिमिलैरिटी के बिल्कुल बराबर होता है!"
+                        },
+                        code: `<span class="keyword">class</span> <span class="variable">TfidfEmbedder</span>:
+    <span class="keyword">def</span> <span class="function">embed_texts</span>(<span class="variable">self</span>, <span class="variable">texts</span>: <span class="variable">List[str]</span>):
+        <span class="variable">sparse_vecs</span> = <span class="variable">self</span>.<span class="variable">vectorizer</span>.<span class="function">transform</span>(<span class="variable">texts</span>)
+        <span class="variable">dense_vecs</span> = <span class="variable">sparse_vecs</span>.<span class="function">toarray</span>().<span class="function">astype</span>(<span class="variable">np</span>.<span class="variable">float32</span>)
+        <span class="variable">norms</span> = <span class="variable">np</span>.<span class="variable">linalg</span>.<span class="function">norm</span>(<span class="variable">dense_vecs</span>, <span class="variable">axis</span>=<span class="number">1</span>, <span class="variable">keepdims</span>=<span class="keyword">True</span>)
+        <span class="keyword">return</span> <span class="variable">dense_vecs</span> / <span class="variable">np</span>.<span class="function">where</span>(<span class="variable">norms</span> == <span class="number">0</span>, <span class="number">1.0</span>, <span class="variable">norms</span>)`,
+                        renderState: () => `
+                            <div class="state-section">
+                                <div class="state-sec-title">EMBEDDING METRIC</div>
+                                <div class="state-sec-body">
+                                    <p><b>Vocabulary Size:</b> 5,000 distinct token words</p>
+                                    <p><b>Vector Dimension:</b> 5,000 floats per chunk</p>
+                                    <p><b>Matrix Size:</b> [Total Chunks × 5000] float32 values</p>
+                                    <p style="margin-top: 0.5rem; color: #34d399;">Each chunk is now represented as a coordinates point in a 5,000-dimensional space.</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "5. FAISS Indexing",
+                        descShort: "Adds vectors to Flat Inner Product FAISS index.",
+                        en: {
+                            heading: "Inserting Vectors into FAISS Database",
+                            body: "The normalized vector matrices are loaded into a FAISS (Facebook AI Similarity Search) index using <code>faiss.IndexFlatIP</code>. The index files (<code>index.faiss</code>, <code>metadata.json</code>, <code>tfidf_embedder.pkl</code>) are written to disk under the <code>workspace/models/faiss_index/</code> folder.",
+                            alertTitle: "Rebuilding VS Appending",
+                            alertBody: "When starting the system, if index files exist, they are loaded in memory in a split second, enabling high-speed retrievals without parsing PDFs on every chat query."
+                        },
+                        hi: {
+                            heading: "वेक्टर्स को FAISS डेटाबेस में सेव करना",
+                            body: "वेक्टर्स को FAISS (Facebook AI Similarity Search) इंडेक्स में <code>faiss.IndexFlatIP</code> का उपयोग करके लोड किया जाता है। इंडेक्स फाइलों को <code>workspace/models/faiss_index/</code> फोल्डर के तहत हार्ड डिस्क पर राइट किया जाता है।",
+                            alertTitle: "त्वरित रीलोडिंग",
+                            alertBody: "जब प्रोग्राम शुरू होता है, तो वह सीधे डिस्क से बनी हुई इंडेक्स लोड कर लेता है, जिससे हर सवाल पर बार-बार भारी PDFs को पढ़ने की आवश्यकता नहीं होती।"
+                        },
+                        code: `<span class="variable">self</span>.<span class="variable">index</span> = <span class="variable">faiss</span>.<span class="function">IndexFlatIP</span>(<span class="variable">self</span>.<span class="variable">embedder</span>.<span class="variable">dimension</span>)
+<span class="variable">self</span>.<span class="variable">index</span>.<span class="function">add</span>(<span class="variable">embeddings</span>)
+<span class="comment"># Save to models directory</span>
+<span class="variable">faiss</span>.<span class="function">write_index</span>(<span class="variable">self</span>.<span class="variable">index</span>, <span class="function">str</span>(<span class="variable">index_path</span>))`,
+                        renderState: () => `
+                            <div class="state-section">
+                                <div class="state-sec-title">FAISS INDEX CREATED</div>
+                                <div class="state-sec-body">
+                                    <p><b>Index Type:</b> Flat Inner Product Index (IndexFlatIP)</p>
+                                    <p><b>Total Indexed Vectors:</b> ${Math.ceil(mockPdfs.find(p => p.id === selectedPdfId).pages * 1.8)} chunks successfully indexed.</p>
+                                    <p><b>Files saved to disk:</b></p>
+                                    <p style="color: #a78bfa; font-family: monospace; font-size: 0.75rem; margin-left: 0.5rem;">
+                                        - index.faiss<br>
+                                        - metadata.json<br>
+                                        - tfidf_embedder.pkl
+                                    </p>
+                                    <p style="margin-top:0.5rem; color: #10b981; font-weight: bold;">Indexing Complete! Ready for queries.</p>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+            retrieve: {
+                title: "Query & Retrieval Pipeline (Online RAG Flow)",
+                steps: [
+                    {
+                        title: "1. Search Query",
+                        descShort: "User submits query to find semantic matches.",
+                        en: {
+                            heading: "User Submits Query to search_knowledge_base",
+                            body: "The user asks a conceptual question related to the PDFs, e.g. <i>'What is overfitting?'</i>. This triggers the agent's function tool call: <code>search_knowledge_base(query='what is overfitting', domain='ML')</code>.",
+                            alertTitle: "Target Domain Routing",
+                            alertBody: "The model specifies a domain like 'ML' so that the retriever can apply a database filter on matching chunks, avoiding irrelevant cross-domain results."
+                        },
+                        hi: {
+                            heading: "नॉलेज बेस में सर्च करने की रिक्वेस्ट",
+                            body: "यूज़र PDFs से जुड़ा एक सवाल पूछता है, उदाहरण के लिए: <i>'What is overfitting?'</i>। यह एजेंट के फ़ंक्शन टूल कॉल को सक्रिय करता है: <code>search_knowledge_base(query='what is overfitting', domain='ML')</code>।",
+                            alertTitle: "डोमेन आधारित फ़िल्टरिंग",
+                            alertBody: "मॉडल 'ML' डोमेन बताता है ताकि रिट्रीवर सिर्फ मशीन लर्निंग के चंक्स को ही फिल्टर करे और अन्य क्षेत्रों के अनुपयोगी नतीजों को हटा दे।"
+                        },
+                        code: `<span class="comment"># OpenAI function call schema trigger</span>
+{
+    <span class="string">"name"</span>: <span class="string">"search_knowledge_base"</span>,
+    <span class="string">"arguments"</span>: <span class="string">"{\\"query\\": \\"what is overfitting\\", \\"domain\\": \\"ML\\"}"</span>
+}`,
+                        renderState: () => `
+                            <div class="state-section">
+                                <div class="state-sec-title">SIMULATOR SEARCH CONTROL</div>
+                                <div class="interactive-chat-sim">
+                                    <div class="sim-input-row">
+                                        <input type="text" class="sim-input" id="simQueryInput" value="what is overfitting" placeholder="Type concept query...">
+                                        <button class="btn-control primary" onclick="runSimQuery()">Search</button>
+                                    </div>
+                                    <p style="font-size:0.75rem; color: var(--text-muted);">Try: <b>what is overfitting</b> or <b>random forest</b></p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "2. Query Embedder",
+                        descShort: "Vectorizes query using the fitted TF-IDF model.",
+                        en: {
+                            heading: "Converting Query to Search Coordinates",
+                            body: "The search query text is passed through the same fitted TF-IDF embedder. It generates a single 1×5000 normalized query vector so it can be compared with the indexed document vectors.",
+                            alertTitle: "Why use the same vectorizer?",
+                            alertBody: "The query must be converted using the exact same vocabulary index mapping as the documents, otherwise the dimensions won't match and similarity calculations will fail."
+                        },
+                        hi: {
+                            heading: "क्वेरी को सर्च वेक्टर्स में बदलना",
+                            body: "सर्च क्वेरी टेक्स्ट को उसी पहले से फिट किए गए TF-IDF एम्बेडर से गुजारा जाता है। यह एक 1×5000 सामान्यीकृत क्वेरी वेक्टर बनाता है जिसे पहले से इंडेक्स किए गए पीडीएफ चंक्स से मैच किया जा सके।",
+                            alertTitle: "समान वेक्टराइज़र का उपयोग क्यों?",
+                            alertBody: "क्वेरी को ठीक उसी वोकैबुलरी मैपिंग के साथ बदलना होगा, वरना डायमेंशन मैच नहीं करेंगे और सर्च सिमिलैरिटी फ़ेल हो जाएगी।"
+                        },
+                        code: `<span class="keyword">def</span> <span class="function">retrieve</span>(<span class="variable">self</span>, <span class="variable">query</span>: <span class="variable">str</span>, <span class="variable">domain</span>: <span class="variable">str</span>, <span class="variable">top_k</span>=<span class="number">4</span>):
+    <span class="comment"># Vectorize search query</span>
+    <span class="variable">query_vector</span> = <span class="variable">self</span>.<span class="variable">embedder</span>.<span class="function">embed_texts</span>([<span class="variable">query</span>])
+    <span class="comment"># Proceed to FAISS vector search</span>`,
+                        renderState: () => `
+                            <div class="state-section">
+                                <div class="state-sec-title">QUERY VECTORIZATION</div>
+                                <div class="state-sec-body">
+                                    <p><b>Input Query:</b> "<span id="lblActiveQuery">what is overfitting</span>"</p>
+                                    <p><b>Output Shape:</b> 1 × 5,000 float32 matrix</p>
+                                    <p><b>Status:</b> Query mapped to coordinate spaces. Ready for FAISS similarity matching.</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        title: "3. FAISS Vector Search",
+                        descShort: "Finds closest matching PDF vectors in index.",
+                        en: {
+                            heading: "Vector Similarity Matching using FAISS",
+                            body: "FAISS searches all indexed vectors to find the nearest neighbors to the query vector. It computes the Inner Product (Inner Product of L2-normalized vectors is exactly Cosine Similarity).",
+                            alertTitle: "Dynamic Domain Filtering",
+                            alertBody: "FAISS returns the nearest matches. The code then filters these matches in Python: <code>if chunk['domain'] in target_domains:</code>. This enforces domain constraint while leveraging the global index."
+                        },
+                        hi: {
+                            heading: "वेक्टर सिमिलैरिटी खोज (FAISS Search)",
+                            body: "FAISS सभी इंडेक्स किए गए वेक्टर्स में खोज करता है और क्वेरी वेक्टर के सबसे नजदीकी बिंदुओं को ढूंढता है। यह इनर प्रोडक्ट (Inner Product) की गणना करता है जो कोसाइन सिमिलैरिटी के समान है।",
+                            alertTitle: "डायनेमिक डोमेन फ़िल्टरिंग",
+                            alertBody: "FAISS पहले करीबी मैच ढूंढता है। फिर कोड पायथन में डोमेन की जांच करता है: <code>if chunk['domain'] in target_domains:</code> ताकि असंगत विषयों के चंक्स को हटाया जा सके।"
+                        },
+                        code: `<span class="comment"># Search index vectors</span>
+<span class="variable">k_search</span> = <span class="function">min</span>(<span class="variable">self</span>.<span class="variable">index</span>.<span class="variable">ntotal</span>, <span class="variable">top_k</span> * <span class="number">5</span>)
+<span class="variable">distances</span>, <span class="variable">indices</span> = <span class="variable">self</span>.<span class="variable">index</span>.<span class="function">search</span>(<span class="variable">query_vector</span>, <span class="variable">k_search</span>)
+
+<span class="keyword">for</span> <span class="variable">idx</span>, <span class="variable">score</span> <span class="keyword">in</span> <span class="function">zip</span>(<span class="variable">indices</span>[<span class="number">0</span>], <span class="variable">distances</span>[<span class="number">0</span>]):
+    <span class="comment"># Filter matching chunks by domain...</span>`,
+                        renderState: () => {
+                            const query = document.getElementById('simQueryInput') ? document.getElementById('simQueryInput').value : "what is overfitting";
+                            const items = mockRetrievals[query.toLowerCase()] || [];
+                            return `
+                            <div class="state-section">
+                                <div class="state-sec-title">SIMULATED NEAREST NEIGHBORS</div>
+                                <div class="state-sec-body">
+                                    <div class="sim-results" id="simResultsContainer">
+                                        ${items.map(item => `
+                                            <div class="sim-result-item">
+                                                <div class="sim-result-meta">
+                                                    <span>📄 ${item.source}</span>
+                                                    <span class="sim-result-score">Score: ${item.score}</span>
+                                                </div>
+                                                <div class="sim-result-text">"${item.text}"</div>
+                                            </div>
+                                        `).join('') || '<p style="color: #f87171;">No matching query simulation. Try typing "what is overfitting".</p>'}
+                                    </div>
+                                </div>
+                            </div>
+                        `}
+                    },
+                    {
+                        title: "4. Augment Prompt",
+                        descShort: "Constructs a prompt injected with retrieved text.",
+                        en: {
+                            heading: "Formulating Augmented Context Prompt",
+                            body: "The retrieved matching text chunks are formatted and injected directly into the LLM system prompt. The model is instructed: <i>'Use the following context to answer the user's question...'</i>.",
+                            alertTitle: "Fact-based Constraints",
+                            alertBody: "By injecting the PDF context, the model can base its answer strictly on the textbook content, preventing hallucinations and resolving the issue where PDF contents were not accessible."
+                        },
+                        hi: {
+                            heading: "प्रॉम्प्ट में संदर्भ जोड़ना (Augmentation)",
+                            body: "सर्च से मिले पीडीएफ के पैराग्राफों को फॉर्मेट करके सीधे LLM के सिस्टम प्रॉम्प्ट में जोड़ दिया जाता है। मॉडल को निर्देश दिया जाता है: <i>'Use the following context to answer the user's question...'</i>।",
+                            alertTitle: "तथ्य-आधारित नियंत्रण",
+                            alertBody: "पीडीएफ संदर्भ को प्रॉम्प्ट में डालने से मॉडल केवल पुस्तक के तथ्यों के आधार पर उत्तर दे पाता है, जिससे उसके अपने मनगढ़ंत उत्तर (hallucinations) बंद हो जाते हैं।"
+                        },
+                        code: `<span class="variable">context_str</span> = <span class="string">"\\n\\n"</span>.<span class="function">join</span>([<span class="variable">c</span>[<span class="string">'text'</span>] <span class="keyword">for</span> <span class="variable">c</span> <span class="keyword">in</span> <span class="variable">retrieved_chunks</span>])
+<span class="variable">rag_system_prompt</span> = <span class="string">f"Use the following retrieved context to answer:\\n</span>{<span class="variable">context_str</span>}<span class="string">"</span>
+<span class="variable">messages</span>.<span class="function">append</span>({<span class="string">"role"</span>: <span class="string">"system"</span>, <span class="string">"content"</span>: <span class="variable">rag_system_prompt</span>})`,
+                        renderState: () => {
+                            const query = document.getElementById('simQueryInput') ? document.getElementById('simQueryInput').value : "what is overfitting";
+                            const items = mockRetrievals[query.toLowerCase()] || [];
+                            const contextText = items.map(i => i.text).join('\n\n');
+                            const prompt = `System Prompt: You are a helpful assistant. Use the following context to answer.
+
+[Context]:
+${contextText || "[No context loaded]"}
+
+[User Question]:
+${query}`;
+                            return `
+                            <div class="state-section">
+                                <div class="state-sec-title">CONSTRUCTED API PROMPT PREVIEW</div>
+                                <div class="prompt-preview">${prompt}</div>
+                            </div>
+                        `}
+                    },
+                    {
+                        title: "5. LLM Answer",
+                        descShort: "OpenAI answers query based strictly on retrieved facts.",
+                        en: {
+                            heading: "LLM Generates Answer from Context Chunks",
+                            body: "The final prompt is sent to GPT-4o-mini. The model reads the context, extracts the exact answer, and generates a detailed response, citing the source document where appropriate.",
+                            alertTitle: "Retrieval Success",
+                            alertBody: "Because the context contained detailed notes on overfitting / random forests from the PDF books, the LLM successfully answers the query using the PDF data!"
+                        },
+                        hi: {
+                            heading: "LLM द्वारा अंतिम उत्तर का निर्माण",
+                            body: "अंतिम तैयार प्रॉम्प्ट को GPT-4o-mini को भेजा जाता है। मॉडल संदर्भ को पढ़ता है, सटीक जानकारी निकालता है, और डॉक्यूमेंट का संदर्भ देते हुए एक सुंदर उत्तर तैयार करता है।",
+                            alertTitle: "सफल रिट्रीवल",
+                            alertBody: "चूंकि प्रॉम्प्ट में सीधे बुक्स के पीडीएफ चंक्स मौजूद थे, इसलिए LLM ने पीडीएफ डेटा का उपयोग करके आपके सवाल का बिल्कुल सही उत्तर दे दिया!"
+                        },
+                        code: `<span class="variable">response</span> = <span class="variable">client</span>.<span class="variable">chat</span>.<span class="variable">completions</span>.<span class="function">create</span>(
+    <span class="variable">model</span>=<span class="string">"gpt-4o-mini"</span>,
+    <span class="variable">messages</span>=<span class="variable">messages</span>,
+    <span class="variable">temperature</span>=<span class="number">0.3</span>,
+)`,
+                        renderState: () => {
+                            const query = document.getElementById('simQueryInput') ? document.getElementById('simQueryInput').value : "what is overfitting";
+                            let ans = "Based on the text books, overfitting happens when...";
+                            if (query.toLowerCase() === "what is overfitting") {
+                                ans = "According to the Machine Learning book, **overfitting** happens when a model matches the training database too closely (including noise and outliers). Consequently, the model exhibits high training accuracy but performs poorly on unseen test datasets. Regularization techniques like L1 and L2 help mitigate this by penalizing large weights.";
+                            } else if (query.toLowerCase() === "random forest") {
+                                ans = "Based on the Pro Machine Learning Algorithms PDF, a **Random Forest** is an ensemble learning method that constructs a collection of individual decision trees and outputs the consensus average prediction (or mode class).";
+                            }
+                            return `
+                            <div class="state-section">
+                                <div class="state-sec-title">AGENT TEXT RESPONSE</div>
+                                <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 0.85rem; font-size: 0.88rem; color: #a7f3d0; line-height:1.5;">
+                                    ${ans}
+                                </div>
+                            </div>
+                        `}
+                    }
+                ]
+            }
+        };
+
+        // DOM elements
+        const btnTogglePipeline = document.getElementById('btnTogglePipeline');
+        const stepperEl = document.getElementById('stepper');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const btnReset = document.getElementById('btnReset');
+        const statusText = document.getElementById('statusText');
+        const explanationBody = document.getElementById('explanationBody');
+        const stateViewer = document.getElementById('stateViewer');
+        const sidebarSectionTitle = document.getElementById('sidebarSectionTitle');
+        const pipelineSvg = document.getElementById('pipelineSvg');
+
+        // Functions
+        function initApp() {
+            renderStepper();
+            renderPipelineSvg();
+            updateStepView();
+        }
+
+        function togglePipeline() {
+            if (currentPipeline === 'ingest') {
+                currentPipeline = 'retrieve';
+                btnTogglePipeline.innerText = "Switch to: Data Ingestion (Offline)";
+                sidebarSectionTitle.innerText = "Retrieval Pipeline";
+                document.getElementById('workspaceTree').style.display = 'none';
+            } else {
+                currentPipeline = 'ingest';
+                btnTogglePipeline.innerText = "Switch to: Online Search & Retrieval";
+                sidebarSectionTitle.innerText = "Ingestion Pipeline";
+                document.getElementById('workspaceTree').style.display = 'block';
+            }
+            currentStepIndex = 0;
+            initApp();
+        }
+
+        function toggleLang(lang) {
+            currentLang = lang;
+            document.getElementById('btnLangEng').classList.toggle('active', lang === 'en');
+            document.getElementById('btnLangHin').classList.toggle('active', lang === 'hi');
+            updateStepView();
+        }
+
+        function selectPdf(id) {
+            selectedPdfId = id;
+            updateStepView();
+            // Re-render PDF select view to apply selected class
+            const steps = pipelines[currentPipeline].steps;
+            const currentStep = steps[currentStepIndex];
+            document.getElementById('stateViewer').innerHTML = `
+                <div class="state-section">
+                    <div class="state-sec-title">ACTIVE CODE LINE</div>
+                    <pre><code class="code-viewer-lang-py">${currentStep.code}</code></pre>
+                </div>
+                ${currentStep.renderState()}
+            `;
+        }
+
+        function runSimQuery() {
+            updateStepView();
+        }
+
+        function renderStepper() {
+            const steps = pipelines[currentPipeline].steps;
+            stepperEl.innerHTML = '';
+            steps.forEach((step, idx) => {
+                const node = document.createElement('div');
+                node.className = `step-node ${idx === currentStepIndex ? 'active' : ''} ${idx < currentStepIndex ? 'completed' : ''}`;
+                node.onclick = () => selectStep(idx);
+                
+                node.innerHTML = `
+                    <div class="step-indicator">${idx + 1}</div>
+                    <div class="step-info">
+                        <div class="step-title">${step.title}</div>
+                        <div class="step-desc-short">${step.descShort}</div>
+                    </div>
+                `;
+                stepperEl.appendChild(node);
+            });
+        }
+
+        function renderPipelineSvg() {
+            const steps = pipelines[currentPipeline].steps;
+            const nodeWidth = 90;
+            const nodeHeight = 35;
+            const yPos = 25;
+            const startX = 20;
+            const gap = (700 - startX*2 - nodeWidth) / (steps.length - 1 || 1);
+            
+            let html = '';
+            
+            // Draw Edges
+            for (let i = 0; i < steps.length - 1; i++) {
+                const x1 = startX + i * gap + nodeWidth;
+                const y1 = yPos + nodeHeight / 2;
+                const x2 = startX + (i + 1) * gap;
+                const y2 = yPos + nodeHeight / 2;
+                
+                let edgeClass = 'svg-edge';
+                let marker = 'url(#arrow)';
+                if (i < currentStepIndex) {
+                    edgeClass += ' completed';
+                    marker = 'url(#arrow-completed)';
+                } else if (i === currentStepIndex) {
+                    edgeClass += ' active';
+                    marker = 'url(#arrow-active)';
+                }
+                
+                html += `<line x1="${x1}" y1="${y1}" x2="${x2 - 5}" y2="${y2}" class="${edgeClass}" marker-end="${marker}" />`;
+            }
+
+            // Draw Nodes
+            steps.forEach((step, idx) => {
+                const x = startX + idx * gap;
+                let nodeClass = 'svg-node';
+                if (idx < currentStepIndex) nodeClass += ' completed';
+                else if (idx === currentStepIndex) nodeClass += ' active';
+                
+                html += `
+                    <g onclick="selectStep(${idx})">
+                        <rect x="${x}" y="${yPos}" width="${nodeWidth}" height="${nodeHeight}" rx="6" class="${nodeClass}" />
+                        <text x="${x + nodeWidth/2}" y="${yPos + nodeHeight/2 + 4}" class="svg-text">Step ${idx + 1}</text>
+                    </g>
+                `;
+            });
+            
+            pipelineSvg.innerHTML = `
+                <defs>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569"/>
+                    </marker>
+                    <marker id="arrow-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#a78bfa"/>
+                    </marker>
+                    <marker id="arrow-completed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981"/>
+                    </marker>
+                </defs>
+                ${html}
+            `;
+        }
+
+        function updateStepView() {
+            const steps = pipelines[currentPipeline].steps;
+            const step = steps[currentStepIndex];
+            const content = step[currentLang];
+            
+            // 1. Update text explanation
+            explanationBody.innerHTML = `
+                <h3>${content.heading}</h3>
+                <p>${content.body}</p>
+                <div class="alert-box ${currentPipeline === 'ingest' ? 'teal' : ''}">
+                    <h4>${content.alertTitle}</h4>
+                    <p>${content.alertBody}</p>
+                </div>
+            `;
+            
+            // 2. Update Code and state panel
+            stateViewer.innerHTML = `
+                <div class="state-section">
+                    <div class="state-sec-title">ACTIVE CODE LINE (Python)</div>
+                    <pre><code class="code-viewer-lang-py">${step.code}</code></pre>
+                </div>
+                ${step.renderState()}
+            `;
+
+            // 3. Update buttons
+            btnPrev.disabled = currentStepIndex === 0;
+            btnNext.disabled = currentStepIndex === steps.length - 1;
+            statusText.innerText = `Step ${currentStepIndex + 1} of ${steps.length}`;
+        }
+
+        function selectStep(idx) {
+            currentStepIndex = idx;
+            renderStepper();
+            renderPipelineSvg();
+            updateStepView();
+        }
+
+        function goNext() {
+            const steps = pipelines[currentPipeline].steps;
+            if (currentStepIndex < steps.length - 1) {
+                selectStep(currentStepIndex + 1);
+            }
+        }
+
+        function goPrev() {
+            if (currentStepIndex > 0) {
+                selectStep(currentStepIndex - 1);
+            }
+        }
+
+        function resetFlow() {
+            selectStep(0);
+        }
+
+        // Attach listeners
+        btnTogglePipeline.addEventListener('click', togglePipeline);
+        btnNext.addEventListener('click', goNext);
+        btnPrev.addEventListener('click', goPrev);
+        btnReset.addEventListener('click', resetFlow);
+
+        // Initialize
+        initApp();
+    </script>
+</body>
+</html>
