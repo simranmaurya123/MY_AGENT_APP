@@ -16,55 +16,110 @@ st.set_page_config(
 
 st.markdown(
     """
+    <!-- Import Premium Google Font -->
     <style>
-    .stApp {
-        background: radial-gradient(circle at top left, #0f172a 0%, #1e1b4b 50%, #020617 100%);
-        color: #f8fafc;
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+    
+    /* Apply custom font across app elements */
+    html, body, [class*="css"], .stMarkdown {
+        font-family: 'Outfit', sans-serif;
     }
+    
+    code, pre, [class*="code"] {
+        font-family: 'Fira Code', monospace !important;
+        font-size: 0.9rem !important;
+    }
+
+    .stApp {
+        background: radial-gradient(circle at 10% 20%, rgba(20, 15, 45, 0.95) 0%, rgba(8, 10, 24, 0.99) 90%), #020617;
+        color: #f1f5f9;
+    }
+    
+    /* Hero header with premium gradients */
     .hero {
-        padding: 2rem;
+        padding: 2.5rem;
         border-radius: 24px;
-        background: linear-gradient(135deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%);
-        border: 1px solid rgba(255,255,255,0.05);
-        color: white;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
         margin-bottom: 2rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        text-align: left;
     }
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.85rem;
         margin: 0;
-        background: linear-gradient(90deg, #60a5fa, #a78bfa);
+        background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 800;
+        letter-spacing: -0.03em;
     }
     .hero p {
-        margin-top: 0.85rem;
-        opacity: 0.85;
-        font-size: 1.1rem;
-        line-height: 1.5;
+        margin-top: 1rem;
+        color: #94a3b8;
+        font-size: 1.15rem;
+        line-height: 1.6;
+        font-weight: 300;
     }
+    
+    /* Glassmorphic cards */
     .status-card {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: 20px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        padding: 1.75rem;
+        margin-bottom: 1.25rem;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .status-card:hover {
+        border-color: rgba(139, 92, 246, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
     }
     .status-card h3 {
         margin-top: 0;
-        color: #60a5fa;
+        color: #a78bfa;
+        font-weight: 700;
     }
+    
+    /* Premium glowing badges for sources */
     .source-tag {
         display: inline-block;
-        padding: 0.25rem 0.5rem;
-        margin: 0.2rem;
-        border-radius: 6px;
-        background: rgba(96, 165, 250, 0.15);
-        border: 1px solid rgba(96, 165, 250, 0.3);
+        padding: 0.3rem 0.65rem;
+        margin: 0.25rem;
+        border-radius: 8px;
+        background: rgba(139, 92, 246, 0.12);
+        border: 1px solid rgba(139, 92, 246, 0.25);
+        font-family: 'Fira Code', monospace;
         font-size: 0.8rem;
-        color: #93c5fd;
+        color: #c084fc;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    .source-tag:hover {
+        background: rgba(139, 92, 246, 0.2);
+        border-color: rgba(139, 92, 246, 0.4);
+        color: #e9d5ff;
+        transform: scale(1.02);
+    }
+    
+    /* Custom style for Streamlit buttons */
+    div.stButton > button {
+        background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%) !important;
+        color: white !important;
+        border: none !important;
+        padding: 0.6rem 1.5rem !important;
+        border-radius: 12px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2) !important;
+        transition: all 0.2s ease !important;
+    }
+    div.stButton > button:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3) !important;
     }
     </style>
     """,
