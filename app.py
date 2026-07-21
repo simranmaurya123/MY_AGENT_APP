@@ -23,7 +23,7 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
     
     /* Apply custom font across app elements */
-    html, body, [class*="css"], .stMarkdown {
+    html, body, [class*="css"], [class*="st-emotion-cache"], .stMarkdown {
         font-family: 'Outfit', sans-serif;
     }
     
@@ -33,42 +33,78 @@ st.markdown(
     }
 
     .stApp {
-        background: radial-gradient(circle at 10% 20%, rgba(20, 15, 45, 0.95) 0%, rgba(8, 10, 24, 0.99) 90%), #020617;
-        color: #f1f5f9;
+        background: radial-gradient(circle at 10% 20%, #fefcf9 0%, #f6f3ed 100%), #faf8f5;
+        color: #1e293b;
     }
     
-    /* Hero header with premium gradients */
-    .hero {
-        padding: 3rem;
-        border-radius: 24px;
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(16px);
-        margin-bottom: 2.5rem;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        text-align: center;
+    /* Style Streamlit's native sidebar for light mode */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #f5f3ef 0%, #e9e6df 100%) !important;
+        border-right: 1px solid rgba(249, 115, 22, 0.15) !important;
     }
-    .hero h1 {
-        font-size: 3.5rem;
-        margin: 0;
-        background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800;
-        letter-spacing: -0.04em;
+    section[data-testid="stSidebar"] [data-testid="stSubheader"], 
+    section[data-testid="stSidebar"] .stMarkdown, 
+    section[data-testid="stSidebar"] label {
+        color: #334155 !important;
     }
-    .hero p {
-        margin-top: 1.25rem;
-        color: #94a3b8;
-        font-size: 1.30rem;
-        line-height: 1.6;
-        font-weight: 300;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
+
+    /* Input & Select Box styling overrides for light mode */
+    div[data-baseweb="input"], div[data-baseweb="select"], .stTextArea textarea, .stTextInput input {
+        background-color: #ffffff !important;
+        border: 1px solid rgba(249, 115, 22, 0.25) !important;
+        color: #1e293b !important;
+        border-radius: 10px !important;
+        transition: all 0.2s ease !important;
+    }
+    div[data-baseweb="input"]:focus-within, div[data-baseweb="select"]:focus-within {
+        border-color: #f97316 !important;
+        box-shadow: 0 0 10px rgba(249, 115, 22, 0.12) !important;
     }
     
-    /* Grid cards */
+    /* Custom IDE Code Block Container styles */
+    .code-window {
+        background: #0f172a !important;
+        border-radius: 16px !important;
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+        text-align: left !important;
+        overflow: hidden !important;
+        margin-top: 1rem;
+    }
+    .code-header {
+        background: #1e293b !important;
+        padding: 0.6rem 1.25rem !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+    .code-dot {
+        width: 11px !important;
+        height: 11px !important;
+        border-radius: 50% !important;
+        display: inline-block !important;
+    }
+    .code-dot.red { background-color: #ef4444 !important; }
+    .code-dot.yellow { background-color: #f59e0b !important; }
+    .code-dot.green { background-color: #10b981 !important; }
+    .code-title {
+        color: #94a3b8 !important;
+        font-size: 0.8rem !important;
+        margin-left: 0.5rem !important;
+        font-family: 'Fira Code', monospace !important;
+    }
+    .code-content {
+        padding: 1.5rem !important;
+        margin: 0 !important;
+        color: #e2e8f0 !important;
+        background: #0f172a !important;
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+        overflow-x: auto !important;
+    }
+    
+    /* Grid cards style in light mode */
     .feature-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -77,28 +113,27 @@ st.markdown(
     }
     
     .feature-card {
-        background: rgba(15, 23, 42, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
         border-radius: 20px;
         padding: 1.75rem;
-        backdrop-filter: blur(12px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .feature-card:hover {
-        border-color: rgba(139, 92, 246, 0.4);
+        border-color: rgba(249, 115, 22, 0.35);
         transform: translateY(-4px);
-        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        box-shadow: 0 15px 30px rgba(249, 115, 22, 0.08);
     }
     .feature-card h3 {
         margin-top: 0;
-        color: #60a5fa;
+        color: #f97316;
         font-weight: 700;
         font-size: 1.35rem;
         margin-bottom: 0.75rem;
     }
     .feature-card p {
-        color: #94a3b8;
+        color: #475569;
         font-size: 0.95rem;
         line-height: 1.6;
         margin: 0;
@@ -107,13 +142,13 @@ st.markdown(
     /* Technical layout visualizer list */
     .tree-node {
         font-family: 'Fira Code', monospace;
-        background: rgba(15, 23, 42, 0.7);
-        border-left: 3px solid #8b5cf6;
+        background: #ffffff;
+        border-left: 3px solid #f97316;
         padding: 0.75rem 1.25rem;
         margin-bottom: 0.6rem;
         border-radius: 0 10px 10px 0;
         font-size: 0.9rem;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     }
     
     /* Premium glowing badges for sources */
@@ -122,18 +157,18 @@ st.markdown(
         padding: 0.35rem 0.7rem;
         margin: 0.25rem;
         border-radius: 8px;
-        background: rgba(139, 92, 246, 0.12);
-        border: 1px solid rgba(139, 92, 246, 0.25);
+        background: rgba(249, 115, 22, 0.05);
+        border: 1px solid rgba(249, 115, 22, 0.25);
         font-family: 'Fira Code', monospace;
         font-size: 0.8rem;
-        color: #c084fc;
+        color: #f97316;
         font-weight: 500;
         transition: all 0.2s ease;
     }
     .source-tag:hover {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: rgba(139, 92, 246, 0.4);
-        color: #e9d5ff;
+        background: rgba(249, 115, 22, 0.12);
+        border-color: rgba(249, 115, 22, 0.5);
+        color: #ea580c;
         transform: scale(1.02);
     }
 
@@ -142,46 +177,89 @@ st.markdown(
         padding: 0.25rem 0.55rem;
         margin: 0.2rem;
         border-radius: 6px;
-        background: rgba(52, 211, 153, 0.12);
-        border: 1px solid rgba(52, 211, 153, 0.3);
+        background: rgba(132, 204, 22, 0.08);
+        border: 1px solid rgba(132, 204, 22, 0.25);
         font-size: 0.8rem;
-        color: #34d399;
+        color: #65a30d;
         font-weight: 600;
     }
     
     /* Custom style for Streamlit buttons */
     div.stButton > button {
-        background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%) !important;
-        color: white !important;
+        background: linear-gradient(135deg, #f97316 0%, #eab308 50%, #84cc16 100%) !important;
+        color: #ffffff !important;
         border: none !important;
         padding: 0.75rem 2rem !important;
         border-radius: 12px !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         font-size: 1.05rem !important;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3) !important;
+        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2) !important;
         transition: all 0.2s ease !important;
     }
     div.stButton > button:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 6px 22px rgba(139, 92, 246, 0.45) !important;
+        box-shadow: 0 6px 18px rgba(249, 115, 22, 0.35) !important;
     }
     
     /* Secondary Back navigation button */
     div.stButton > button[key="back_home_btn"] {
         background: transparent !important;
-        color: #a78bfa !important;
-        border: 1px solid rgba(139, 92, 246, 0.4) !important;
+        color: #f97316 !important;
+        border: 1px solid rgba(249, 115, 22, 0.4) !important;
         box-shadow: none !important;
     }
     
     .status-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
         border-radius: 20px;
         padding: 1.5rem;
         margin-bottom: 1.25rem;
-        backdrop-filter: blur(12px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+    }
+    
+    /* Overrides for Streamlit standard chat bubbles to match light theme */
+    div[data-testid="stChatMessage"] {
+        background-color: #ffffff !important;
+        border: 1px solid rgba(0, 0, 0, 0.04) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01) !important;
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes zoomIn {
+        from { transform: scale(0.95); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+    .slide-up { animation: slideUp 0.8s ease-out forwards; }
+    .zoom-in { animation: zoomIn 0.6s ease-out forwards; }
+    
+    .tech-pill {
+        display: inline-block;
+        padding: 0.4rem 0.8rem;
+        margin: 0.3rem;
+        border-radius: 99px;
+        background: #ffffff;
+        border: 1px solid rgba(0,0,0,0.06);
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #475569;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        transition: all 0.2s ease;
+    }
+    .tech-pill:hover {
+        border-color: rgba(249, 115, 22, 0.3);
+        color: #f97316;
+        transform: translateY(-1px);
     }
     </style>
     """,
@@ -226,122 +304,670 @@ if "current_session_id" not in st.session_state:
         }
     ]
 
-# Render Page Views
+# Render Page View
 if st.session_state.page == "Landing Page":
     # ==========================================
-    # VIEW A: ENTERPRISE LANDING PORTAL
+    # VIEW A: EDUQUERY AI LANDING PORTAL
     # ==========================================
     
+    # Page 1: Hero Section
     st.markdown(
         """
-        <div class="hero">
-            <h1>Cognitive RAG: Enterprise AI Orchestrator</h1>
-            <p>
-                A high-performance educational agent built for technical demonstration. It leverages a fine-tuned 
-                local sequence classifier for prompt routing, combined with structured SQL database retrieval and 
-                FAISS semantic search indexes.
+        <div style="text-align: center; margin-top: 1.5rem;" class="fade-in">
+            <span class="meta-tag">🚀 EduQuery AI</span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    hero_col1, hero_col2 = st.columns([1.1, 0.9], gap="large")
+    
+    with hero_col1:
+        st.markdown(
+            """
+            <div style="padding-top: 1rem;" class="fade-in">
+                <h1 style="font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-top: 0.5rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; color: #1e293b;">
+                    EduQuery AI
+                </h1>
+                <p style="font-size: 1.25rem; color: #f97316; font-style: italic; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.4;">
+                    Domain-Specific Educational Assistant using Fine-Tuned DistilBERT & Retrieval-Augmented Generation (RAG).
+                </p>
+                <p style="color: #475569; font-size: 1.05rem; line-height: 1.6; font-weight: 300; margin-bottom: 1.5rem;">
+                    Unlike conventional question-answering systems that search every available resource, EduQuery AI first predicts the subject of the user's query and then retrieves information only from the most relevant knowledge source. This targeted retrieval approach improves response speed, enhances answer accuracy, and reduces unnecessary document searching.
+                </p>
+                <p style="color: #475569; font-size: 1.05rem; line-height: 1.6; font-weight: 300; margin-bottom: 2rem;">
+                    <b>About the Project:</b> The platform combines fine-tuned DistilBERT text classification, intelligent routing, Retrieval-Augmented Generation (RAG), local PDF parsing, CSV analysis, and high-performance vector search databases.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+        # Suggested CTA buttons (Explore Workflow, View Architecture, View Results, Launch Console)
+        btn_col1, btn_col2 = st.columns([1, 1])
+        with btn_col1:
+            if st.button("Launch Agent Console ⚡", use_container_width=True):
+                st.session_state.page = "Dashboard"
+                st.rerun()
+        with btn_col2:
+            st.markdown(
+                """
+                <a href="#page-2-technology-stack-workflow" style="text-decoration: none;">
+                    <div style="text-align: center; background: #ffffff; border: 1px solid rgba(249, 115, 22, 0.4); color: #f97316; padding: 0.7rem 1.5rem; border-radius: 12px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: all 0.2s ease; cursor: pointer;">
+                        Explore Workflow ↓
+                    </div>
+                </a>
+                """,
+                unsafe_allow_html=True,
+            )
+            
+    with hero_col2:
+        st.markdown(
+            """
+            <div class="code-window zoom-in">
+                <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">orchestrator.py</span>
+                </div>
+                <pre class="code-content"><code># ship your product
+agent.launch(pipeline={
+  <span style="color: #a2ff00;">"router"</span>: <span style="color: #eab308;">"local-distilbert"</span>,
+  <span style="color: #a2ff00;">"retriever"</span>: <span style="color: #eab308;">"dense-faiss"</span>,
+  <span style="color: #a2ff00;">"database"</span>: <span style="color: #eab308;">"duckdb-sql"</span>,
+  <span style="color: #a2ff00;">"synthesis"</span>: <span style="color: #eab308;">"gpt-4o-mini"</span>
+})</code></pre>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+        # Supported Domains (6 cards)
+        st.markdown(
+            """
+            <div style="margin-top: 1.25rem;">
+                <h4 style="font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; text-align: center;">Supported Domains</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <div style="background: #ffffff; border: 1px solid rgba(132, 204, 22, 0.2); padding: 0.45rem; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #334155;">🧠 Machine Learning</div>
+                    <div style="background: #ffffff; border: 1px solid rgba(132, 204, 22, 0.2); padding: 0.45rem; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #334155;">🕸 Deep Learning</div>
+                    <div style="background: #ffffff; border: 1px solid rgba(132, 204, 22, 0.2); padding: 0.45rem; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #334155;">🗣 NLP</div>
+                    <div style="background: #ffffff; border: 1px solid rgba(132, 204, 22, 0.2); padding: 0.45rem; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #334155;">👁 Computer Vision</div>
+                    <div style="background: #ffffff; border: 1px solid rgba(132, 204, 22, 0.2); padding: 0.45rem; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #334155;">🎮 Reinforcement Learning</div>
+                    <div style="background: #ffffff; border: 1px solid rgba(132, 204, 22, 0.2); padding: 0.45rem; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #334155;">🤖 Artificial Intelligence</div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # Hero section feature cards (8 cards)
+    st.markdown(
+        """
+        <div style="margin-top: 3.5rem;">
+            <h3 style="font-size: 1.75rem; font-weight: 800; color: #1e293b; text-align: center; margin-bottom: 1.75rem;">Core Capabilities</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">Domain Classification</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Predicts the specific educational subject area before starting searches.</p>
+                </div>
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">PDF Question Answering</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Extracts text and answers questions over PDF curriculum files dynamically.</p>
+                </div>
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">CSV Data Analysis</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Executes SQL queries automatically on tabular datasets with DuckDB.</p>
+                </div>
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">Intelligent Routing</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Steers user prompts to specific modules instead of searching everything.</p>
+                </div>
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">RAG-based Responses</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Generates replies grounded in document context to eliminate hallucinations.</p>
+                </div>
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">Semantic Search</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Scans sentence embeddings in a dense multi-dimensional vector space.</p>
+                </div>
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">Fast Retrieval</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Cuts search time by narrowing the query to the single correct folder.</p>
+                </div>
+                <div class="feature-card">
+                    <h4 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 700;">Subject-specific KB</h4>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Organized namespace folders corresponding to curriculum databases.</p>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    st.markdown("<br><hr id='page-2-technology-stack-workflow' style='border-top: 1px solid rgba(0,0,0,0.06);'><br>", unsafe_allow_html=True)
+    
+    # Page 2: Technology Stack & Workflow
+    st.markdown(
+        """
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="meta-tag" style="background: rgba(132, 204, 22, 0.08); border-color: rgba(132, 204, 22, 0.25); color: #65a30d; font-size: 0.8rem; padding: 0.25rem 0.65rem;">
+                PIPELINE
+            </span>
+            <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 0.75rem; color: #1e293b;">
+                Technology Stack & Workflow
+            </h2>
+            <p style="color: #64748b; max-width: 650px; margin: 0.5rem auto 0 auto; font-size: 1rem;">
+                Powered by state-of-the-art libraries for real-time classification, vector space search, and local database compilation.
             </p>
         </div>
         """,
         unsafe_allow_html=True,
     )
     
-    # Navigation to dashboard
-    col1, col2, col3 = st.columns([1, 1, 1])
-    with col2:
-        if st.button("Launch Agent Console ⚡", use_container_width=True):
-            st.session_state.page = "Dashboard"
-            st.rerun()
-            
-    st.markdown("---")
+    st.markdown("<h4 style='font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; text-align: center;'>Core Technology Stack</h4>", unsafe_allow_html=True)
     
-    # Section: Core Features Grid
-    st.header("🔑 Key Technical Pillars")
+    tech_col1, tech_col2, tech_col3 = st.columns([1.1, 1, 1.1], gap="large")
+    
+    with tech_col1:
+        st.markdown(
+            """
+            <div>
+                <div style="font-weight: 700; color: #1e293b; font-size: 1rem; margin-bottom: 0.5rem;">🧠 Artificial Intelligence</div>
+                <span class="tech-pill">DistilBERT</span>
+                <span class="tech-pill">Hugging Face Transformers</span>
+                <span class="tech-pill">Sentence Transformers</span>
+                <span class="tech-pill">RAG</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+    with tech_col2:
+        st.markdown(
+            """
+            <div>
+                <div style="font-weight: 700; color: #1e293b; font-size: 1rem; margin-bottom: 0.5rem;">⚙️ Backend & API Service</div>
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">FastAPI</span>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <div style="font-weight: 700; color: #1e293b; font-size: 1rem; margin-bottom: 0.5rem;">🐳 Deployment & Packaging</div>
+                <span class="tech-pill">Docker</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+    with tech_col3:
+        st.markdown(
+            """
+            <div>
+                <div style="font-weight: 700; color: #1e293b; font-size: 1rem; margin-bottom: 0.5rem;">⚡ Vector Search Index</div>
+                <span class="tech-pill">FAISS</span>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <div style="font-weight: 700; color: #1e293b; font-size: 1rem; margin-bottom: 0.5rem;">📊 Data Processing</div>
+                <span class="tech-pill">Pandas</span>
+                <span class="tech-pill">NumPy</span>
+                <span class="tech-pill">Scikit-learn</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+    # Mermaid representation of the Workflow
     st.markdown(
         """
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>1. local Sequence Router</h3>
-                <p>Features a custom fine-tuned <b>DistilBERT</b> text classifier trained locally on CPU. It routes questions dynamically into appropriate educational namespaces (AI, ML, DL, NLP, RL, CV) with deterministic probability maps.</p>
+        <div style="margin-top: 2rem;">
+            <h5 style="font-size: 1rem; font-weight: 700; color: #475569; text-align: center; margin-bottom: 1rem;">Logical Workflow Flowchart</h5>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    st.markdown(
+        """
+        ```mermaid
+        graph TD
+            A[User Query] --> B[Fine-Tuned DistilBERT<br>Domain Classification]
+            B --> C[Routing Agent]
+            C --> D[PDF Tool]
+            C --> E[CSV Analyzer]
+            C --> F[Knowledge Base]
+            D --> G[Sentence Transformers]
+            E --> G
+            F --> G
+            G --> H[FAISS Vector Search]
+            H --> I[Relevant Context]
+            I --> J[Large Language Model RAG]
+            J --> K[Final Response]
+            
+            style B fill:#fff,stroke:#84cc16,stroke-width:2px
+            style C fill:#fff,stroke:#f97316,stroke-width:2px
+            style D fill:#fff,stroke:#eab308,stroke-width:1px
+            style E fill:#fff,stroke:#eab308,stroke-width:1px
+            style F fill:#fff,stroke:#eab308,stroke-width:1px
+            style H fill:#fff,stroke:#84cc16,stroke-width:2px
+            style J fill:#fff,stroke:#f97316,stroke-width:2px
+        ```
+        """,
+        unsafe_allow_html=True
+    )
+    
+    st.markdown("<br><hr id='page-3-system-architecture' style='border-top: 1px solid rgba(0,0,0,0.06);'><br>", unsafe_allow_html=True)
+    
+    # Page 3: System Architecture
+    st.markdown(
+        """
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="meta-tag" style="background: rgba(249, 115, 22, 0.08); border-color: rgba(249, 115, 22, 0.25); color: #f97316; font-size: 0.8rem; padding: 0.25rem 0.65rem;">
+                ARCHITECTURE
+            </span>
+            <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 0.75rem; color: #1e293b;">
+                System Architecture Layers
+            </h2>
+            <p style="color: #64748b; max-width: 650px; margin: 0.5rem auto 0 auto; font-size: 1rem;">
+                Detailed look at the modular routing and context synthesis data pipeline layers.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    arch_col1, arch_col2 = st.columns([1, 1.1], gap="large")
+    
+    with arch_col1:
+        st.markdown(
+            """
+            ```mermaid
+            graph TD
+                User[USER] -->|User Query| DistilBERT[Fine-Tuned DistilBERT<br>Domain Classification]
+                DistilBERT --> Agent[Intelligent Agent]
+                Agent --> PDF[PDF Retrieval]
+                Agent --> CSV[CSV Tool]
+                Agent --> KB[Knowledge Base]
+                PDF --> ST[Sentence Transformers]
+                CSV --> ST
+                KB --> ST
+                ST --> FAISS[FAISS Database]
+                FAISS --> Chunks[Relevant Chunks]
+                Chunks --> LLM[Large Language Model]
+                LLM --> Resp[Generated Response]
+                
+                style DistilBERT fill:#fff,stroke:#84cc16,stroke-width:2px
+                style Agent fill:#fff,stroke:#f97316,stroke-width:2px
+                style FAISS fill:#fff,stroke:#84cc16,stroke-width:2px
+                style LLM fill:#fff,stroke:#f97316,stroke-width:2px
+            ```
+            """,
+            unsafe_allow_html=True
+        )
+        
+    with arch_col2:
+        st.markdown(
+            """
+            <div style="padding-top: 1.5rem;">
+                <h4 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem;">Architecture Description</h4>
+                <p style="color: #475569; font-size: 1rem; line-height: 1.7; font-weight: 300; margin-bottom: 1rem;">
+                    EduQuery AI routes questions dynamically into educational folders (namespaces) using a local fine-tuned <b>DistilBERT</b> text classifier. This ensures prompt security and eliminates long wait times by restricting document scans to the predicted folder.
+                </p>
+                <p style="color: #475569; font-size: 1rem; line-height: 1.7; font-weight: 300;">
+                    Once domain prediction completes, our <b>intelligent agent</b> launches specific data retrievers:
+                </p>
+                <ul style="color: #475569; font-size: 0.95rem; line-height: 1.8; font-weight: 300; padding-left: 1.2rem;">
+                    <li><b>PDF Retrieval Tool:</b> Parses curriculum materials and extracts matching paragraphs.</li>
+                    <li><b>CSV Database Tool:</b> Automatically queries structural files with native SQL code using DuckDB.</li>
+                    <li><b>Subject Knowledge Base:</b> Conducts vector distance searches inside partitioned namespaces.</li>
+                </ul>
+                <p style="color: #475569; font-size: 1rem; line-height: 1.7; font-weight: 300;">
+                    Paragraph segments are compiled by <b>Sentence Transformers</b>, scanned in <b>FAISS</b> vector indices, and fed to the LLM (gpt-4o-mini) to build grounded responses.
+                </p>
             </div>
-            <div class="feature-card">
-                <h3>2. Dense Vector Indexing</h3>
-                <p>Extracts text segments from curriculum PDF textbooks and publications, builds dense embedding spaces, and queries them using a local <b>FAISS</b> vector search database for dense passage retrieval.</p>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+    st.markdown("<br><hr id='page-4-model-performance' style='border-top: 1px solid rgba(0,0,0,0.06);'><br>", unsafe_allow_html=True)
+    
+    # Page 4: Model Performance
+    st.markdown(
+        """
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="meta-tag" style="background: rgba(132, 204, 22, 0.08); border-color: rgba(132, 204, 22, 0.25); color: #65a30d; font-size: 0.8rem; padding: 0.25rem 0.65rem;">
+                PERFORMANCE
+            </span>
+            <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 0.75rem; color: #1e293b;">
+                Model Performance & Metrics
+            </h2>
+            <p style="color: #64748b; max-width: 650px; margin: 0.5rem auto 0 auto; font-size: 1rem;">
+                Quantitative results of the fine-tuned DistilBERT router on an unseen holdout test set (151 samples).
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # 4.1 Four Metric Cards with Circular Progress Indicators
+    st.markdown(
+        """
+        <div style="display: flex; justify-content: space-around; gap: 1rem; margin-top: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+            <!-- Accuracy -->
+            <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.05); padding: 1.25rem 2rem; text-align: center; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); width: 150px;">
+                <svg width="60" height="60" viewBox="0 0 36 36" style="transform: rotate(-90deg); margin: 0 auto;">
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#f1f5f9" stroke-width="3" />
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#84cc16" stroke-width="3" stroke-dasharray="70.86 100" stroke-linecap="round" />
+                </svg>
+                <div style="font-size: 1.35rem; font-weight: 800; color: #1e293b; margin-top: 0.6rem;">70.86%</div>
+                <div style="font-size: 0.8rem; color: #64748b; font-weight: 600; text-transform: uppercase; margin-top: 0.2rem;">Accuracy</div>
             </div>
-            <div class="feature-card">
-                <h3>3. SQL database query tool</h3>
-                <p>Features an automated natural-language-to-SQL converter powered by <b>DuckDB</b>. It queries tabular datasets (e.g. Passenger records) on-the-fly and processes records dynamically.</p>
+            <!-- Precision -->
+            <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.05); padding: 1.25rem 2rem; text-align: center; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); width: 150px;">
+                <svg width="60" height="60" viewBox="0 0 36 36" style="transform: rotate(-90deg); margin: 0 auto;">
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#f1f5f9" stroke-width="3" />
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#eab308" stroke-width="3" stroke-dasharray="64.19 100" stroke-linecap="round" />
+                </svg>
+                <div style="font-size: 1.35rem; font-weight: 800; color: #1e293b; margin-top: 0.6rem;">64.19%</div>
+                <div style="font-size: 0.8rem; color: #64748b; font-weight: 600; text-transform: uppercase; margin-top: 0.2rem;">Precision</div>
             </div>
-            <div class="feature-card">
-                <h3>4. Guardrails & Audit Logging</h3>
-                <p>Performs input validation constraints, monitors tokens bandwidth limits, checks response consistency, and writes daily audits to persistent markdown documents.</p>
+            <!-- Recall -->
+            <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.05); padding: 1.25rem 2rem; text-align: center; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); width: 150px;">
+                <svg width="60" height="60" viewBox="0 0 36 36" style="transform: rotate(-90deg); margin: 0 auto;">
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#f1f5f9" stroke-width="3" />
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#84cc16" stroke-width="3" stroke-dasharray="70.86 100" stroke-linecap="round" />
+                </svg>
+                <div style="font-size: 1.35rem; font-weight: 800; color: #1e293b; margin-top: 0.6rem;">70.86%</div>
+                <div style="font-size: 0.8rem; color: #64748b; font-weight: 600; text-transform: uppercase; margin-top: 0.2rem;">Recall</div>
+            </div>
+            <!-- F1 Score -->
+            <div style="background: #ffffff; border: 1px solid rgba(0,0,0,0.05); padding: 1.25rem 2rem; text-align: center; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); width: 150px;">
+                <svg width="60" height="60" viewBox="0 0 36 36" style="transform: rotate(-90deg); margin: 0 auto;">
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#f1f5f9" stroke-width="3" />
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="66.97 100" stroke-linecap="round" />
+                </svg>
+                <div style="font-size: 1.35rem; font-weight: 800; color: #1e293b; margin-top: 0.6rem;">66.97%</div>
+                <div style="font-size: 0.8rem; color: #64748b; font-weight: 600; text-transform: uppercase; margin-top: 0.2rem;">F1 Score</div>
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
     
-    # Section: Architecture workflow and File Tree
-    col_arch, col_tree = st.columns([1.1, 0.9], gap="large")
+    # 4.2 Bar Chart, Radar Chart & Confusion Matrix Images
+    eval_row1_col1, eval_row1_col2 = st.columns([1, 1.2], gap="large")
     
-    with col_arch:
-        st.subheader("🛠 Architecture Workflow Diagram")
+    with eval_row1_col1:
+        st.markdown("<h4 style='font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem;'>Accuracy Bar & Radar Charts</h4>", unsafe_allow_html=True)
+        
+        # HTML/CSS Accuracy Bar Chart
         st.markdown(
             """
-            ```
-             [ User Input Query ]
-                      │
-                      ▼
-            ┌───────────────────┐
-            │   DistilBERT      │  ==> Classifies Domain namespace (e.g. "NLP")
-            │   Domain Router   │      (confidence floor threshold check >= 0.60)
-            └─────────┬─────────┘
-                      │
-             ┌────────┴────────┐
-             ▼                 ▼
-     [ Supported Domain ]  [ Out of Scope ] ==> Return "UNKNOWN" Rejection
-             │
-             ├───────────────┐
-             ▼               ▼
-      (RAG Pipeline)   (SQL Query Tool)
-      Search FAISS     DuckDB Schema Auto-detector
-      Retrieve chunks  Execute queries on CSV
-             │               │
-             └───────┬───────┘
-                     ▼
-            ┌───────────────────┐
-            │   LLM Synthesis   │  ==> Grounded OpenAI chat completions
-            │  (gpt-4o-mini)    │      incorporates local facts and citations
-            └───────────────────┘
-            ```
+            <div style="display: flex; flex-direction: column; gap: 0.8rem; background: #ffffff; padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 12px rgba(0,0,0,0.01);">
+                <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: #1e293b; margin-bottom: 0.2rem;">
+                        <span>Accuracy</span>
+                        <span>70.86%</span>
+                    </div>
+                    <div style="background: #f1f5f9; border-radius: 99px; height: 8px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #f97316, #eab308); width: 70.86%; height: 100%; border-radius: 99px;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: #1e293b; margin-bottom: 0.2; margin-top: 0.25rem;">
+                        <span>Precision</span>
+                        <span>64.19%</span>
+                    </div>
+                    <div style="background: #f1f5f9; border-radius: 99px; height: 8px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #f97316, #eab308); width: 64.19%; height: 100%; border-radius: 99px;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: #1e293b; margin-bottom: 0.2; margin-top: 0.25rem;">
+                        <span>Recall</span>
+                        <span>70.86%</span>
+                    </div>
+                    <div style="background: #f1f5f9; border-radius: 99px; height: 8px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #f97316, #eab308); width: 70.86%; height: 100%; border-radius: 99px;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: #1e293b; margin-bottom: 0.2; margin-top: 0.25rem;">
+                        <span>F1 Score</span>
+                        <span>66.97%</span>
+                    </div>
+                    <div style="background: #f1f5f9; border-radius: 99px; height: 8px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, #f97316, #eab308); width: 66.97%; height: 100%; border-radius: 99px;"></div>
+                    </div>
+                </div>
+            </div>
             """,
             unsafe_allow_html=True,
         )
         
-    with col_tree:
-        st.subheader("📂 Codebase Folder Structure")
+        # Responsive SVG Radar Chart
         st.markdown(
             """
-            <div class="tree-node">📁 src/ ── Contains core RAG & Classifier packages
-                 ├── __init__.py 
-                 ├── classifier.py ── DistilBERT inference wrapper
-                 ├── retriever.py ── FAISS chunk retriever & PDF indexer
-                 ├── orchestrator.py ── LLM tool coordination agent
-                 ├── schemas.py ── Pydantic structures for API validation
-                 ├── memory.py ── Memory logger and loader
-                 └── query.py ── DuckDB SQL querying & schema detection</div>
-            <div class="tree-node">📁 scripts/ ── Classifier training and database ingestors
-                 ├── train.py ── fine-tunes DistilBERT on CPU dataset
-                 └── ingest.py ── builds and writes index.faiss database</div>
-            <div class="tree-node">📁 tests/ ── API unit test suites
-                 └── test_api.py ── checks router endpoints & lifespan checks</div>
-            <div class="tree-node">📁 ui/ ── Visual HTML dashboards and RAG pipeline visualizer</div>
-            <div class="tree-node">📄 main.py ── Interactive CLI terminal interface entrypoint</div>
-            <div class="tree-node">📄 api.py ── FastAPI backend services exposure server</div>
-            <div class="tree-node">📄 app.py ── Streamlit multi-view frontend entrypoint</div>
+            <div style="margin-top: 1.5rem; background: #ffffff; padding: 1rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 12px rgba(0,0,0,0.01); text-align: center;">
+                <span style="font-size: 0.8rem; font-weight: 700; color: #64748b; display: block; margin-bottom: 0.5rem; text-transform: uppercase;">Metrics Radar Overlay</span>
+                <svg width="260" height="220" viewBox="0 0 320 220" style="margin: 0 auto; display: block;">
+                  <polygon points="160,30 240,110 160,190 80,110" fill="none" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2" />
+                  <polygon points="160,50 220,110 160,170 100,110" fill="none" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2" />
+                  <polygon points="160,70 200,110 160,150 120,110" fill="none" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2" />
+                  <polygon points="160,90 180,110 160,130 140,110" fill="none" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="2" />
+                  <line x1="160" y1="30" x2="160" y2="190" stroke="#cbd5e1" stroke-width="1" />
+                  <line x1="80" y1="110" x2="240" y2="110" stroke="#cbd5e1" stroke-width="1" />
+                  <polygon points="160,53.31 211.35,110 160,166.69 106.42,110" fill="rgba(249, 115, 22, 0.2)" stroke="#f97316" stroke-width="2" />
+                  <circle cx="160" cy="53.31" r="3.5" fill="#f97316" />
+                  <circle cx="211.35" cy="110" r="3.5" fill="#f97316" />
+                  <circle cx="160" cy="166.69" r="3.5" fill="#f97316" />
+                  <circle cx="106.42" cy="110" r="3.5" fill="#f97316" />
+                  <text x="160" y="20" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">Accuracy (70.86%)</text>
+                  <text x="245" y="113" text-anchor="start" font-size="10" font-weight="700" fill="#475569">Precision (64.19%)</text>
+                  <text x="160" y="205" text-anchor="middle" font-size="10" font-weight="700" fill="#475569">Recall (70.86%)</text>
+                  <text x="75" y="113" text-anchor="end" font-size="10" font-weight="700" fill="#475569">F1 Score (66.97%)</text>
+                </svg>
+            </div>
             """,
             unsafe_allow_html=True,
         )
+        
+    with eval_row1_col2:
+        st.markdown("<h4 style='font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem;'>DistilBERT Confusion Matrix Analysis</h4>", unsafe_allow_html=True)
+        st.image("ui/confusion_matrix.png", width=360)
+        st.markdown(
+            """
+            <div style="margin-top: 0.8rem; color: #475569; font-size: 0.95rem; line-height: 1.6;">
+                Most categories fare well—Machine Learning (ML), Natural Language Processing (NLP), Computer Vision (CV), Reinforcement Learning (RL), and Artificial Intelligence (AI) are all classified satisfactorily. 
+                Deep Learning (DL) lags noticeably behind the rest due to semantic overlap: DL questions read very much like ML questions, and the model struggles to keep the two apart.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    # Performance Highlights & Sample table
+    st.markdown(
+        """
+        <div style="margin-top: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div style="background: #ffffff; padding: 1rem; border-radius: 12px; border: 1px solid rgba(132, 204, 22, 0.2); box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
+                    <div style="font-weight: 700; color: #84cc16; margin-bottom: 0.25rem;">🚀 Faster Retrieval</div>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.4; margin: 0;">Bypasses full-system sweeps, scanning only the single appropriate subject folder.</p>
+                </div>
+                <div style="background: #ffffff; padding: 1rem; border-radius: 12px; border: 1px solid rgba(132, 204, 22, 0.2); box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
+                    <div style="font-weight: 700; color: #84cc16; margin-bottom: 0.25rem;">🔍 Reduced Search Space</div>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.4; margin: 0;">Reduces scan dimensions by 5/6ths, limiting compute to specific namespaces.</p>
+                </div>
+                <div style="background: #ffffff; padding: 1rem; border-radius: 12px; border: 1px solid rgba(132, 204, 22, 0.2); box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
+                    <div style="font-weight: 700; color: #84cc16; margin-bottom: 0.25rem;">📍 Context-aware Responses</div>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.4; margin: 0;">Eliminates background noise from other subjects leaking into generated RAG answers.</p>
+                </div>
+                <div style="background: #ffffff; padding: 1rem; border-radius: 12px; border: 1px solid rgba(132, 204, 22, 0.2); box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
+                    <div style="font-weight: 700; color: #84cc16; margin-bottom: 0.25rem;">🎓 Subject-specific Classification</div>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.4; margin: 0;">Enables targeted micro-retrieval routing designed specifically for computer science.</p>
+                </div>
+            </div>
+            <h4 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; text-align: center;">Query Classification Examples</h4>
+            <table style="width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.05);">
+                <tr style="background: #f8fafc; border-bottom: 1px solid rgba(0,0,0,0.05); text-align: left;">
+                    <th style="padding: 0.75rem 1rem; font-weight: 700; color: #1e293b; font-size: 0.9rem;">User Query Example</th>
+                    <th style="padding: 0.75rem 1rem; font-weight: 700; color: #1e293b; font-size: 0.9rem;">Predicted Domain</th>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(0,0,0,0.03);">
+                    <td style="padding: 0.75rem 1rem; color: #475569; font-size: 0.85rem; font-family: monospace;">"What is Support Vector Machine?"</td>
+                    <td style="padding: 0.75rem 1rem; color: #f97316; font-size: 0.85rem; font-weight: 600;">Machine Learning</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(0,0,0,0.03);">
+                    <td style="padding: 0.75rem 1rem; color: #475569; font-size: 0.85rem; font-family: monospace;">"Explain Convolutional Neural Networks."</td>
+                    <td style="padding: 0.75rem 1rem; color: #f97316; font-size: 0.85rem; font-weight: 600;">Deep Learning</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(0,0,0,0.03);">
+                    <td style="padding: 0.75rem 1rem; color: #475569; font-size: 0.85rem; font-family: monospace;">"What is Named Entity Recognition?"</td>
+                    <td style="padding: 0.75rem 1rem; color: #f97316; font-size: 0.85rem; font-weight: 600;">Natural Language Processing</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(0,0,0,0.03);">
+                    <td style="padding: 0.75rem 1rem; color: #475569; font-size: 0.85rem; font-family: monospace;">"Explain YOLO Algorithm."</td>
+                    <td style="padding: 0.75rem 1rem; color: #f97316; font-size: 0.85rem; font-weight: 600;">Computer Vision</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(0,0,0,0.03);">
+                    <td style="padding: 0.75rem 1rem; color: #475569; font-size: 0.85rem; font-family: monospace;">"What is Q-Learning?"</td>
+                    <td style="padding: 0.75rem 1rem; color: #f97316; font-size: 0.85rem; font-weight: 600;">Reinforcement Learning</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(0,0,0,0.03);">
+                    <td style="padding: 0.75rem 1rem; color: #475569; font-size: 0.85rem; font-family: monospace;">"Define Artificial Intelligence."</td>
+                    <td style="padding: 0.75rem 1rem; color: #f97316; font-size: 0.85rem; font-weight: 600;">Artificial Intelligence</td>
+                </tr>
+            </table>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    st.markdown("<br><hr style='border-top: 1px solid rgba(0,0,0,0.06);'><br>", unsafe_allow_html=True)
+    
+    # Page 5: Project Highlights & Future Scope
+    st.markdown(
+        """
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="meta-tag" style="background: rgba(234, 179, 8, 0.08); border-color: rgba(234, 179, 8, 0.25); color: #b45309; font-size: 0.8rem; padding: 0.25rem 0.65rem;">
+                HIGHLIGHTS
+            </span>
+            <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 0.75rem; color: #1e293b;">
+                Why EduQuery AI? Advantages & Future Scope
+            </h2>
+            <p style="color: #64748b; max-width: 650px; margin: 0.5rem auto 0 auto; font-size: 1rem;">
+                Performing domain prediction before retrieval makes this educational assistant significantly more efficient than traditional educational chatbots.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # Grid of 9 Advantages
+    st.markdown(
+        """
+        <div style="margin-bottom: 3rem;">
+            <h3 style="font-size: 1.75rem; font-weight: 800; color: #1e293b; margin-bottom: 1.5rem; text-align: center;">Advantages & Capabilities</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">Fine-Tuned DistilBERT</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Adapted locally using a domain-specific dataset for high-accuracy routing.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">Intelligent Query Routing</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Coordinating orchestrator agent dynamically maps query domains to active sub-agents.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">Retrieval-Augmented Generation</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Anchors generation context directly in sources to construct credible responses.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">Semantic Search</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Extracts text segment embeddings to query similar phrases in a high-density index.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">PDF Support</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Loads on-the-fly user uploads, updating local FAISS namespaces with new data.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">CSV Analysis</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Translates user questions to functional database queries on tabular datasets using DuckDB.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">FastAPI Backend</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Delivers high-performance backend pipelines with clean REST routing.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">Docker Deployment</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Standardized and isolated multi-agent environments for consistent execution.</p>
+                </div>
+                <div class="feature-card">
+                    <h5 style="color: #f97316; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">Scalable Architecture</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Open-ended structure allowing easy ingestion of new subjects and libraries.</p>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # Grid of 8 Future Scopes
+    st.markdown(
+        """
+        <div style="margin-bottom: 3.5rem;">
+            <h3 style="font-size: 1.75rem; font-weight: 800; color: #1e293b; margin-bottom: 1.5rem; text-align: center;">Future Scope & Enhancements</h3>
+            <div class="feature-grid">
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">🌐 Multilingual Support</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Enables query translation and multilingual RAG synthesizers for global learning.</p>
+                </div>
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">🎙 Voice Assistant</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Supports speech-to-text inputs and real-time auditory answers.</p>
+                </div>
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">📷 OCR Support</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Extracts text and math formulas from whiteboard screenshots and textbook captures.</p>
+                </div>
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">☁️ Cloud Deployment</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Ports local models to scalable managed container hosting (AWS, GCP).</p>
+                </div>
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">📚 Additional Technical Domains</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Extends scope to subjects like software engineering, databases, and mathematics.</p>
+                </div>
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">🎯 Personalized Learning</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Adapts reply complexity to match individual learning styles and histories.</p>
+                </div>
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">📈 Educational Analytics</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Provides instructors with student queries statistics and learning gaps logs.</p>
+                </div>
+                <div class="feature-card" style="border-color: rgba(132, 204, 22, 0.12);">
+                    <h5 style="color: #84cc16; margin: 0 0 0.5rem 0; font-size: 1.05rem; font-weight: 700;">⚡ Live Knowledge Integration</h5>
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0;">Interfaces with online academic indexes (ArXiv, IEEE) for state-of-the-art responses.</p>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # 5.5 Professional Footer
+    st.markdown(
+        """
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.06); text-align: center; color: #64748b; font-size: 0.9rem; padding-bottom: 2rem;">
+            <p style="font-weight: 700; color: #1e293b; font-size: 1.05rem; margin-bottom: 0.5rem;">EduQuery AI</p>
+            <p style="margin-bottom: 0.5rem; font-weight: 300;">An Intelligent Subject-Aware Learning Assistant Dashboard.</p>
+            <p style="font-size: 0.8rem; color: #94a3b8; font-weight: 500;">
+                Designed & Developed by <b>Simran Maurya</b> &bull; B.Tech AI (2024-2028) &bull; Amity University Noida
+            </p>
+            <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 0.5rem;">&copy; 2026 EduQuery AI. All rights reserved.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 else:
     # ==========================================
@@ -454,7 +1080,7 @@ else:
     
     st.markdown(
         """
-        <h2 style='margin-top: 0; background: linear-gradient(90deg, #a78bfa, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
+        <h2 style='margin-top: 0; background: linear-gradient(90deg, #a2ff00, #ffff00, #ffb000); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
             🤖 Cognitive Agent Console
         </h2>
         """,
@@ -473,7 +1099,7 @@ else:
                         f"""
                         <div style='margin-top: 0.5rem;'>
                             <span class='meta-tag'>Routed Domain: {message['domain']}</span>
-                            <span class='meta-tag' style='background: rgba(96, 165, 250, 0.12); border-color: rgba(96, 165, 250, 0.3); color: #60a5fa;'>Confidence: {message['confidence']:.2f}</span>
+                            <span class='meta-tag' style='background: rgba(255, 176, 0, 0.12); border-color: rgba(255, 176, 0, 0.3); color: #ffb000;'>Confidence: {message['confidence']:.2f}</span>
                         </div>
                         """,
                         unsafe_allow_html=True
@@ -529,7 +1155,7 @@ else:
                                     f"""
                                     <div style='margin-top: 0.5rem;'>
                                         <span class='meta-tag'>Routed Domain: {domain}</span>
-                                        <span class='meta-tag' style='background: rgba(96, 165, 250, 0.12); border-color: rgba(96, 165, 250, 0.3); color: #60a5fa;'>Confidence: {confidence:.2f}</span>
+                                        <span class='meta-tag' style='background: rgba(255, 176, 0, 0.12); border-color: rgba(255, 176, 0, 0.3); color: #ffb000;'>Confidence: {confidence:.2f}</span>
                                     </div>
                                     """,
                                     unsafe_allow_html=True
