@@ -17,30 +17,38 @@ class QueryContext:
         self.result = None
         
     def query_csv(self) -> str:
-        """Convert natural language query to SQL, execute it on Titanic.csv, and return results"""
+        """Convert natural language query to SQL, execute it on the active CSV dataset, and return results"""
         
+        # Resolve csv path: check root first, then workspace/data/
         csv_path = "Titanic.csv"
-        
         if not os.path.exists(csv_path):
-            return f"Error: {csv_path} not found"
+            csv_path = os.path.join("workspace", "data", "Titanic.csv")
+            
+        if not os.path.exists(csv_path):
+            return f"Error: Active database CSV file not found."
     
-        # Schema of Titanic CSV for LLM context
-        csv_schema = """Titanic.csv has the following columns:
-        - PassengerId (int)
-        - Survived (int: 0 or 1)
-        - Pclass (int: 1, 2, or 3 - passenger class)
-        - Name (string)
-        - Sex (string: 'male' or 'female')
-        - Age (float)
-        - SibSp (int: number of siblings/spouses)
-        - Parch (int: number of parents/children)
-        - Ticket (string)
-        - Fare (float)
-        - Cabin (string)
-        - Embarked (string: 'C', 'Q', or 'S')
-        """
+        # Auto-detect CSV schema using DuckDB
+        try:
+            conn = duckdb.connect(":memory:")
+            # PRAGMA table_info lists the columns: (cid, name, type, notnull, dflt_value, pk)
+            columns_info = conn.execute(f"PRAGMA table_info('{csv_path}')").fetchall()
+            conn.close()
+            
+            if not columns_info:
+                return "Error: Could not retrieve column schema from CSV."
+                
+            schema_lines = []
+            for col in columns_info:
+                schema_lines.append(f"        - {col[1]} ({col[2]})")
+            
+            detected_schema = "\n".join(schema_lines)
+            csv_name = os.path.basename(csv_path)
+            
+            csv_schema = f"The dataset '{csv_name}' has the following columns and data types:\n{detected_schema}"
+        except Exception as e:
+            return f"Error analyzing CSV schema: {str(e)}"
     
-        # Use LLM to generate SQL query
+        # Use LLM to generate SQL query based on the auto-detected schema
         sql_generation_messages = [
             {"role": "user", "content": f"""Convert this natural language query into a SQL query for DuckDB.
             
@@ -49,8 +57,8 @@ CSV Schema:
 
 Natural Language Query: {self.query}
 
-Return ONLY the SQL query, nothing else. Use SELECT * or specific columns as appropriate.
-Example: "Show me all female passengers who survived" → SELECT * FROM 'Titanic.csv' WHERE Sex = 'female' AND Survived = 1
+Return ONLY the executable SQL query, nothing else. Do not use markdown blocks. Use the table name '{csv_path}' in your SQL statement.
+Example: "Show all passengers who survived" → SELECT * FROM '{csv_path}' WHERE Survived = 1
 """}
         ]
     
@@ -62,6 +70,8 @@ Example: "Show me all female passengers who survived" → SELECT * FROM 'Titanic
             )
             
             sql_query = sql_response.choices[0].message.content.strip()
+            # Remove any markdown formatting code blocks if LLM outputted them
+            sql_query = sql_query.replace("```sql", "").replace("```", "").strip()
             
             # Execute SQL query using DuckDB
             conn = duckdb.connect(":memory:")
@@ -70,7 +80,6 @@ Example: "Show me all female passengers who survived" → SELECT * FROM 'Titanic
             
             # Convert results to list of dicts
             result_list = [dict(zip(columns, row)) for row in result]
-            
             conn.close()
             
             if not result_list:

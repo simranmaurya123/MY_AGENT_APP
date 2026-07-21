@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import os
+import uuid
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,15 +9,16 @@ load_dotenv()
 # FastAPI Backend Base URL
 API_URL = os.getenv("API_URL", "http://localhost:8000")
 
+# Page Config
 st.set_page_config(
-    page_title="Domain-Specific Educational AI Agent",
+    page_title="Cognitive RAG Enterprise Agent",
     page_icon="🤖",
     layout="wide",
 )
 
+# Custom High-Fidelity CSS
 st.markdown(
     """
-    <!-- Import Premium Google Font -->
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
     
@@ -37,58 +39,87 @@ st.markdown(
     
     /* Hero header with premium gradients */
     .hero {
-        padding: 2.5rem;
+        padding: 3rem;
         border-radius: 24px;
         background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
         border: 1px solid rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(16px);
-        margin-bottom: 2rem;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        text-align: left;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        text-align: center;
     }
     .hero h1 {
-        font-size: 2.85rem;
+        font-size: 3.5rem;
         margin: 0;
         background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 800;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.04em;
     }
     .hero p {
-        margin-top: 1rem;
+        margin-top: 1.25rem;
         color: #94a3b8;
-        font-size: 1.15rem;
+        font-size: 1.30rem;
         line-height: 1.6;
         font-weight: 300;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
-    /* Glassmorphic cards */
-    .status-card {
-        background: rgba(15, 23, 42, 0.6);
+    /* Grid cards */
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .feature-card {
+        background: rgba(15, 23, 42, 0.55);
         border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: 20px;
         padding: 1.75rem;
-        margin-bottom: 1.25rem;
         backdrop-filter: blur(12px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .status-card:hover {
-        border-color: rgba(139, 92, 246, 0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+    .feature-card:hover {
+        border-color: rgba(139, 92, 246, 0.4);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
     }
-    .status-card h3 {
+    .feature-card h3 {
         margin-top: 0;
-        color: #a78bfa;
+        color: #60a5fa;
         font-weight: 700;
+        font-size: 1.35rem;
+        margin-bottom: 0.75rem;
+    }
+    .feature-card p {
+        color: #94a3b8;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    /* Technical layout visualizer list */
+    .tree-node {
+        font-family: 'Fira Code', monospace;
+        background: rgba(15, 23, 42, 0.7);
+        border-left: 3px solid #8b5cf6;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0.6rem;
+        border-radius: 0 10px 10px 0;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
     
     /* Premium glowing badges for sources */
     .source-tag {
         display: inline-block;
-        padding: 0.3rem 0.65rem;
+        padding: 0.35rem 0.7rem;
         margin: 0.25rem;
         border-radius: 8px;
         background: rgba(139, 92, 246, 0.12);
@@ -105,28 +136,59 @@ st.markdown(
         color: #e9d5ff;
         transform: scale(1.02);
     }
+
+    .meta-tag {
+        display: inline-block;
+        padding: 0.25rem 0.55rem;
+        margin: 0.2rem;
+        border-radius: 6px;
+        background: rgba(52, 211, 153, 0.12);
+        border: 1px solid rgba(52, 211, 153, 0.3);
+        font-size: 0.8rem;
+        color: #34d399;
+        font-weight: 600;
+    }
     
     /* Custom style for Streamlit buttons */
     div.stButton > button {
         background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%) !important;
         color: white !important;
         border: none !important;
-        padding: 0.6rem 1.5rem !important;
+        padding: 0.75rem 2rem !important;
         border-radius: 12px !important;
         font-weight: 600 !important;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2) !important;
+        font-size: 1.05rem !important;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3) !important;
         transition: all 0.2s ease !important;
     }
     div.stButton > button:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 22px rgba(139, 92, 246, 0.45) !important;
+    }
+    
+    /* Secondary Back navigation button */
+    div.stButton > button[key="back_home_btn"] {
+        background: transparent !important;
+        color: #a78bfa !important;
+        border: 1px solid rgba(139, 92, 246, 0.4) !important;
+        box-shadow: none !important;
+    }
+    
+    .status-card {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin-bottom: 1.25rem;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# Fetch current server health and configuration status
+# Fetch backend status
 def get_backend_status():
     try:
         response = requests.get(f"{API_URL}/health", timeout=3)
@@ -138,113 +200,294 @@ def get_backend_status():
 
 backend_status = get_backend_status()
 
-# Hero Header section
-st.markdown(
-    """
-    <div class="hero">
-        <h1>Domain-Specific AI Agent Orchestrator</h1>
-        <p>
-            An educational AI assistant for <b>Artificial Intelligence (AI), Machine Learning (ML), Deep Learning (DL), 
-            Natural Language Processing (NLP), Reinforcement Learning (RL), and Computer Vision (CV)</b>.<br>
-            Queries are routed through a fine-tuned DistilBERT domain classifier, mapped to the correct semantic context, 
-            and answered using local FAISS vector search retrieval.
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+# Initialize Navigation / Pages State
+if "page" not in st.session_state:
+    st.session_state.page = "Landing Page"
 
-# Main structure columns
-left, right = st.columns([1.1, 1.9], gap="large")
+# Initialize Chat Sessions Map
+if "chat_sessions" not in st.session_state:
+    st.session_state.chat_sessions = {}
 
-with left:
-    # Status Card
-    st.markdown('<div class="status-card">', unsafe_allow_html=True)
-    st.subheader("System Status")
+# Initialize Current Active Session ID
+if "current_session_id" not in st.session_state:
+    # Create default first session
+    first_session_id = "Initial_Session"
+    st.session_state.current_session_id = first_session_id
+    st.session_state.chat_sessions[first_session_id] = [
+        {
+            "role": "assistant",
+            "content": (
+                "Hello! Ask me any question about AI, ML, DL, NLP, RL, or CV. "
+                "I will classify your query, retrieve relevant documentation, and synthesize a grounded answer."
+            ),
+            "domain": None,
+            "confidence": None,
+            "sources": []
+        }
+    ]
+
+# Render Page Views
+if st.session_state.page == "Landing Page":
+    # ==========================================
+    # VIEW A: ENTERPRISE LANDING PORTAL
+    # ==========================================
     
-    if backend_status:
-        st.success("🟢 API Connected")
-        st.write(f"**Classifier Backend:** {backend_status['classifier']['backend']}")
-        st.write(f"**Indexed KB Chunks:** {backend_status['retriever']['indexed_chunks']}")
-        st.write(f"**OpenAI Enabled:** {'Yes' if backend_status['openai_enabled'] else 'No (Offline Fallback)'}")
-    else:
-        st.error("🔴 API Disconnected")
-        st.caption(f"Cannot reach FastAPI backend at {API_URL}. Ensure uvicorn server is running.")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Document upload panel (Milestone 6 Integration)
-    st.markdown('<div class="status-card">', unsafe_allow_html=True)
-    st.subheader("Upload Domain Material")
+    st.markdown(
+        """
+        <div class="hero">
+            <h1>Cognitive RAG: Enterprise AI Orchestrator</h1>
+            <p>
+                A high-performance educational agent built for technical demonstration. It leverages a fine-tuned 
+                local sequence classifier for prompt routing, combined with structured SQL database retrieval and 
+                FAISS semantic search indexes.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     
-    uploaded_file = st.file_uploader("Upload a PDF document to add to the knowledge base", type=["pdf"])
-    upload_domain = st.selectbox("Target domain routing folder", ["AI", "ML", "DL", "NLP", "RL", "CV"])
+    # Navigation to dashboard
+    col1, col2, col3 = st.columns([1, 1, 1])
+    with col2:
+        if st.button("Launch Agent Console ⚡", use_container_width=True):
+            st.session_state.page = "Dashboard"
+            st.rerun()
+            
+    st.markdown("---")
     
-    if uploaded_file is not None:
-        if st.button("Upload and Index Document", use_container_width=True):
-            if not backend_status:
-                st.error("Cannot upload. Backend is unreachable.")
-            else:
-                with st.spinner("Processing PDF, chunking text, and building embeddings..."):
-                    try:
-                        files = {"file": (uploaded_file.name, uploaded_file.getvalue(), "application/pdf")}
-                        data = {"domain": upload_domain}
-                        
-                        response = requests.post(f"{API_URL}/upload", files=files, data=data)
-                        
-                        if response.status_code == 201:
-                            res_json = response.json()
-                            st.success(f"Success! Indexed {res_json['chunks_indexed']} chunks from {uploaded_file.name}.")
-                            # Refresh status
-                            backend_status = get_backend_status()
-                            st.rerun()
-                        else:
-                            st.error(f"Upload failed: {response.json().get('detail', 'Unknown error')}")
-                    except Exception as e:
-                        st.error(f"Error during upload: {e}")
-    st.markdown('</div>', unsafe_allow_html=True)
+    # Section: Core Features Grid
+    st.header("🔑 Key Technical Pillars")
+    st.markdown(
+        """
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>1. local Sequence Router</h3>
+                <p>Features a custom fine-tuned <b>DistilBERT</b> text classifier trained locally on CPU. It routes questions dynamically into appropriate educational namespaces (AI, ML, DL, NLP, RL, CV) with deterministic probability maps.</p>
+            </div>
+            <div class="feature-card">
+                <h3>2. Dense Vector Indexing</h3>
+                <p>Extracts text segments from curriculum PDF textbooks and publications, builds dense embedding spaces, and queries them using a local <b>FAISS</b> vector search database for dense passage retrieval.</p>
+            </div>
+            <div class="feature-card">
+                <h3>3. SQL database query tool</h3>
+                <p>Features an automated natural-language-to-SQL converter powered by <b>DuckDB</b>. It queries tabular datasets (e.g. Passenger records) on-the-fly and processes records dynamically.</p>
+            </div>
+            <div class="feature-card">
+                <h3>4. Guardrails & Audit Logging</h3>
+                <p>Performs input validation constraints, monitors tokens bandwidth limits, checks response consistency, and writes daily audits to persistent markdown documents.</p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
+    # Section: Architecture workflow and File Tree
+    col_arch, col_tree = st.columns([1.1, 0.9], gap="large")
+    
+    with col_arch:
+        st.subheader("🛠 Architecture Workflow Diagram")
+        st.markdown(
+            """
+            ```
+             [ User Input Query ]
+                      │
+                      ▼
+            ┌───────────────────┐
+            │   DistilBERT      │  ==> Classifies Domain namespace (e.g. "NLP")
+            │   Domain Router   │      (confidence floor threshold check >= 0.60)
+            └─────────┬─────────┘
+                      │
+             ┌────────┴────────┐
+             ▼                 ▼
+     [ Supported Domain ]  [ Out of Scope ] ==> Return "UNKNOWN" Rejection
+             │
+             ├───────────────┐
+             ▼               ▼
+      (RAG Pipeline)   (SQL Query Tool)
+      Search FAISS     DuckDB Schema Auto-detector
+      Retrieve chunks  Execute queries on CSV
+             │               │
+             └───────┬───────┘
+                     ▼
+            ┌───────────────────┐
+            │   LLM Synthesis   │  ==> Grounded OpenAI chat completions
+            │  (gpt-4o-mini)    │      incorporates local facts and citations
+            └───────────────────┘
+            ```
+            """,
+            unsafe_allow_html=True,
+        )
+        
+    with col_tree:
+        st.subheader("📂 Codebase Folder Structure")
+        st.markdown(
+            """
+            <div class="tree-node">📁 src/ ── Contains core RAG & Classifier packages
+                 ├── __init__.py 
+                 ├── classifier.py ── DistilBERT inference wrapper
+                 ├── retriever.py ── FAISS chunk retriever & PDF indexer
+                 ├── orchestrator.py ── LLM tool coordination agent
+                 ├── schemas.py ── Pydantic structures for API validation
+                 ├── memory.py ── Memory logger and loader
+                 └── query.py ── DuckDB SQL querying & schema detection</div>
+            <div class="tree-node">📁 scripts/ ── Classifier training and database ingestors
+                 ├── train.py ── fine-tunes DistilBERT on CPU dataset
+                 └── ingest.py ── builds and writes index.faiss database</div>
+            <div class="tree-node">📁 tests/ ── API unit test suites
+                 └── test_api.py ── checks router endpoints & lifespan checks</div>
+            <div class="tree-node">📁 ui/ ── Visual HTML dashboards and RAG pipeline visualizer</div>
+            <div class="tree-node">📄 main.py ── Interactive CLI terminal interface entrypoint</div>
+            <div class="tree-node">📄 api.py ── FastAPI backend services exposure server</div>
+            <div class="tree-node">📄 app.py ── Streamlit multi-view frontend entrypoint</div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-    # Supported Domains List
-    st.markdown('<div class="status-card">', unsafe_allow_html=True)
-    st.subheader("Supported Domains")
-    st.write("`AI` (General Artificial Intelligence)")
-    st.write("`ML` (Traditional Machine Learning)")
-    st.write("`DL` (Deep Neural Networks)")
-    st.write("`NLP` (Natural Language Processing)")
-    st.write("`RL` (Reinforcement Learning)")
-    st.write("`CV` (Computer Vision)")
-    st.markdown('</div>', unsafe_allow_html=True)
+else:
+    # ==========================================
+    # VIEW B: CHATGPT-STYLE AGENT DASHBOARD
+    # ==========================================
+    
+    # Sidebar layout (Persistent navigation)
+    with st.sidebar:
+        st.markdown("### 🛠 Navigation")
+        if st.button("🏠 Back to Info Portal", key="back_home_btn", use_container_width=True):
+            st.session_state.page = "Landing Page"
+            st.rerun()
+            
+        st.markdown("---")
+        st.markdown("### 💬 Active Conversations")
+        
+        # New session trigger button
+        if st.button("➕ New Chat Session", use_container_width=True):
+            new_id = f"session_{uuid.uuid4().hex[:8]}"
+            st.session_state.chat_sessions[new_id] = [
+                {
+                    "role": "assistant",
+                    "content": (
+                        "Hello! Ask me any question about AI, ML, DL, NLP, RL, or CV. "
+                        "I will classify your query, retrieve relevant documentation, and synthesize a grounded answer."
+                    ),
+                    "domain": None,
+                    "confidence": None,
+                    "sources": []
+                }
+            ]
+            st.session_state.current_session_id = new_id
+            st.rerun()
+            
+        # List recent sessions
+        st.write("")
+        for sess_id in list(st.session_state.chat_sessions.keys()):
+            # Label sessions nicely
+            first_msg = st.session_state.chat_sessions[sess_id][1]["content"][:25] + "..." if len(st.session_state.chat_sessions[sess_id]) > 1 else "Empty Chat"
+            btn_label = f"💬 {first_msg}"
+            
+            # Highlight currently selected session
+            is_active = (sess_id == st.session_state.current_session_id)
+            if st.button(btn_label, key=f"sess_{sess_id}", use_container_width=True, disabled=is_active):
+                st.session_state.current_session_id = sess_id
+                st.rerun()
+                
+        st.markdown("---")
+        
+        # Ingestion File Uploaders Panel
+        st.markdown("### 📤 Upload Center")
+        
+        # File selector type
+        upload_type = st.radio("File Type:", ["PDF Document", "CSV Dataset"], horizontal=True)
+        
+        if upload_type == "PDF Document":
+            pdf_file = st.file_uploader("Upload PDF curriculum material", type=["pdf"])
+            pdf_domain = st.selectbox("Route Domain Namespace:", ["AI", "ML", "DL", "NLP", "RL", "CV"])
+            
+            if pdf_file is not None:
+                if st.button("Index PDF Material", use_container_width=True):
+                    if not backend_status:
+                        st.error("Upload failed: Backend API server is offline.")
+                    else:
+                        with st.spinner("Chunking PDF and building embeddings..."):
+                            try:
+                                files = {"file": (pdf_file.name, pdf_file.getvalue(), "application/pdf")}
+                                data = {"domain": pdf_domain}
+                                response = requests.post(f"{API_URL}/upload", files=files, data=data)
+                                
+                                if response.status_code == 201:
+                                    res_json = response.json()
+                                    st.success(f"Successfully indexed {res_json['chunks_indexed']} chunks from {pdf_file.name}!")
+                                    backend_status = get_backend_status()
+                                else:
+                                    st.error(f"Failed to process PDF: {response.json().get('detail', 'Unknown error')}")
+                            except Exception as e:
+                                st.error(f"Connection failed: {e}")
+                                
+        else:
+            csv_file = st.file_uploader("Upload CSV database file", type=["csv"])
+            
+            if csv_file is not None:
+                if st.button("Upload CSV Dataset", use_container_width=True):
+                    if not backend_status:
+                        st.error("Upload failed: Backend API server is offline.")
+                    else:
+                        with st.spinner("Saving dataset & auto-detecting schema..."):
+                            try:
+                                files = {"file": (csv_file.name, csv_file.getvalue(), "text/csv")}
+                                response = requests.post(f"{API_URL}/upload-csv", files=files)
+                                
+                                if response.status_code == 201:
+                                    st.success(f"Success! {csv_file.name} saved as the active query database.")
+                                else:
+                                    st.error(f"Failed to save CSV: {response.json().get('detail', 'Unknown error')}")
+                            except Exception as e:
+                                st.error(f"Connection failed: {e}")
+                                
+        st.markdown("---")
+        # System Health Card
+        if backend_status:
+            st.caption(f"🟢 Connected | Classifier: {backend_status['classifier']['backend']}")
+        else:
+            st.caption("🔴 Disconnected from API Server")
 
-with right:
-    # Chat message storage initialization
-    if "messages" not in st.session_state:
-        st.session_state.messages = [
-            {
-                "role": "assistant",
-                "content": (
-                    "Hello! Ask me any question about AI, ML, DL, NLP, RL, or CV. "
-                    "I will classify your query, retrieve relevant documentation, and synthesize a grounded answer."
-                ),
-                "domain": None,
-                "confidence": None,
-                "sources": []
-            }
-        ]
-
+    # Main Agent Workspace
+    active_sess_id = st.session_state.current_session_id
+    messages_list = st.session_state.chat_sessions[active_sess_id]
+    
+    st.markdown(
+        """
+        <h2 style='margin-top: 0; background: linear-gradient(90deg, #a78bfa, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
+            🤖 Cognitive Agent Console
+        </h2>
+        """,
+        unsafe_allow_html=True,
+    )
+    
     # Render conversation log
-    for idx, message in enumerate(st.session_state.messages):
+    for idx, message in enumerate(messages_list):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-            if message.get("domain"):
-                st.caption(f"Routed Domain: **{message['domain']}** (Confidence: {message['confidence']:.2f})")
-            if message.get("sources"):
-                sources_html = "".join([f'<span class="source-tag">{src}</span>' for src in message["sources"]])
-                st.markdown(f"**Sources:** {sources_html}", unsafe_allow_html=True)
+            
+            # Metadata elements for assistant responses
+            if message["role"] == "assistant":
+                if message.get("domain") and message["domain"] != "UNKNOWN":
+                    st.markdown(
+                        f"""
+                        <div style='margin-top: 0.5rem;'>
+                            <span class='meta-tag'>Routed Domain: {message['domain']}</span>
+                            <span class='meta-tag' style='background: rgba(96, 165, 250, 0.12); border-color: rgba(96, 165, 250, 0.3); color: #60a5fa;'>Confidence: {message['confidence']:.2f}</span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                if message.get("sources"):
+                    sources_html = "".join([f'<span class="source-tag">{src}</span>' for src in message["sources"]])
+                    st.markdown(f"<div style='margin-top:0.4rem;'><b>Sources:</b> {sources_html}</div>", unsafe_allow_html=True)
 
     # Chat Input block
     user_question = st.chat_input("Ask a question about AI, ML, DL, NLP, RL, or CV")
+    
     if user_question:
-        # Append user message
-        st.session_state.messages.append({
+        # Append user message to active session
+        messages_list.append({
             "role": "user",
             "content": user_question,
             "domain": None,
@@ -254,13 +497,13 @@ with right:
         
         with st.chat_message("user"):
             st.markdown(user_question)
-
-        # Trigger response retrieval
+            
+        # Get response from API backend
         with st.chat_message("assistant"):
             if not backend_status:
                 error_msg = "I'm sorry, I cannot process your request. The FastAPI backend server is currently offline."
                 st.markdown(error_msg)
-                st.session_state.messages.append({
+                messages_list.append({
                     "role": "assistant",
                     "content": error_msg,
                     "domain": None,
@@ -282,12 +525,20 @@ with right:
                             
                             st.markdown(answer)
                             if domain and domain != "UNKNOWN":
-                                st.caption(f"Routed Domain: **{domain}** (Confidence: {confidence:.2f})")
+                                st.markdown(
+                                    f"""
+                                    <div style='margin-top: 0.5rem;'>
+                                        <span class='meta-tag'>Routed Domain: {domain}</span>
+                                        <span class='meta-tag' style='background: rgba(96, 165, 250, 0.12); border-color: rgba(96, 165, 250, 0.3); color: #60a5fa;'>Confidence: {confidence:.2f}</span>
+                                    </div>
+                                    """,
+                                    unsafe_allow_html=True
+                                )
                             if sources:
                                 sources_html = "".join([f'<span class="source-tag">{src}</span>' for src in sources])
-                                st.markdown(f"**Sources:** {sources_html}", unsafe_allow_html=True)
-                            
-                            st.session_state.messages.append({
+                                st.markdown(f"<div style='margin-top:0.4rem;'><b>Sources:</b> {sources_html}</div>", unsafe_allow_html=True)
+                                
+                            messages_list.append({
                                 "role": "assistant",
                                 "content": answer,
                                 "domain": domain,
@@ -297,7 +548,7 @@ with right:
                         else:
                             err_txt = f"API Error: {response.json().get('detail', 'Failed to generate response')}"
                             st.error(err_txt)
-                            st.session_state.messages.append({
+                            messages_list.append({
                                 "role": "assistant",
                                 "content": err_txt,
                                 "domain": None,
@@ -307,10 +558,12 @@ with right:
                     except Exception as e:
                         err_txt = f"Connection failed: {e}"
                         st.error(err_txt)
-                        st.session_state.messages.append({
+                        messages_list.append({
                             "role": "assistant",
                             "content": err_txt,
                             "domain": None,
                             "confidence": None,
                             "sources": []
                         })
+        # Rerun to update chat list state
+        st.rerun()

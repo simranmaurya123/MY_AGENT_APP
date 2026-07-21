@@ -185,6 +185,45 @@ async def upload_document(
             detail=f"Failed to process and index PDF: {str(e)}"
         )
 
+@app.post("/upload-csv", response_model=UploadResponse, status_code=status.HTTP_201_CREATED)
+async def upload_csv_file(
+    file: UploadFile = File(..., description="The CSV file to upload.")
+):
+    """
+    Accepts a CSV file upload, saves it as the active Titanic.csv,
+    and returns upload completion status.
+    """
+    filename = file.filename
+    if not filename.lower().endswith(".csv"):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only CSV file uploads are supported."
+        )
+    try:
+        root_path = Path("Titanic.csv")
+        target_dir = Path("workspace/data")
+        target_dir.mkdir(parents=True, exist_ok=True)
+        target_path = target_dir / "Titanic.csv"
+        
+        content = await file.read()
+        with open(root_path, "wb") as f:
+            f.write(content)
+        with open(target_path, "wb") as f:
+            f.write(content)
+            
+        return UploadResponse(
+            filename=filename,
+            domain="CSV",
+            status="success",
+            chunks_indexed=1
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to process CSV upload: {str(e)}"
+        )
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
