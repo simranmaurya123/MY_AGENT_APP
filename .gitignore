@@ -3,11 +3,6 @@
 venv/
 __pycache__/
 *.pyc
-workspace/models/
-workspace/data/
-*.pdf
-results/
-*.safetensors
-*.faiss
-*.pkl
+
+
 
