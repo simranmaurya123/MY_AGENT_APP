@@ -1,0 +1,52 @@
+# Domain Dataset - ML
+
+- What is the difference between supervised and unsupervised learning? Provide details.
+- How does a decision tree algorithm split data? Provide details.
+- Explain bias-variance tradeoff in machine learning. Provide details.
+- What is gradient descent and how is it used in regression? Provide details.
+- How do support vector machines find the optimal hyperplane? 
+- Describe k-means clustering algorithm steps. Explain.
+- What is cross validation in machine learning model evaluation? 
+- Explain principal component analysis for dimensionality reduction. 
+- What are ensemble methods like random forest and gradient boosting? 
+- How does regularization (L1 and L2) prevent overfitting? Provide details.
+- What is the difference between supervised and unsupervised learning? Describe details.
+- How does a decision tree algorithm split data? Describe details.
+- Explain bias-variance tradeoff in machine learning. Explain.
+- What is gradient descent and how is it used in regression? Describe details.
+- How do support vector machines find the optimal hyperplane? Explain.
+- Describe k-means clustering algorithm steps. Describe details.
+- What is cross validation in machine learning model evaluation? 
+- Explain principal component analysis for dimensionality reduction. 
+- What are ensemble methods like random forest and gradient boosting? Provide details.
+- How does regularization (L1 and L2) prevent overfitting? 
+- What is the difference between supervised and unsupervised learning? 
+- How does a decision tree algorithm split data? Explain.
+- Explain bias-variance tradeoff in machine learning. Explain.
+- What is gradient descent and how is it used in regression? Explain.
+- How do support vector machines find the optimal hyperplane? Provide details.
+- Describe k-means clustering algorithm steps. Explain.
+- What is cross validation in machine learning model evaluation? Explain.
+- Explain principal component analysis for dimensionality reduction. Explain.
+- What are ensemble methods like random forest and gradient boosting? Provide details.
+- How does regularization (L1 and L2) prevent overfitting? Explain.
+- What is the difference between supervised and unsupervised learning? Provide details.
+- How does a decision tree algorithm split data? Provide details.
+- Explain bias-variance tradeoff in machine learning. Explain.
+- What is gradient descent and how is it used in regression? Provide details.
+- How do support vector machines find the optimal hyperplane? Provide details.
+- Describe k-means clustering algorithm steps. Describe details.
+- What is cross validation in machine learning model evaluation? Describe details.
+- Explain principal component analysis for dimensionality reduction. 
+- What are ensemble methods like random forest and gradient boosting? Explain.
+- How does regularization (L1 and L2) prevent overfitting? Provide details.
+- What is the difference between supervised and unsupervised learning? Describe details.
+- How does a decision tree algorithm split data? Explain.
+- Explain bias-variance tradeoff in machine learning. 
+- What is gradient descent and how is it used in regression? Explain.
+- How do support vector machines find the optimal hyperplane? Explain.
+- Describe k-means clustering algorithm steps. Provide details.
+- What is cross validation in machine learning model evaluation? Provide details.
+- Explain principal component analysis for dimensionality reduction. Describe details.
+- What are ensemble methods like random forest and gradient boosting? 
+- How does regularization (L1 and L2) prevent overfitting? Provide details.

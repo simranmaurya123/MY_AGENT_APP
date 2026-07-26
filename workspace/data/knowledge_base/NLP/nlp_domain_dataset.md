@@ -1,0 +1,52 @@
+# Domain Dataset - NLP
+
+- What is tokenization and lemmatization in text processing? Explain.
+- Explain TF-IDF and bag of words models. Explain.
+- How do word embeddings like Word2Vec and GloVe work? 
+- Explain the architecture of Transformer models in NLP. Describe details.
+- What is Named Entity Recognition and how is it built? Describe details.
+- How does BERT perform masked language modeling tasks? Explain.
+- Explain sequence to sequence models for machine translation. 
+- How do we evaluate text generation models using BLEU and ROUGE? Explain.
+- Explain sentiment analysis using recurrent network models. Explain.
+- What is parser and dependency parsing in computational linguistics? Provide details.
+- What is tokenization and lemmatization in text processing? 
+- Explain TF-IDF and bag of words models. 
+- How do word embeddings like Word2Vec and GloVe work? Describe details.
+- Explain the architecture of Transformer models in NLP. Describe details.
+- What is Named Entity Recognition and how is it built? Describe details.
+- How does BERT perform masked language modeling tasks? Describe details.
+- Explain sequence to sequence models for machine translation. Describe details.
+- How do we evaluate text generation models using BLEU and ROUGE? 
+- Explain sentiment analysis using recurrent network models. Describe details.
+- What is parser and dependency parsing in computational linguistics? Explain.
+- What is tokenization and lemmatization in text processing? Provide details.
+- Explain TF-IDF and bag of words models. Provide details.
+- How do word embeddings like Word2Vec and GloVe work? Explain.
+- Explain the architecture of Transformer models in NLP. Provide details.
+- What is Named Entity Recognition and how is it built? Explain.
+- How does BERT perform masked language modeling tasks? Describe details.
+- Explain sequence to sequence models for machine translation. Provide details.
+- How do we evaluate text generation models using BLEU and ROUGE? Describe details.
+- Explain sentiment analysis using recurrent network models. Explain.
+- What is parser and dependency parsing in computational linguistics? 
+- What is tokenization and lemmatization in text processing? Provide details.
+- Explain TF-IDF and bag of words models. Provide details.
+- How do word embeddings like Word2Vec and GloVe work? Explain.
+- Explain the architecture of Transformer models in NLP. Provide details.
+- What is Named Entity Recognition and how is it built? Provide details.
+- How does BERT perform masked language modeling tasks? Explain.
+- Explain sequence to sequence models for machine translation. 
+- How do we evaluate text generation models using BLEU and ROUGE? Explain.
+- Explain sentiment analysis using recurrent network models. 
+- What is parser and dependency parsing in computational linguistics? Provide details.
+- What is tokenization and lemmatization in text processing? Describe details.
+- Explain TF-IDF and bag of words models. 
+- How do word embeddings like Word2Vec and GloVe work? 
+- Explain the architecture of Transformer models in NLP. 
+- What is Named Entity Recognition and how is it built? Explain.
+- How does BERT perform masked language modeling tasks? 
+- Explain sequence to sequence models for machine translation. Explain.
+- How do we evaluate text generation models using BLEU and ROUGE? Describe details.
+- Explain sentiment analysis using recurrent network models. Explain.
+- What is parser and dependency parsing in computational linguistics? Describe details.

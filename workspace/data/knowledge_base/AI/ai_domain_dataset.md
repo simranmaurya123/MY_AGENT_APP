@@ -1,0 +1,52 @@
+# Domain Dataset - AI
+
+- What is the history of Artificial Intelligence? Provide details.
+- Explain weak AI vs strong AI systems. 
+- What are the ethical implications of artificial general intelligence? Explain.
+- How is AI used in automated decision making systems? Provide details.
+- What are the main components of an AI system? Provide details.
+- Describe Turing test in artificial intelligence. 
+- What are expert systems in artificial intelligence? Explain.
+- How does pathfinding algorithms like A* work in AI? Explain.
+- Explain symbolic AI vs connectionist AI. Provide details.
+- How can AI solve complex planning tasks? Describe details.
+- What is the history of Artificial Intelligence? Provide details.
+- Explain weak AI vs strong AI systems. Provide details.
+- What are the ethical implications of artificial general intelligence? Explain.
+- How is AI used in automated decision making systems? Explain.
+- What are the main components of an AI system? Provide details.
+- Describe Turing test in artificial intelligence. Describe details.
+- What are expert systems in artificial intelligence? 
+- How does pathfinding algorithms like A* work in AI? Explain.
+- Explain symbolic AI vs connectionist AI. 
+- How can AI solve complex planning tasks? Describe details.
+- What is the history of Artificial Intelligence? 
+- Explain weak AI vs strong AI systems. Explain.
+- What are the ethical implications of artificial general intelligence? Describe details.
+- How is AI used in automated decision making systems? Provide details.
+- What are the main components of an AI system? Explain.
+- Describe Turing test in artificial intelligence. 
+- What are expert systems in artificial intelligence? Describe details.
+- How does pathfinding algorithms like A* work in AI? Explain.
+- Explain symbolic AI vs connectionist AI. 
+- How can AI solve complex planning tasks? 
+- What is the history of Artificial Intelligence? Explain.
+- Explain weak AI vs strong AI systems. Provide details.
+- What are the ethical implications of artificial general intelligence? Describe details.
+- How is AI used in automated decision making systems? Provide details.
+- What are the main components of an AI system? Explain.
+- Describe Turing test in artificial intelligence. Explain.
+- What are expert systems in artificial intelligence? Describe details.
+- How does pathfinding algorithms like A* work in AI? Provide details.
+- Explain symbolic AI vs connectionist AI. Provide details.
+- How can AI solve complex planning tasks? Describe details.
+- What is the history of Artificial Intelligence? Describe details.
+- Explain weak AI vs strong AI systems. Provide details.
+- What are the ethical implications of artificial general intelligence? 
+- How is AI used in automated decision making systems? Explain.
+- What are the main components of an AI system? Provide details.
+- Describe Turing test in artificial intelligence. Describe details.
+- What are expert systems in artificial intelligence? Explain.
+- How does pathfinding algorithms like A* work in AI? Explain.
+- Explain symbolic AI vs connectionist AI. Explain.
+- How can AI solve complex planning tasks? Provide details.

@@ -1,7 +1,9 @@
 import os
+from typing import Optional
 from contextlib import asynccontextmanager
 from pathlib import Path
 from fastapi import FastAPI, HTTPException, status, UploadFile, File, Form
+
 from fastapi.middleware.cors import CORSMiddleware
 from src.schemas import (
     ClassificationRequest,
@@ -133,11 +135,13 @@ async def chat_query(request: QueryRequest):
 @app.post("/upload", response_model=UploadResponse, status_code=status.HTTP_201_CREATED)
 async def upload_document(
     file: UploadFile = File(..., description="The PDF document to upload."),
-    domain: str = Form(..., description="The target educational domain (AI, ML, DL, NLP, RL, CV).")
+    domain: str = Form(..., description="The target educational domain (AI, ML, DL, NLP, RL, CV)."),
+    session_id: Optional[str] = Form(None, description="Active chat session ID to associate the PDF with.")
 ):
     """
     Accepts PDF file uploads, saves them under the domain subfolder in the knowledge base,
-    chunks the text, generates embeddings, and inserts them into the FAISS index.
+    chunks the text, generates embeddings, inserts them into the FAISS index,
+    and attaches the PDF file path to the active chat session context.
     """
     global orchestrator
     if orchestrator is None:
@@ -146,14 +150,7 @@ async def upload_document(
             detail="Orchestrator agent is currently loading or uninitialized."
         )
         
-    domain_upper = domain.strip().upper()
-    if domain_upper not in SUPPORTED_DOMAINS:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Unsupported domain: '{domain}'. Supported domains are: {', '.join(SUPPORTED_DOMAINS)}"
-        )
-        
-    filename = file.filename
+    filename = file.filename or "uploaded_document.pdf"
     if not filename.lower().endswith(".pdf"):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -161,24 +158,22 @@ async def upload_document(
         )
         
     try:
-        # Save file to domain subdirectory in knowledge base
-        kb_dir = Path(orchestrator.retriever.kb_dir)
-        target_dir = kb_dir / domain_upper
-        target_dir.mkdir(parents=True, exist_ok=True)
+        pdf_bytes = await file.read()
+        result = orchestrator.process_incoming_pdf(
+            pdf_bytes=pdf_bytes,
+            filename=filename,
+            explicit_domain=domain,
+            session_id=session_id
+        )
         
-        target_path = target_dir / filename
-        with open(target_path, "wb") as f:
-            f.write(await file.read())
-            
-        # Parse and index the saved PDF dynamically
-        chunks_added = orchestrator.retriever.add_document(target_path, domain_upper)
-        
+        status_str = "success" if result["status"] == "success" else "rejected_off_domain"
         return UploadResponse(
             filename=filename,
-            domain=domain_upper,
-            status="success",
-            chunks_indexed=chunks_added
+            domain=result["domain"],
+            status=status_str,
+            chunks_indexed=result["chunks_indexed"]
         )
+
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

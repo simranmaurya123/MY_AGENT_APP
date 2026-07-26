@@ -79,6 +79,25 @@ class DistilBertClassifier:
             self.backend = "llm"
             print(f"[CLASSIFIER-ERROR] Error loading local model: {e}. Falling back to LLM classifier.")
 
+    def _check_keyword_domain(self, query: str) -> Optional[str]:
+        """Check for explicit domain keywords to guarantee accurate domain classification."""
+        q = query.lower()
+        
+        keywords = {
+            "NLP": ["natural language", "nlp", "tokenization", "lemmatization", "tf-idf", "word2vec", "glove", "bert", "transformer", "transformers", "llm", "llms", "sentiment analysis", "named entity", "bleu score"],
+            "RL": ["reinforcement", "rl", "q-learning", "actor-critic", "mdp", "policy gradient", "reward shaping", "exploration vs exploitation", "deep q"],
+            "CV": ["computer vision", "cv", "image segmentation", "object detection", "yolo", "canny", "optical flow", "sift", "resnet", "depth estimation", "edge detection"],
+            "DL": ["deep learning", "dl", "neural network", "backpropagation", "activation function", "relu", "sigmoid", "cnn", "convolutional", "gan", "autoencoder", "batch norm", "dropout"],
+            "ML": ["machine learning", "ml", "supervised learning", "unsupervised learning", "decision tree", "gradient descent", "support vector", "svm", "k-means", "random forest", "bias-variance", "cross validation", "pca"],
+            "AI": ["artificial intelligence", "ai", "heuristic", "pathfinding", "turing test", "expert system", "expert systems", "symbolic ai", "a* algorithm", "a* search"]
+        }
+        
+        for domain, terms in keywords.items():
+            for term in terms:
+                if re.search(r'\b' + re.escape(term) + r'\b', q):
+                    return domain
+        return None
+
     def classify(self, query: str) -> Tuple[str, float, str]:
         """
         Classifies a user query into one of the domains: AI, ML, DL, NLP, RL, CV, or UNKNOWN.
@@ -89,7 +108,18 @@ class DistilBertClassifier:
         if not query:
             return "UNKNOWN", 0.0, "error"
 
-        # Try local DistilBERT first
+        # 1. Quick Keyword Domain Match
+        kw_domain = self._check_keyword_domain(query)
+        if kw_domain in SUPPORTED_DOMAINS:
+            return kw_domain, 0.95, "keyword"
+
+        # 2. Try LLM Classifier first for non-keyword text if API key is present
+        if os.getenv("OPENAI_API_KEY"):
+            llm_domain, llm_conf, llm_backend = self._llm_classify(query)
+            if llm_domain != "UNKNOWN":
+                return llm_domain, llm_conf, llm_backend
+
+        # 3. Offline DistilBERT Inference (Requires high confidence >= 0.85 when no keywords match)
         if self.backend == "distilbert" and self.model is not None and self.tokenizer is not None:
             try:
                 import torch
@@ -109,7 +139,6 @@ class DistilBertClassifier:
                 best_idx = int(torch.argmax(probabilities).item())
                 confidence = float(probabilities[best_idx].item())
                 
-                # Fetch domain label using label encoder or config ID map
                 if self.label_encoder is not None:
                     raw_label = self.label_encoder.inverse_transform([best_idx])[0]
                 else:
@@ -117,16 +146,12 @@ class DistilBertClassifier:
                     raw_label = id2label.get(best_idx, str(best_idx))
                 
                 domain = self._normalize_label(str(raw_label))
-                if domain in SUPPORTED_DOMAINS and confidence >= self.min_confidence:
+                if domain in SUPPORTED_DOMAINS and confidence >= 0.85:
                     return domain, confidence, "distilbert"
-                else:
-                    # Low confidence classification falls back to general classification
-                    return "UNKNOWN", confidence, "distilbert"
             except Exception as e:
-                print(f"[CLASSIFIER-WARN] DistilBERT classification failed: {e}. Falling back to LLM.")
-                # Pass through to LLM fallback
-        
-        return self._llm_classify(query)
+                print(f"[CLASSIFIER-WARN] DistilBERT classification failed: {e}.")
+
+        return "UNKNOWN", 0.0, "classifier"
 
     def _llm_classify(self, query: str) -> Tuple[str, float, str]:
         """Fallback classifier utilizing OpenAI's Chat Completions API."""

@@ -1,0 +1,52 @@
+# Domain Dataset - RL
+
+- What is reinforcement learning and how is it different from ML? Provide details.
+- Explain Markov Decision Processes framework in RL. Provide details.
+- What is the exploration vs exploitation dilemma? Describe details.
+- How does Q-learning update its Q-table values? 
+- Explain policy gradient methods and Actor-Critic architectures. 
+- What is deep Q-network and how does it use experience replay? 
+- Describe reward shaping and policy optimization in RL. 
+- What is temporal difference learning in reinforcement learning? Provide details.
+- Explain Monte Carlo tree search and its integration with RL. Describe details.
+- What are model-based vs model-free reinforcement learning algorithms? Describe details.
+- What is reinforcement learning and how is it different from ML? Provide details.
+- Explain Markov Decision Processes framework in RL. Describe details.
+- What is the exploration vs exploitation dilemma? Describe details.
+- How does Q-learning update its Q-table values? 
+- Explain policy gradient methods and Actor-Critic architectures. Describe details.
+- What is deep Q-network and how does it use experience replay? Describe details.
+- Describe reward shaping and policy optimization in RL. Describe details.
+- What is temporal difference learning in reinforcement learning? 
+- Explain Monte Carlo tree search and its integration with RL. Describe details.
+- What are model-based vs model-free reinforcement learning algorithms? Provide details.
+- What is reinforcement learning and how is it different from ML? Provide details.
+- Explain Markov Decision Processes framework in RL. Explain.
+- What is the exploration vs exploitation dilemma? 
+- How does Q-learning update its Q-table values? 
+- Explain policy gradient methods and Actor-Critic architectures. Describe details.
+- What is deep Q-network and how does it use experience replay? Explain.
+- Describe reward shaping and policy optimization in RL. 
+- What is temporal difference learning in reinforcement learning? Provide details.
+- Explain Monte Carlo tree search and its integration with RL. Provide details.
+- What are model-based vs model-free reinforcement learning algorithms? Describe details.
+- What is reinforcement learning and how is it different from ML? Provide details.
+- Explain Markov Decision Processes framework in RL. Provide details.
+- What is the exploration vs exploitation dilemma? Describe details.
+- How does Q-learning update its Q-table values? 
+- Explain policy gradient methods and Actor-Critic architectures. Describe details.
+- What is deep Q-network and how does it use experience replay? Describe details.
+- Describe reward shaping and policy optimization in RL. Explain.
+- What is temporal difference learning in reinforcement learning? Describe details.
+- Explain Monte Carlo tree search and its integration with RL. Explain.
+- What are model-based vs model-free reinforcement learning algorithms? Explain.
+- What is reinforcement learning and how is it different from ML? 
+- Explain Markov Decision Processes framework in RL. 
+- What is the exploration vs exploitation dilemma? Describe details.
+- How does Q-learning update its Q-table values? Provide details.
+- Explain policy gradient methods and Actor-Critic architectures. Describe details.
+- What is deep Q-network and how does it use experience replay? Provide details.
+- Describe reward shaping and policy optimization in RL. Explain.
+- What is temporal difference learning in reinforcement learning? Explain.
+- Explain Monte Carlo tree search and its integration with RL. Explain.
+- What are model-based vs model-free reinforcement learning algorithms? 

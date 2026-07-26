@@ -1,0 +1,52 @@
+# Domain Dataset - DL
+
+- What is a neural network and how does backpropagation work? Describe details.
+- Explain activation functions like ReLU, Sigmoid, and Tanh. Explain.
+- What are convolutional neural networks used for? Describe details.
+- Explain vanishing and exploding gradient problems in deep networks. 
+- What is dropout layer and how does it prevent overfitting in DL? 
+- Describe the architecture of Recurrent Neural Networks. Describe details.
+- What is generative adversarial network and how does it train? Describe details.
+- Describe deep autoencoders and their reconstruction loss. Describe details.
+- How does batch normalization speed up deep network training? 
+- Explain self-attention mechanism in deep learning architectures. 
+- What is a neural network and how does backpropagation work? Provide details.
+- Explain activation functions like ReLU, Sigmoid, and Tanh. 
+- What are convolutional neural networks used for? Explain.
+- Explain vanishing and exploding gradient problems in deep networks. 
+- What is dropout layer and how does it prevent overfitting in DL? Provide details.
+- Describe the architecture of Recurrent Neural Networks. Provide details.
+- What is generative adversarial network and how does it train? Describe details.
+- Describe deep autoencoders and their reconstruction loss. Explain.
+- How does batch normalization speed up deep network training? 
+- Explain self-attention mechanism in deep learning architectures. Describe details.
+- What is a neural network and how does backpropagation work? 
+- Explain activation functions like ReLU, Sigmoid, and Tanh. Explain.
+- What are convolutional neural networks used for? 
+- Explain vanishing and exploding gradient problems in deep networks. 
+- What is dropout layer and how does it prevent overfitting in DL? 
+- Describe the architecture of Recurrent Neural Networks. Provide details.
+- What is generative adversarial network and how does it train? Provide details.
+- Describe deep autoencoders and their reconstruction loss. Provide details.
+- How does batch normalization speed up deep network training? Explain.
+- Explain self-attention mechanism in deep learning architectures. 
+- What is a neural network and how does backpropagation work? Provide details.
+- Explain activation functions like ReLU, Sigmoid, and Tanh. 
+- What are convolutional neural networks used for? Provide details.
+- Explain vanishing and exploding gradient problems in deep networks. Explain.
+- What is dropout layer and how does it prevent overfitting in DL? 
+- Describe the architecture of Recurrent Neural Networks. Explain.
+- What is generative adversarial network and how does it train? 
+- Describe deep autoencoders and their reconstruction loss. 
+- How does batch normalization speed up deep network training? Describe details.
+- Explain self-attention mechanism in deep learning architectures. Explain.
+- What is a neural network and how does backpropagation work? Explain.
+- Explain activation functions like ReLU, Sigmoid, and Tanh. Describe details.
+- What are convolutional neural networks used for? Explain.
+- Explain vanishing and exploding gradient problems in deep networks. Explain.
+- What is dropout layer and how does it prevent overfitting in DL? Provide details.
+- Describe the architecture of Recurrent Neural Networks. Describe details.
+- What is generative adversarial network and how does it train? 
+- Describe deep autoencoders and their reconstruction loss. 
+- How does batch normalization speed up deep network training? Provide details.
+- Explain self-attention mechanism in deep learning architectures. Provide details.

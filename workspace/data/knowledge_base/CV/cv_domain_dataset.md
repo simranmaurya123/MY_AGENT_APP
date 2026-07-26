@@ -1,0 +1,52 @@
+# Domain Dataset - CV
+
+- What is image segmentation and how does U-Net architecture work? Provide details.
+- Explain object detection models like YOLO and Faster R-CNN. Describe details.
+- How does edge detection like Canny edge detector function? Provide details.
+- What are image kernels and convolution operations in CV? 
+- Explain optical flow and motion tracking in video analysis. Provide details.
+- Describe feature matching algorithms like SIFT and ORB. 
+- How does image classification using ResNet skip connections work? 
+- Explain transfer learning for custom computer vision models. Explain.
+- What is data augmentation and how does it help vision models? Provide details.
+- Explain 3D computer vision and stereo depth estimation. Explain.
+- What is image segmentation and how does U-Net architecture work? 
+- Explain object detection models like YOLO and Faster R-CNN. Provide details.
+- How does edge detection like Canny edge detector function? 
+- What are image kernels and convolution operations in CV? Describe details.
+- Explain optical flow and motion tracking in video analysis. Provide details.
+- Describe feature matching algorithms like SIFT and ORB. 
+- How does image classification using ResNet skip connections work? Explain.
+- Explain transfer learning for custom computer vision models. Describe details.
+- What is data augmentation and how does it help vision models? 
+- Explain 3D computer vision and stereo depth estimation. Explain.
+- What is image segmentation and how does U-Net architecture work? 
+- Explain object detection models like YOLO and Faster R-CNN. Explain.
+- How does edge detection like Canny edge detector function? Provide details.
+- What are image kernels and convolution operations in CV? 
+- Explain optical flow and motion tracking in video analysis. 
+- Describe feature matching algorithms like SIFT and ORB. Describe details.
+- How does image classification using ResNet skip connections work? Provide details.
+- Explain transfer learning for custom computer vision models. Provide details.
+- What is data augmentation and how does it help vision models? Explain.
+- Explain 3D computer vision and stereo depth estimation. Provide details.
+- What is image segmentation and how does U-Net architecture work? Describe details.
+- Explain object detection models like YOLO and Faster R-CNN. 
+- How does edge detection like Canny edge detector function? 
+- What are image kernels and convolution operations in CV? 
+- Explain optical flow and motion tracking in video analysis. 
+- Describe feature matching algorithms like SIFT and ORB. 
+- How does image classification using ResNet skip connections work? Describe details.
+- Explain transfer learning for custom computer vision models. Describe details.
+- What is data augmentation and how does it help vision models? Provide details.
+- Explain 3D computer vision and stereo depth estimation. 
+- What is image segmentation and how does U-Net architecture work? Explain.
+- Explain object detection models like YOLO and Faster R-CNN. Provide details.
+- How does edge detection like Canny edge detector function? Explain.
+- What are image kernels and convolution operations in CV? Describe details.
+- Explain optical flow and motion tracking in video analysis. Describe details.
+- Describe feature matching algorithms like SIFT and ORB. 
+- How does image classification using ResNet skip connections work? Describe details.
+- Explain transfer learning for custom computer vision models. Provide details.
+- What is data augmentation and how does it help vision models? Explain.
+- Explain 3D computer vision and stereo depth estimation. 

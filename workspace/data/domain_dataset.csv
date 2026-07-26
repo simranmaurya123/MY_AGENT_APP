@@ -1,0 +1,301 @@
+query,Category
+What is the history of Artificial Intelligence? Provide details.,AI
+Explain weak AI vs strong AI systems. ,AI
+What are the ethical implications of artificial general intelligence? Explain.,AI
+How is AI used in automated decision making systems? Provide details.,AI
+What are the main components of an AI system? Provide details.,AI
+Describe Turing test in artificial intelligence. ,AI
+What are expert systems in artificial intelligence? Explain.,AI
+How does pathfinding algorithms like A* work in AI? Explain.,AI
+Explain symbolic AI vs connectionist AI. Provide details.,AI
+How can AI solve complex planning tasks? Describe details.,AI
+What is the difference between supervised and unsupervised learning? Provide details.,ML
+How does a decision tree algorithm split data? Provide details.,ML
+Explain bias-variance tradeoff in machine learning. Provide details.,ML
+What is gradient descent and how is it used in regression? Provide details.,ML
+How do support vector machines find the optimal hyperplane? ,ML
+Describe k-means clustering algorithm steps. Explain.,ML
+What is cross validation in machine learning model evaluation? ,ML
+Explain principal component analysis for dimensionality reduction. ,ML
+What are ensemble methods like random forest and gradient boosting? ,ML
+How does regularization (L1 and L2) prevent overfitting? Provide details.,ML
+What is a neural network and how does backpropagation work? Describe details.,DL
+"Explain activation functions like ReLU, Sigmoid, and Tanh. Explain.",DL
+What are convolutional neural networks used for? Describe details.,DL
+Explain vanishing and exploding gradient problems in deep networks. ,DL
+What is dropout layer and how does it prevent overfitting in DL? ,DL
+Describe the architecture of Recurrent Neural Networks. Describe details.,DL
+What is generative adversarial network and how does it train? Describe details.,DL
+Describe deep autoencoders and their reconstruction loss. Describe details.,DL
+How does batch normalization speed up deep network training? ,DL
+Explain self-attention mechanism in deep learning architectures. ,DL
+What is tokenization and lemmatization in text processing? Explain.,NLP
+Explain TF-IDF and bag of words models. Explain.,NLP
+How do word embeddings like Word2Vec and GloVe work? ,NLP
+Explain the architecture of Transformer models in NLP. Describe details.,NLP
+What is Named Entity Recognition and how is it built? Describe details.,NLP
+How does BERT perform masked language modeling tasks? Explain.,NLP
+Explain sequence to sequence models for machine translation. ,NLP
+How do we evaluate text generation models using BLEU and ROUGE? Explain.,NLP
+Explain sentiment analysis using recurrent network models. Explain.,NLP
+What is parser and dependency parsing in computational linguistics? Provide details.,NLP
+What is reinforcement learning and how is it different from ML? Provide details.,RL
+Explain Markov Decision Processes framework in RL. Provide details.,RL
+What is the exploration vs exploitation dilemma? Describe details.,RL
+How does Q-learning update its Q-table values? ,RL
+Explain policy gradient methods and Actor-Critic architectures. ,RL
+What is deep Q-network and how does it use experience replay? ,RL
+Describe reward shaping and policy optimization in RL. ,RL
+What is temporal difference learning in reinforcement learning? Provide details.,RL
+Explain Monte Carlo tree search and its integration with RL. Describe details.,RL
+What are model-based vs model-free reinforcement learning algorithms? Describe details.,RL
+What is image segmentation and how does U-Net architecture work? Provide details.,CV
+Explain object detection models like YOLO and Faster R-CNN. Describe details.,CV
+How does edge detection like Canny edge detector function? Provide details.,CV
+What are image kernels and convolution operations in CV? ,CV
+Explain optical flow and motion tracking in video analysis. Provide details.,CV
+Describe feature matching algorithms like SIFT and ORB. ,CV
+How does image classification using ResNet skip connections work? ,CV
+Explain transfer learning for custom computer vision models. Explain.,CV
+What is data augmentation and how does it help vision models? Provide details.,CV
+Explain 3D computer vision and stereo depth estimation. Explain.,CV
+What is the history of Artificial Intelligence? Provide details.,AI
+Explain weak AI vs strong AI systems. Provide details.,AI
+What are the ethical implications of artificial general intelligence? Explain.,AI
+How is AI used in automated decision making systems? Explain.,AI
+What are the main components of an AI system? Provide details.,AI
+Describe Turing test in artificial intelligence. Describe details.,AI
+What are expert systems in artificial intelligence? ,AI
+How does pathfinding algorithms like A* work in AI? Explain.,AI
+Explain symbolic AI vs connectionist AI. ,AI
+How can AI solve complex planning tasks? Describe details.,AI
+What is the difference between supervised and unsupervised learning? Describe details.,ML
+How does a decision tree algorithm split data? Describe details.,ML
+Explain bias-variance tradeoff in machine learning. Explain.,ML
+What is gradient descent and how is it used in regression? Describe details.,ML
+How do support vector machines find the optimal hyperplane? Explain.,ML
+Describe k-means clustering algorithm steps. Describe details.,ML
+What is cross validation in machine learning model evaluation? ,ML
+Explain principal component analysis for dimensionality reduction. ,ML
+What are ensemble methods like random forest and gradient boosting? Provide details.,ML
+How does regularization (L1 and L2) prevent overfitting? ,ML
+What is a neural network and how does backpropagation work? Provide details.,DL
+"Explain activation functions like ReLU, Sigmoid, and Tanh. ",DL
+What are convolutional neural networks used for? Explain.,DL
+Explain vanishing and exploding gradient problems in deep networks. ,DL
+What is dropout layer and how does it prevent overfitting in DL? Provide details.,DL
+Describe the architecture of Recurrent Neural Networks. Provide details.,DL
+What is generative adversarial network and how does it train? Describe details.,DL
+Describe deep autoencoders and their reconstruction loss. Explain.,DL
+How does batch normalization speed up deep network training? ,DL
+Explain self-attention mechanism in deep learning architectures. Describe details.,DL
+What is tokenization and lemmatization in text processing? ,NLP
+Explain TF-IDF and bag of words models. ,NLP
+How do word embeddings like Word2Vec and GloVe work? Describe details.,NLP
+Explain the architecture of Transformer models in NLP. Describe details.,NLP
+What is Named Entity Recognition and how is it built? Describe details.,NLP
+How does BERT perform masked language modeling tasks? Describe details.,NLP
+Explain sequence to sequence models for machine translation. Describe details.,NLP
+How do we evaluate text generation models using BLEU and ROUGE? ,NLP
+Explain sentiment analysis using recurrent network models. Describe details.,NLP
+What is parser and dependency parsing in computational linguistics? Explain.,NLP
+What is reinforcement learning and how is it different from ML? Provide details.,RL
+Explain Markov Decision Processes framework in RL. Describe details.,RL
+What is the exploration vs exploitation dilemma? Describe details.,RL
+How does Q-learning update its Q-table values? ,RL
+Explain policy gradient methods and Actor-Critic architectures. Describe details.,RL
+What is deep Q-network and how does it use experience replay? Describe details.,RL
+Describe reward shaping and policy optimization in RL. Describe details.,RL
+What is temporal difference learning in reinforcement learning? ,RL
+Explain Monte Carlo tree search and its integration with RL. Describe details.,RL
+What are model-based vs model-free reinforcement learning algorithms? Provide details.,RL
+What is image segmentation and how does U-Net architecture work? ,CV
+Explain object detection models like YOLO and Faster R-CNN. Provide details.,CV
+How does edge detection like Canny edge detector function? ,CV
+What are image kernels and convolution operations in CV? Describe details.,CV
+Explain optical flow and motion tracking in video analysis. Provide details.,CV
+Describe feature matching algorithms like SIFT and ORB. ,CV
+How does image classification using ResNet skip connections work? Explain.,CV
+Explain transfer learning for custom computer vision models. Describe details.,CV
+What is data augmentation and how does it help vision models? ,CV
+Explain 3D computer vision and stereo depth estimation. Explain.,CV
+What is the history of Artificial Intelligence? ,AI
+Explain weak AI vs strong AI systems. Explain.,AI
+What are the ethical implications of artificial general intelligence? Describe details.,AI
+How is AI used in automated decision making systems? Provide details.,AI
+What are the main components of an AI system? Explain.,AI
+Describe Turing test in artificial intelligence. ,AI
+What are expert systems in artificial intelligence? Describe details.,AI
+How does pathfinding algorithms like A* work in AI? Explain.,AI
+Explain symbolic AI vs connectionist AI. ,AI
+How can AI solve complex planning tasks? ,AI
+What is the difference between supervised and unsupervised learning? ,ML
+How does a decision tree algorithm split data? Explain.,ML
+Explain bias-variance tradeoff in machine learning. Explain.,ML
+What is gradient descent and how is it used in regression? Explain.,ML
+How do support vector machines find the optimal hyperplane? Provide details.,ML
+Describe k-means clustering algorithm steps. Explain.,ML
+What is cross validation in machine learning model evaluation? Explain.,ML
+Explain principal component analysis for dimensionality reduction. Explain.,ML
+What are ensemble methods like random forest and gradient boosting? Provide details.,ML
+How does regularization (L1 and L2) prevent overfitting? Explain.,ML
+What is a neural network and how does backpropagation work? ,DL
+"Explain activation functions like ReLU, Sigmoid, and Tanh. Explain.",DL
+What are convolutional neural networks used for? ,DL
+Explain vanishing and exploding gradient problems in deep networks. ,DL
+What is dropout layer and how does it prevent overfitting in DL? ,DL
+Describe the architecture of Recurrent Neural Networks. Provide details.,DL
+What is generative adversarial network and how does it train? Provide details.,DL
+Describe deep autoencoders and their reconstruction loss. Provide details.,DL
+How does batch normalization speed up deep network training? Explain.,DL
+Explain self-attention mechanism in deep learning architectures. ,DL
+What is tokenization and lemmatization in text processing? Provide details.,NLP
+Explain TF-IDF and bag of words models. Provide details.,NLP
+How do word embeddings like Word2Vec and GloVe work? Explain.,NLP
+Explain the architecture of Transformer models in NLP. Provide details.,NLP
+What is Named Entity Recognition and how is it built? Explain.,NLP
+How does BERT perform masked language modeling tasks? Describe details.,NLP
+Explain sequence to sequence models for machine translation. Provide details.,NLP
+How do we evaluate text generation models using BLEU and ROUGE? Describe details.,NLP
+Explain sentiment analysis using recurrent network models. Explain.,NLP
+What is parser and dependency parsing in computational linguistics? ,NLP
+What is reinforcement learning and how is it different from ML? Provide details.,RL
+Explain Markov Decision Processes framework in RL. Explain.,RL
+What is the exploration vs exploitation dilemma? ,RL
+How does Q-learning update its Q-table values? ,RL
+Explain policy gradient methods and Actor-Critic architectures. Describe details.,RL
+What is deep Q-network and how does it use experience replay? Explain.,RL
+Describe reward shaping and policy optimization in RL. ,RL
+What is temporal difference learning in reinforcement learning? Provide details.,RL
+Explain Monte Carlo tree search and its integration with RL. Provide details.,RL
+What are model-based vs model-free reinforcement learning algorithms? Describe details.,RL
+What is image segmentation and how does U-Net architecture work? ,CV
+Explain object detection models like YOLO and Faster R-CNN. Explain.,CV
+How does edge detection like Canny edge detector function? Provide details.,CV
+What are image kernels and convolution operations in CV? ,CV
+Explain optical flow and motion tracking in video analysis. ,CV
+Describe feature matching algorithms like SIFT and ORB. Describe details.,CV
+How does image classification using ResNet skip connections work? Provide details.,CV
+Explain transfer learning for custom computer vision models. Provide details.,CV
+What is data augmentation and how does it help vision models? Explain.,CV
+Explain 3D computer vision and stereo depth estimation. Provide details.,CV
+What is the history of Artificial Intelligence? Explain.,AI
+Explain weak AI vs strong AI systems. Provide details.,AI
+What are the ethical implications of artificial general intelligence? Describe details.,AI
+How is AI used in automated decision making systems? Provide details.,AI
+What are the main components of an AI system? Explain.,AI
+Describe Turing test in artificial intelligence. Explain.,AI
+What are expert systems in artificial intelligence? Describe details.,AI
+How does pathfinding algorithms like A* work in AI? Provide details.,AI
+Explain symbolic AI vs connectionist AI. Provide details.,AI
+How can AI solve complex planning tasks? Describe details.,AI
+What is the difference between supervised and unsupervised learning? Provide details.,ML
+How does a decision tree algorithm split data? Provide details.,ML
+Explain bias-variance tradeoff in machine learning. Explain.,ML
+What is gradient descent and how is it used in regression? Provide details.,ML
+How do support vector machines find the optimal hyperplane? Provide details.,ML
+Describe k-means clustering algorithm steps. Describe details.,ML
+What is cross validation in machine learning model evaluation? Describe details.,ML
+Explain principal component analysis for dimensionality reduction. ,ML
+What are ensemble methods like random forest and gradient boosting? Explain.,ML
+How does regularization (L1 and L2) prevent overfitting? Provide details.,ML
+What is a neural network and how does backpropagation work? Provide details.,DL
+"Explain activation functions like ReLU, Sigmoid, and Tanh. ",DL
+What are convolutional neural networks used for? Provide details.,DL
+Explain vanishing and exploding gradient problems in deep networks. Explain.,DL
+What is dropout layer and how does it prevent overfitting in DL? ,DL
+Describe the architecture of Recurrent Neural Networks. Explain.,DL
+What is generative adversarial network and how does it train? ,DL
+Describe deep autoencoders and their reconstruction loss. ,DL
+How does batch normalization speed up deep network training? Describe details.,DL
+Explain self-attention mechanism in deep learning architectures. Explain.,DL
+What is tokenization and lemmatization in text processing? Provide details.,NLP
+Explain TF-IDF and bag of words models. Provide details.,NLP
+How do word embeddings like Word2Vec and GloVe work? Explain.,NLP
+Explain the architecture of Transformer models in NLP. Provide details.,NLP
+What is Named Entity Recognition and how is it built? Provide details.,NLP
+How does BERT perform masked language modeling tasks? Explain.,NLP
+Explain sequence to sequence models for machine translation. ,NLP
+How do we evaluate text generation models using BLEU and ROUGE? Explain.,NLP
+Explain sentiment analysis using recurrent network models. ,NLP
+What is parser and dependency parsing in computational linguistics? Provide details.,NLP
+What is reinforcement learning and how is it different from ML? Provide details.,RL
+Explain Markov Decision Processes framework in RL. Provide details.,RL
+What is the exploration vs exploitation dilemma? Describe details.,RL
+How does Q-learning update its Q-table values? ,RL
+Explain policy gradient methods and Actor-Critic architectures. Describe details.,RL
+What is deep Q-network and how does it use experience replay? Describe details.,RL
+Describe reward shaping and policy optimization in RL. Explain.,RL
+What is temporal difference learning in reinforcement learning? Describe details.,RL
+Explain Monte Carlo tree search and its integration with RL. Explain.,RL
+What are model-based vs model-free reinforcement learning algorithms? Explain.,RL
+What is image segmentation and how does U-Net architecture work? Describe details.,CV
+Explain object detection models like YOLO and Faster R-CNN. ,CV
+How does edge detection like Canny edge detector function? ,CV
+What are image kernels and convolution operations in CV? ,CV
+Explain optical flow and motion tracking in video analysis. ,CV
+Describe feature matching algorithms like SIFT and ORB. ,CV
+How does image classification using ResNet skip connections work? Describe details.,CV
+Explain transfer learning for custom computer vision models. Describe details.,CV
+What is data augmentation and how does it help vision models? Provide details.,CV
+Explain 3D computer vision and stereo depth estimation. ,CV
+What is the history of Artificial Intelligence? Describe details.,AI
+Explain weak AI vs strong AI systems. Provide details.,AI
+What are the ethical implications of artificial general intelligence? ,AI
+How is AI used in automated decision making systems? Explain.,AI
+What are the main components of an AI system? Provide details.,AI
+Describe Turing test in artificial intelligence. Describe details.,AI
+What are expert systems in artificial intelligence? Explain.,AI
+How does pathfinding algorithms like A* work in AI? Explain.,AI
+Explain symbolic AI vs connectionist AI. Explain.,AI
+How can AI solve complex planning tasks? Provide details.,AI
+What is the difference between supervised and unsupervised learning? Describe details.,ML
+How does a decision tree algorithm split data? Explain.,ML
+Explain bias-variance tradeoff in machine learning. ,ML
+What is gradient descent and how is it used in regression? Explain.,ML
+How do support vector machines find the optimal hyperplane? Explain.,ML
+Describe k-means clustering algorithm steps. Provide details.,ML
+What is cross validation in machine learning model evaluation? Provide details.,ML
+Explain principal component analysis for dimensionality reduction. Describe details.,ML
+What are ensemble methods like random forest and gradient boosting? ,ML
+How does regularization (L1 and L2) prevent overfitting? Provide details.,ML
+What is a neural network and how does backpropagation work? Explain.,DL
+"Explain activation functions like ReLU, Sigmoid, and Tanh. Describe details.",DL
+What are convolutional neural networks used for? Explain.,DL
+Explain vanishing and exploding gradient problems in deep networks. Explain.,DL
+What is dropout layer and how does it prevent overfitting in DL? Provide details.,DL
+Describe the architecture of Recurrent Neural Networks. Describe details.,DL
+What is generative adversarial network and how does it train? ,DL
+Describe deep autoencoders and their reconstruction loss. ,DL
+How does batch normalization speed up deep network training? Provide details.,DL
+Explain self-attention mechanism in deep learning architectures. Provide details.,DL
+What is tokenization and lemmatization in text processing? Describe details.,NLP
+Explain TF-IDF and bag of words models. ,NLP
+How do word embeddings like Word2Vec and GloVe work? ,NLP
+Explain the architecture of Transformer models in NLP. ,NLP
+What is Named Entity Recognition and how is it built? Explain.,NLP
+How does BERT perform masked language modeling tasks? ,NLP
+Explain sequence to sequence models for machine translation. Explain.,NLP
+How do we evaluate text generation models using BLEU and ROUGE? Describe details.,NLP
+Explain sentiment analysis using recurrent network models. Explain.,NLP
+What is parser and dependency parsing in computational linguistics? Describe details.,NLP
+What is reinforcement learning and how is it different from ML? ,RL
+Explain Markov Decision Processes framework in RL. ,RL
+What is the exploration vs exploitation dilemma? Describe details.,RL
+How does Q-learning update its Q-table values? Provide details.,RL
+Explain policy gradient methods and Actor-Critic architectures. Describe details.,RL
+What is deep Q-network and how does it use experience replay? Provide details.,RL
+Describe reward shaping and policy optimization in RL. Explain.,RL
+What is temporal difference learning in reinforcement learning? Explain.,RL
+Explain Monte Carlo tree search and its integration with RL. Explain.,RL
+What are model-based vs model-free reinforcement learning algorithms? ,RL
+What is image segmentation and how does U-Net architecture work? Explain.,CV
+Explain object detection models like YOLO and Faster R-CNN. Provide details.,CV
+How does edge detection like Canny edge detector function? Explain.,CV
+What are image kernels and convolution operations in CV? Describe details.,CV
+Explain optical flow and motion tracking in video analysis. Describe details.,CV
+Describe feature matching algorithms like SIFT and ORB. ,CV
+How does image classification using ResNet skip connections work? Describe details.,CV
+Explain transfer learning for custom computer vision models. Provide details.,CV
+What is data augmentation and how does it help vision models? Explain.,CV
+Explain 3D computer vision and stereo depth estimation. ,CV

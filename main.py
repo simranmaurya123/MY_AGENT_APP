@@ -1,7 +1,12 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import sys
 import json
+
+# Ensure UTF-8 output encoding for Windows terminal
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 from src.token_utils import threshold_compress, count_all_tokens, get_token_usage_report
 from src.memory import MemoryManager
 from src.query import QueryContext
@@ -203,7 +208,7 @@ def chat(user_input: str) -> str:
     domain, confidence, classifier_backend = classifier.classify(user_input)
     
     # Scoping validation
-    if domain not in SUPPORTED_DOMAINS or confidence < confidence_floor:
+    if domain not in SUPPORTED_DOMAINS:
         rejection_text = (
             f"I only answer questions in AI, ML, DL, NLP, RL, and CV. "
             f"Your query was classified under '{domain}' with confidence {confidence:.2f}. "

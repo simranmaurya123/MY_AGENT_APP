@@ -3,6 +3,7 @@ import re
 import json
 import joblib
 import numpy as np
+import pandas as pd
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Iterable
 from pypdf import PdfReader
