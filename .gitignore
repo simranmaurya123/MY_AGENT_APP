@@ -1,4 +1,6 @@
 .env
+.env.*
+.env.local
 /memory
 venv/
 __pycache__/
